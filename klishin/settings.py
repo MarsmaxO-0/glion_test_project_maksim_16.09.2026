@@ -159,3 +159,10 @@ CACHES = {
 ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
 CHAT_MODEL = os.environ.get('CHAT_MODEL', 'claude-opus-5-5')
 CHAT_PROMPT_TTL = 10 * 60  # seconds the site description is kept before re-reading the database
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {'console': {'class': 'logging.StreamHandler'}},
+    'loggers': {'core': {'handlers': ['console'], 'level': 'INFO'}},
+}

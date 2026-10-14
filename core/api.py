@@ -1,4 +1,5 @@
 import json
+import logging
 
 import anthropic
 from django.http import JsonResponse
@@ -6,6 +7,8 @@ from django.views.decorators.http import require_POST
 
 from . import chat
 from .models import ChatLog
+
+log = logging.getLogger(__name__)
 
 ERRORS = {
     'ru': {
@@ -42,9 +45,14 @@ def chat_api(request):
         return JsonResponse({'error': err['bad']}, status=400)
     try:
         reply = chat.ask(history, lang)
-    except anthropic.RateLimitError:
+    except anthropic.RateLimitError as exc:
+        log.warning('chat: rate limited by the Claude API: %s', exc)
         return JsonResponse({'error': err['busy']}, status=429)
-    except (anthropic.APIStatusError, anthropic.APIConnectionError):
+    except anthropic.AuthenticationError as exc:
+        log.error('chat: the Claude API rejected ANTHROPIC_API_KEY: %s', exc)
+        return JsonResponse({'error': err['fail']}, status=502)
+    except (anthropic.APIStatusError, anthropic.APIConnectionError) as exc:
+        log.error('chat: Claude API call failed: %s', exc)
         return JsonResponse({'error': err['fail']}, status=502)
     if reply is None:
         reply = err['refused']
