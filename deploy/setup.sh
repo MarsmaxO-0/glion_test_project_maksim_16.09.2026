@@ -21,6 +21,14 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -q
 apt-get install -y -q python3 python3-venv python3-pip git nginx
 
+echo "==> Swap (small droplets have none; 1 GB keeps the site responsive under memory pressure)"
+if [ ! -f /swapfile ]; then
+  fallocate -l 1G /swapfile && chmod 600 /swapfile && mkswap -q /swapfile && swapon /swapfile
+  grep -q '^/swapfile' /etc/fstab || echo '/swapfile none swap sw 0 0' >> /etc/fstab
+  sysctl -q vm.swappiness=10 && echo 'vm.swappiness=10' > /etc/sysctl.d/99-klishin.conf
+  echo "    swap enabled"
+fi
+
 echo "==> Code"
 git config --global --add safe.directory "$APP_DIR"   # the checkout is owned by www-data
 if [ -d "$APP_DIR/.git" ]; then
@@ -78,7 +86,7 @@ User=www-data
 Group=www-data
 WorkingDirectory=$APP_DIR
 EnvironmentFile=$ENV_FILE
-ExecStart=$APP_DIR/.venv/bin/gunicorn klishin.wsgi:application --bind unix:/run/klishin/gunicorn.sock --workers 3 --timeout 120
+ExecStart=$APP_DIR/.venv/bin/gunicorn klishin.wsgi:application --bind unix:/run/klishin/gunicorn.sock --workers 2 --threads 3 --max-requests 500 --max-requests-jitter 50 --timeout 120
 RuntimeDirectory=klishin
 Restart=always
 
