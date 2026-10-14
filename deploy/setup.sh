@@ -57,6 +57,8 @@ cd "$APP_DIR"
 FIRST_RUN=0; [ -f db.sqlite3 ] || FIRST_RUN=1
 .venv/bin/python manage.py migrate --noinput -v0
 [ "$FIRST_RUN" = 1 ] && .venv/bin/python manage.py loaddata site_content -v0 && echo "    site content loaded"
+mkdir -p media
+.venv/bin/python manage.py fetch_photos || echo "    (could not download lawyer photos from klishin.ru; they stay linked)"
 .venv/bin/python manage.py collectstatic --noinput -v0
 chown -R www-data:www-data "$APP_DIR"
 
@@ -92,6 +94,11 @@ server {
 
     location /static/ {
         alias $APP_DIR/staticfiles/;
+        expires 30d;
+        add_header Cache-Control "public";
+    }
+    location /media/ {
+        alias $APP_DIR/media/;
         expires 30d;
         add_header Cache-Control "public";
     }

@@ -141,3 +141,22 @@ class ChatTest(ContentMixin, TestCase):
         with self.settings(ANTHROPIC_API_KEY='sk-test'):
             resp = self.client.post('/api/chat/', data='not json', content_type='application/json')
         self.assertEqual(resp.status_code, 400)
+
+
+class PhotoTest(ContentMixin, TestCase):
+    def test_photo_src_prefers_uploaded_file(self):
+        import tempfile
+        from django.core.files.base import ContentFile
+        with tempfile.TemporaryDirectory() as tmp, self.settings(MEDIA_ROOT=tmp):
+            self._run_photo_checks(ContentFile)
+
+    def _run_photo_checks(self, ContentFile):
+        self.assertEqual(self.lawyer.photo_src, 'https://example.com/p.jpg')
+        self.lawyer.photo.save('ivanov.png', ContentFile(b'\x89PNG\r\n\x1a\n'), save=True)
+        self.assertTrue(self.lawyer.photo_src.startswith('/media/team/ivanov'))
+        self.assertContains(self.client.get('/ru/team/'), self.lawyer.photo_src)
+        self.lawyer.photo.delete(save=True)
+
+    def test_silhouette_hides_external_url(self):
+        self.lawyer.silhouette = True
+        self.assertEqual(self.lawyer.photo_src, '')

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from .models import (
     Case, ChatLog, ContactMessage, IpArea, Lawyer, Practice, PracticeGroup, PracticeHighlight, PressItem, Publication,
@@ -22,14 +23,17 @@ class PracticeAdmin(admin.ModelAdmin):
 
 @admin.register(Lawyer)
 class LawyerAdmin(admin.ModelAdmin):
-    list_display = ('name_ru', 'name_en', 'group', 'position_ru', 'order', 'on_home')
+    list_display = ('thumb', 'name_ru', 'name_en', 'group', 'position_ru', 'order', 'on_home')
+    list_display_links = ('thumb', 'name_ru')
+    readonly_fields = ('preview',)
     list_filter = ('group', 'on_home')
     list_editable = ('order', 'on_home')
     search_fields = ('name_ru', 'name_en')
     prepopulated_fields = {'slug': ('name_en',)}
     filter_horizontal = ('practices',)
     fieldsets = (
-        (None, {'fields': ('slug', 'group', 'order', 'on_home', 'photo_url', 'silhouette', 'practices')}),
+        (None, {'fields': ('slug', 'group', 'order', 'on_home', 'practices')}),
+        ('Фото', {'fields': ('preview', 'photo', 'photo_url', 'silhouette')}),
         ('Русский', {'fields': (
             'name_ru', 'position_ru', 'short_role_ru', 'kicker_ru', 'role_ru', 'registry_ru', 'bio_ru',
             'extra_title_ru', 'extra_ru', 'specialisation_ru', 'awards_title_ru', 'awards_ru', 'news_ru',
@@ -39,6 +43,17 @@ class LawyerAdmin(admin.ModelAdmin):
             'extra_title_en', 'extra_en', 'specialisation_en', 'awards_title_en', 'awards_en', 'news_en',
         )}),
     )
+
+
+    @admin.display(description='')
+    def thumb(self, obj):
+        src = obj.photo_src
+        return format_html('<img src="{}" style="width:36px;height:45px;object-fit:cover;border-radius:6px">', src) if src else '—'
+
+    @admin.display(description='Текущее фото')
+    def preview(self, obj):
+        src = obj.photo_src
+        return format_html('<img src="{}" style="max-width:200px;border-radius:12px">', src) if src else 'Нет фото'
 
 
 @admin.register(Case)

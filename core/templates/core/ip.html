@@ -16,7 +16,7 @@
       <h2 class="h2 h2--sm h2--rule">{{ ui.ip.leadership }}</h2>
       {% if director %}
       <div class="director">
-        <a href="{{ director.get_absolute_url }}" class="director__photo"><img src="{{ director.photo_url }}" alt="{{ director|tr:'name' }}" loading="lazy"></a>
+        <a href="{{ director.get_absolute_url }}" class="director__photo"><img src="{{ director.photo_src }}" alt="{{ director|tr:'name' }}" loading="lazy"></a>
         <h3 class="person__name">{{ director|tr:'name' }}</h3>
         <p class="person__role">{{ ui.ip.director_role }}</p>
         <a href="{{ director.get_absolute_url }}" class="link-accent">{{ ui.bio_link }}</a>

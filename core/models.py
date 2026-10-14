@@ -66,7 +66,8 @@ class Lawyer(Translatable):
     order = models.PositiveSmallIntegerField(default=0)
     group = models.CharField(max_length=12, choices=GROUPS)
     on_home = models.BooleanField(default=False, help_text='Show in the Presidium block on the home page.')
-    photo_url = models.URLField(blank=True)
+    photo = models.ImageField(upload_to='team/', blank=True, help_text='Uploaded photo (preferred).')
+    photo_url = models.URLField(blank=True, help_text='External photo URL, used when no file is uploaded.')
     silhouette = models.BooleanField(default=False, help_text='No photo: show a neutral silhouette.')
     practices = models.ManyToManyField(Practice, blank=True, related_name='lawyers')
 
@@ -106,6 +107,13 @@ class Lawyer(Translatable):
 
     def get_absolute_url(self):
         return reverse('core:lawyer', kwargs={'slug': self.slug})
+
+    @property
+    def photo_src(self):
+        """URL of the photo to show: the uploaded file first, then the external link, else empty."""
+        if self.photo:
+            return self.photo.url
+        return '' if self.silhouette else self.photo_url
 
 
 class Case(Translatable):
