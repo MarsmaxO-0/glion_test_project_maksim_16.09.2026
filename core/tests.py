@@ -73,9 +73,9 @@ class PagesTest(ContentMixin, TestCase):
 
 class ContactFormTest(ContentMixin, TestCase):
     def _captcha(self, lang='ru'):
-        """Open the form so a captcha question is stored, then return its answer."""
+        """Open the form so a puzzle is stored in the session, then return its answer (the piece offset)."""
         self.client.get(f'/{lang}/contacts/')
-        return self.client.session['captcha_answer']
+        return self.client.session['captcha']['x']
 
     def test_valid_message_is_saved(self):
         resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': '+7 900 000-00-00', 'message': 'Вопрос',
@@ -87,7 +87,7 @@ class ContactFormTest(ContentMixin, TestCase):
 
     def test_wrong_captcha_is_rejected(self):
         answer = self._captcha()
-        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос', 'captcha': answer + 1})
+        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос', 'captcha': answer + 40})
         self.assertEqual(resp.status_code, 200)
         self.assertFalse(ContactMessage.objects.exists())
 
@@ -218,3 +218,22 @@ class OpsTest(ContentMixin, TestCase):
             self.assertEqual(len(archives), 1)
             with tarfile.open(os.path.join(tmp, archives[0])) as tar:
                 self.assertTrue(any(n.startswith('db.') for n in tar.getnames()))
+
+
+class PuzzleCaptchaTest(TestCase):
+    def test_puzzle_roundtrip(self):
+        from . import captcha
+        session = {}
+        data = captcha.new_puzzle(session)
+        self.assertTrue(data['bg'].startswith('data:image/png;base64,'))
+        self.assertTrue(data['piece'].startswith('data:image/png;base64,'))
+        x = session['captcha']['x']
+        self.assertFalse(captcha.verify(session, x + captcha.TOLERANCE + 1))   # near miss fails, puzzle still active
+        self.assertTrue(captcha.verify(session, x + captcha.TOLERANCE))        # within tolerance passes
+        self.assertFalse(captcha.verify(session, x))                            # single use
+
+    def test_new_puzzle_endpoint(self):
+        resp = self.client.get('/captcha/new/')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn('piece', resp.json())
+        self.assertIn('captcha', self.client.session)

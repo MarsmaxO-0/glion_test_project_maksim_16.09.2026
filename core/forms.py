@@ -1,19 +1,12 @@
 import json
-import random
 import urllib.parse
 import urllib.request
 
 from django import forms
 from django.conf import settings
 
+from . import captcha
 from .models import ContactMessage
-
-
-def new_captcha(session):
-    """Store a fresh arithmetic question in the session; return its text."""
-    a, b = random.randint(2, 9), random.randint(1, 9)
-    session['captcha_answer'] = a + b
-    return f'{a} + {b}'
 
 
 def verify_turnstile(token, remote_ip=''):
@@ -32,8 +25,8 @@ def verify_turnstile(token, remote_ip=''):
 class ContactForm(forms.ModelForm):
     # Honeypot: real visitors leave it empty, simple bots fill every field.
     website = forms.CharField(required=False, widget=forms.HiddenInput)
-    # Arithmetic captcha; the expected answer lives in the session.
-    captcha = forms.IntegerField(widget=forms.NumberInput(attrs={'inputmode': 'numeric', 'autocomplete': 'off'}))
+    # Slide-puzzle captcha: the slider offset; the answer lives in the session.
+    captcha = forms.IntegerField(widget=forms.HiddenInput)
 
     class Meta:
         model = ContactMessage
@@ -56,9 +49,8 @@ class ContactForm(forms.ModelForm):
                     self.fields[name].widget.attrs['placeholder'] = label
 
     def clean_captcha(self):
-        expected = self.session.get('captcha_answer')
-        if expected is None or self.cleaned_data['captcha'] != expected:
-            raise forms.ValidationError('wrong answer')
+        if not captcha.verify(self.session, self.cleaned_data['captcha']):
+            raise forms.ValidationError('puzzle not solved')
         return self.cleaned_data['captcha']
 
     def clean(self):

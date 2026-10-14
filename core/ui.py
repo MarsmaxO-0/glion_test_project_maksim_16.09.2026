@@ -126,6 +126,10 @@ UI = {
             'form_sent': 'Спасибо, сообщение получено. Мы свяжемся с вами в рабочее время.',
             'form_error': 'Проверьте заполнение полей.',
             'form_captcha': 'Проверка, что вы не робот',
+            'captcha_hint': 'Потяните ползунок, чтобы собрать пазл',
+            'captcha_done': 'Готово',
+            'captcha_refresh': 'Другая картинка',
+            'captcha_error': 'Пазл не сошёлся, попробуйте ещё раз.',
         },
         'errors': {
             'not_found_title': 'Такой страницы нет',
@@ -246,6 +250,10 @@ UI = {
             'form_sent': 'Thank you, your message has been received. We will contact you during office hours.',
             'form_error': 'Please check the fields.',
             'form_captcha': 'Confirm you are human',
+            'captcha_hint': 'Drag the slider to complete the puzzle',
+            'captcha_done': 'Done',
+            'captcha_refresh': 'Another picture',
+            'captcha_error': 'The puzzle did not fit, please try again.',
         },
         'errors': {
             'not_found_title': 'Page not found',

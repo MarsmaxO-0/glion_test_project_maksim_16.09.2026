@@ -5,7 +5,8 @@ from django.utils import translation
 
 from . import press as press_feed
 from . import telegram
-from .forms import ContactForm, new_captcha
+from . import captcha
+from .forms import ContactForm
 from .models import (
     Case, IpArea, Lawyer, Practice, PracticeGroup, PracticeHighlight, PressItem, Publication, ResearchItem,
 )
@@ -91,21 +92,25 @@ def contacts(request):
             msg = form.save(commit=False)
             msg.language = lang
             msg.save()
-            request.session.pop('captcha_answer', None)
             telegram.send_message(
                 f"Новая заявка с сайта\n\nИмя: {msg.name}\nКонтакт: {msg.contact}\n\n{msg.message}\n\n"
                 f"{settings.SITE_URL}/admin/core/contactmessage/{msg.pk}/change/")
             return redirect(f"{request.path}?sent=1#contact-form")
     else:
         form = ContactForm(**common)
-    captcha_question = new_captcha(request.session)
+    puzzle = captcha.new_puzzle(request.session)
     return _render(
         request, 'core/contacts.html', 'contacts',
         form=form, sent=request.GET.get('sent') == '1',
-        captcha_question=captcha_question,
+        puzzle=puzzle,
         turnstile_site_key=settings.TURNSTILE_SITE_KEY if settings.TURNSTILE_SECRET_KEY else '',
         map_url=CONTACTS[f'map_{lang}'],
     )
+
+
+def captcha_new(request):
+    """A fresh puzzle for the "another picture" button."""
+    return JsonResponse(captcha.new_puzzle(request.session))
 
 
 def healthz(request):
