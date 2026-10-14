@@ -84,6 +84,9 @@ systemctl enable -q klishin
 systemctl restart klishin
 
 echo "==> nginx"
+if grep -qs "managed by Certbot" /etc/nginx/sites-available/klishin; then
+  echo "    keeping the existing nginx config (HTTPS set up by certbot)"
+else
 cat > /etc/nginx/sites-available/klishin <<NGINX
 server {
     listen 80 default_server;
@@ -111,6 +114,7 @@ server {
     }
 }
 NGINX
+fi
 ln -sf /etc/nginx/sites-available/klishin /etc/nginx/sites-enabled/klishin
 rm -f /etc/nginx/sites-enabled/default
 nginx -t -q
