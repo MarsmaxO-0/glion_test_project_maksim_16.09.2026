@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n_content %}
+{% block title %}{{ ui.nav.press }}{% endblock %}
+{% block description %}{{ ui.press.lead }}{% endblock %}
+{% block content %}
+{% include 'core/_hero.html' with kicker=ui.press.kicker title=ui.press.title lead=ui.press.lead %}
+<section class="wrap block block--tight">
+  <h2 class="h2 h2--sm h2--rule h2--rule-tight">{{ ui.press.news }}</h2>
+  <div class="news">
+    {% for n in items %}
+    <a href="{{ n.url }}" class="news__row news__row--full" target="_blank" rel="noopener">
+      <span class="news__date">{{ n.date }}</span>
+      <span>
+        <span class="news__title">{{ n.title }}</span>
+        {% if n.text %}<span class="news__text">{{ n.text }}</span>{% endif %}
+        <span class="news__source">{{ n.source }} ↗</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="status">{{ status }}</div>
+</section>
+
+<section class="wrap block block--mid">
+  <h2 class="h2 h2--sm h2--rule">{{ ui.press.publications }}</h2>
+  <div class="tiles tiles--pubs">
+    {% for p in publications %}
+    <a href="{{ p.url }}" class="tile tile--link" target="_blank" rel="noopener">
+      <span class="tile__meta">{{ p|tr:'author' }}</span>
+      <span class="tile__title tile__title--serif">{{ p|tr:'title' }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap block block--mid">
+  <h2 class="h2 h2--sm h2--rule">{{ ui.press.research }}</h2>
+  <div class="research">
+    {% for r in research %}
+    <div class="research__item">
+      <h3 class="research__title">{{ r|tr:'title' }}</h3>
+      <p class="research__text">{{ r|tr:'text' }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

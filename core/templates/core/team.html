@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n_content %}
+{% block title %}{{ ui.nav.team }}{% endblock %}
+{% block description %}{{ ui.team.lead }}{% endblock %}
+{% block content %}
+{% include 'core/_hero.html' with kicker=ui.team.kicker title=ui.team.title lead=ui.team.lead %}
+{% for key, people in groups %}
+<section class="wrap block{% if not forloop.first %} block--mid{% endif %}">
+  <h2 class="h2 h2--sm h2--rule">{{ ui.team.groups|get:key }}</h2>
+  <div class="people">
+    {% for person in people %}{% include 'core/_lawyer_card.html' %}{% endfor %}
+  </div>
+</section>
+{% endfor %}
+{% endblock %}

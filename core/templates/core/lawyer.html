@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load i18n_content %}
+{% block title %}{{ person|tr:'name' }}{% endblock %}
+{% block description %}{{ person|tr:'role' }}{% endblock %}
+{% block content %}
+{% url 'core:team' as team_url %}
+{% include 'core/_hero.html' with kicker=person|tr:'kicker' title=person|tr:'name' lead=person|tr:'role' back_url=team_url back_label=ui.back_to_team %}
+
+<section class="wrap block block--bio">
+  <div class="bio">
+    <div class="bio__main">
+      {% for title, paragraphs in sections %}
+      <h2 class="h2 h2--sm h2--rule{% if not forloop.first %} h2--gap{% endif %}">{{ title }}</h2>
+      {% for p in paragraphs %}<p class="bio__p">{{ p }}</p>{% endfor %}
+      {% endfor %}
+    </div>
+    <aside class="bio__side">
+      <div class="bio__photo">
+        {% if person.silhouette or not person.photo_url %}<svg viewBox="0 0 64 80" class="person__silhouette" aria-hidden="true"><circle cx="32" cy="26" r="13" fill="currentColor"></circle><path d="M6 76c0-14.4 11.6-26 26-26s26 11.6 26 26z" fill="currentColor"></path></svg>
+        {% else %}<img src="{{ person.photo_url }}" alt="{{ person|tr:'name' }}">{% endif %}
+      </div>
+      {% with reg=person|tr:'registry' %}{% if reg %}
+      <div>
+        <div class="eyebrow eyebrow--mb">{{ ui.lawyer.registry }}</div>
+        <div class="bio__reg">{{ reg }}</div>
+      </div>
+      {% endif %}{% endwith %}
+      {% with spec=person|tr:'specialisation' %}{% if spec %}
+      <div>
+        <div class="eyebrow eyebrow--mb">{{ ui.lawyer.specialisation }}</div>
+        {% for s in spec %}<div class="side-li">{{ s }}</div>{% endfor %}
+      </div>
+      {% endif %}{% endwith %}
+      {% with awards=person|tr:'awards' %}{% if awards %}
+      <div>
+        <div class="eyebrow eyebrow--mb">{{ awards_title }}</div>
+        {% for a in awards %}
+        <div class="side-li{% if awards_with_icon %} side-li--award{% endif %}">
+          {% if awards_with_icon %}<svg width="13" height="16" viewBox="0 0 13 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="4.6" r="3.9" stroke="currentColor" stroke-width="1.2"></circle><path d="M4.3 8.1 3.1 14.6l3.4-1.9 3.4 1.9-1.2-6.5" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg>{% endif %}
+          <span>{{ a }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}{% endwith %}
+    </aside>
+  </div>
+</section>
+
+{% with news=person|tr:'news' %}{% if news %}
+<section class="wrap block block--mid">
+  <h2 class="h2 h2--sm h2--rule h2--rule-tight">{{ ui.lawyer.news }}</h2>
+  <div class="bio-news">
+    {% for date, title in news %}
+    <div class="bio-news__row">
+      <span class="bio-news__date">{{ date }}</span>
+      <span class="bio-news__title">{{ title }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}{% endwith %}
+{% endblock %}

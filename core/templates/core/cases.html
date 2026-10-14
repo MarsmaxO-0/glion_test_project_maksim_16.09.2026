@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n_content %}
+{% block title %}{{ ui.nav.cases }}{% endblock %}
+{% block description %}{{ ui.cases.lead }}{% endblock %}
+{% block content %}
+{% include 'core/_hero.html' with kicker=ui.cases.kicker title=ui.cases.title lead=ui.cases.lead %}
+<section class="wrap block block--cases">
+  {% for c in cases %}
+  <div class="case-row">
+    <div class="case-row__num">{{ c.number }}</div>
+    <div>
+      <h2 class="case-row__title">{{ c|tr:'title' }}</h2>
+      <p class="case-row__text">{{ c|tr:'text' }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

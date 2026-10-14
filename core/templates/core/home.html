@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static i18n_content %}
+{% block title %}{{ ui.home.title }}{% endblock %}
+{% block description %}{{ ui.home.lead }}{% endblock %}
+{% block content %}
+<section class="hero hero--home">
+  <div class="hero__art" aria-hidden="true"><img src="{% static 'img/themis.gif' %}" alt=""></div>
+  <div class="wrap hero__inner">
+    <div class="hero__grid">
+      <div>
+        <div class="kicker kicker--light">{{ ui.home.kicker }}</div>
+        <h1 class="hero__title hero__title--xl">{{ ui.home.title }}</h1>
+        <p class="hero__lead hero__lead--lg">{{ ui.home.lead }}</p>
+        <div class="hero__actions">
+          <a href="{% url 'core:practices' %}" class="btn btn--primary">{{ ui.home.cta_practices }}</a>
+          <a href="{% url 'core:contacts' %}" class="btn btn--ghost">{{ ui.home.cta_contacts }}</a>
+        </div>
+      </div>
+      <div class="stats">
+        {% for value, label in ui.home.stats %}
+        <div class="stat"><div class="stat__value">{{ value }}</div><div class="stat__label">{{ label }}</div></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap block">
+  <div class="block__head">
+    <h2 class="h2">{{ ui.home.practices }}</h2>
+    <a href="{% url 'core:practices' %}" class="link-accent">{{ ui.all_practices }}</a>
+  </div>
+  <div class="tiles">
+    {% for h in highlights %}
+    <div class="tile">
+      <div class="eyebrow">{{ h|tr:'label' }}</div>
+      <h3 class="tile__title">{{ h|tr:'title' }}</h3>
+      <p class="tile__text">{{ h|tr:'text' }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap block">
+  <div class="block__head">
+    <h2 class="h2">{{ ui.home.presidium }}</h2>
+    <a href="{% url 'core:team' %}" class="link-accent">{{ ui.all_team }}</a>
+  </div>
+  <div class="people people--wide">
+    {% for person in presidium %}{% include 'core/_lawyer_card.html' %}{% endfor %}
+  </div>
+</section>
+
+<section class="panel">
+  <div class="wrap">
+    <div class="block__head block__head--plain">
+      <h2 class="h2">{{ ui.home.cases }}</h2>
+      <a href="{% url 'core:cases' %}" class="link-accent">{{ ui.all_cases }}</a>
+    </div>
+    <div class="cases-grid">
+      {% for c in cases %}
+      <div class="case-card">
+        <h3 class="case-card__title">{{ c|tr:'home_title' }}</h3>
+        <p class="case-card__text">{{ c|tr:'home_text' }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="wrap block">
+  <div class="block__head block__head--tight">
+    <h2 class="h2">{{ ui.home.press }}</h2>
+    <a href="{% url 'core:press' %}" class="link-accent">{{ ui.all_press }}</a>
+  </div>
+  <div class="news">
+    {% for n in press %}
+    <a href="{% if n.url %}{{ n.url }}{% else %}{% url 'core:press' %}{% endif %}" class="news__row"{% if n.url %} target="_blank" rel="noopener"{% endif %}>
+      <span class="news__date">{{ n.date|date:'d.m.Y' }}</span>
+      <span>
+        <span class="news__title">{{ n|tr:'title' }}</span>
+        <span class="news__byline">{{ n|tr:'byline' }}</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap block block--last">
+  <div class="ip-banner">
+    <div>
+      <div class="kicker kicker--light">{{ ui.home.ip_kicker }}</div>
+      <h2 class="ip-banner__title">{{ ui.home.ip_title }}</h2>
+      <p class="ip-banner__text">{{ ui.home.ip_text }}</p>
+      <a href="{% url 'core:ip' %}" class="btn btn--primary btn--sm">{{ ui.home.ip_cta }}</a>
+    </div>
+    <div class="ip-banner__side">
+      <div class="kicker kicker--muted">{{ ui.home.ip_areas }}</div>
+      <div class="ip-banner__list">
+        {% for a in ip_areas %}<div>{{ a|tr:'short' }}</div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

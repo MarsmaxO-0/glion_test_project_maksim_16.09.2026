@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}{{ ui.nav.contacts }}{% endblock %}
+{% block description %}{{ ui.contacts.lead }}{% endblock %}
+{% block content %}
+{% include 'core/_hero.html' with kicker=ui.contacts.kicker title=ui.contacts.title lead=ui.contacts.lead %}
+<section class="wrap block block--tight">
+  <div class="contact-grid">
+    <div>
+      <div class="eyebrow eyebrow--mb">{{ ui.contacts.address_label }}</div>
+      <p class="contact-address">{% for line in ui.contacts.address %}{{ line }}{% if not forloop.last %}<br>{% endif %}{% endfor %}</p>
+    </div>
+    <div>
+      <div class="eyebrow eyebrow--mb">{{ ui.contacts.phones_label }}</div>
+      <div class="contact-list">
+        {% for phone, href in phone_hrefs %}<a href="{{ href }}">{{ phone }}</a>{% endfor %}
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow eyebrow--mb">{{ ui.contacts.email_label }}</div>
+      <div class="contact-list">
+        <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+        <span class="contact-list__muted">{{ ui.hours }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="map">
+    <iframe src="{{ map_url }}" width="100%" height="420" frameborder="0" allowfullscreen="true" title="{{ ui.contacts.map_title }}" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section class="wrap block block--mid" id="contact-form">
+  <div class="contact-form">
+    <div>
+      <h2 class="h2 h2--sm">{{ ui.contacts.form_title }}</h2>
+      <p class="contact-form__lead">{{ ui.contacts.form_lead }}</p>
+    </div>
+    {% if sent %}
+      <div class="notice notice--ok">{{ ui.contacts.form_sent }}</div>
+    {% else %}
+    <form method="post" action="{% url 'core:contacts' %}#contact-form" class="form" novalidate>
+      {% csrf_token %}
+      {{ form.website }}
+      {% if form.errors %}<div class="notice notice--error">{{ ui.contacts.form_error }}</div>{% endif %}
+      <div class="form__row">
+        <label class="field{% if form.name.errors %} has-error{% endif %}">
+          <span class="field__label">{{ form.name.label }}</span>{{ form.name }}
+        </label>
+        <label class="field{% if form.contact.errors %} has-error{% endif %}">
+          <span class="field__label">{{ form.contact.label }}</span>{{ form.contact }}
+        </label>
+      </div>
+      <label class="field{% if form.message.errors %} has-error{% endif %}">
+        <span class="field__label">{{ form.message.label }}</span>{{ form.message }}
+      </label>
+      <button type="submit" class="btn btn--primary">{{ ui.contacts.form_submit }}</button>
+    </form>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

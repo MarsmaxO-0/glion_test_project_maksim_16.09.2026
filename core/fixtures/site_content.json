@@ -1,0 +1,2067 @@
+[
+ {
+  "model": "core.practicegroup",
+  "pk": 1,
+  "fields": {
+   "order": 1,
+   "number": "01",
+   "title_ru": "Споры и процесс",
+   "title_en": "Disputes and litigation"
+  }
+ },
+ {
+  "model": "core.practicegroup",
+  "pk": 2,
+  "fields": {
+   "order": 2,
+   "number": "02",
+   "title_ru": "Бизнес и корпоративное право",
+   "title_en": "Business and corporate law"
+  }
+ },
+ {
+  "model": "core.practicegroup",
+  "pk": 3,
+  "fields": {
+   "order": 3,
+   "number": "03",
+   "title_ru": "Интеллектуальная собственность",
+   "title_en": "Intellectual property"
+  }
+ },
+ {
+  "model": "core.practicegroup",
+  "pk": 4,
+  "fields": {
+   "order": 4,
+   "number": "04",
+   "title_ru": "Частные клиенты",
+   "title_en": "Private clients"
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 1,
+  "fields": {
+   "key": "arb",
+   "group": 1,
+   "order": 1,
+   "title_ru": "Арбитражный процесс",
+   "title_en": "Arbitration proceedings",
+   "summary_ru": "Споры между компаниями в арбитражных судах всех инстанций: взыскание задолженности, оспаривание сделок, корпоративные и подрядные конфликты, банкротство.",
+   "summary_en": "Disputes between companies before commercial (arbitrazh) courts of all instances: debt recovery, challenging transactions, corporate and construction conflicts, insolvency.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 2,
+  "fields": {
+   "key": "civ",
+   "group": 1,
+   "order": 2,
+   "title_ru": "Гражданский процесс",
+   "title_en": "Civil litigation",
+   "summary_ru": "Дела в судах общей юрисдикции: возмещение убытков и вреда, защита права собственности, оспаривание сделок граждан.",
+   "summary_en": "Cases before courts of general jurisdiction: recovery of losses and damages, protection of property rights, challenging transactions of individuals.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 3,
+  "fields": {
+   "key": "lab",
+   "group": 1,
+   "order": 3,
+   "title_ru": "Трудовые споры",
+   "title_en": "Employment disputes",
+   "summary_ru": "Восстановление на работе, взыскание выплат, споры о материальной ответственности и об увольнении руководителей.",
+   "summary_en": "Reinstatement, recovery of payments, disputes over liability for damage and over the dismissal of executives.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 4,
+  "fields": {
+   "key": "crim",
+   "group": 1,
+   "order": 4,
+   "title_ru": "Уголовное право. Уголовный процесс",
+   "title_en": "Criminal law and criminal procedure",
+   "summary_ru": "Защита по делам экономической направленности на всех стадиях — от доследственной проверки до кассации, сопровождение обысков и допросов.",
+   "summary_en": "Defence in economic cases at every stage, from the pre-investigation check to cassation, including attendance at searches and interrogations.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 5,
+  "fields": {
+   "key": "echr",
+   "group": 1,
+   "order": 5,
+   "title_ru": "Практика ЕСПЧ",
+   "title_en": "ECHR practice",
+   "summary_ru": "Подготовка жалоб и представление интересов доверителей в Европейском суде по правам человека.",
+   "summary_en": "Preparing applications and representing clients before the European Court of Human Rights.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 6,
+  "fields": {
+   "key": "corp",
+   "group": 2,
+   "order": 6,
+   "title_ru": "Корпоративное право",
+   "title_en": "Corporate law",
+   "summary_ru": "Структурирование бизнеса, сделки с долями и акциями, корпоративные соглашения, разрешение конфликтов между участниками.",
+   "summary_en": "Structuring businesses, share and equity transactions, shareholder agreements, resolving conflicts between participants.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 7,
+  "fields": {
+   "key": "biz",
+   "group": 2,
+   "order": 7,
+   "title_ru": "Юридическое сопровождение деятельности предприятий",
+   "title_en": "Legal support of business operations",
+   "summary_ru": "Постоянная правовая поддержка: договоры, проверки, кадровые вопросы, взаимодействие с регуляторами.",
+   "summary_en": "Ongoing legal support: contracts, inspections, employment matters, dealings with regulators.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 8,
+  "fields": {
+   "key": "dd",
+   "group": 2,
+   "order": 8,
+   "title_ru": "Due diligence — правовая оценка инвестиционных рисков",
+   "title_en": "Due diligence — investment risk assessment",
+   "summary_ru": "Правовая проверка активов и контрагентов перед сделкой, оценка рисков и подготовка заключений для инвесторов.",
+   "summary_en": "Legal review of assets and counterparties before a transaction, risk assessment and opinions for investors.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 9,
+  "fields": {
+   "key": "bank",
+   "group": 2,
+   "order": 9,
+   "title_ru": "Банковское и финансовое право",
+   "title_en": "Banking and finance law",
+   "summary_ru": "Кредитные и обеспечительные сделки, валютное регулирование, споры с банками, вопросы compliance.",
+   "summary_en": "Credit and security transactions, currency regulation, disputes with banks, compliance matters.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 10,
+  "fields": {
+   "key": "anti",
+   "group": 2,
+   "order": 10,
+   "title_ru": "Антимонопольное регулирование и контроль",
+   "title_en": "Antitrust regulation and compliance",
+   "summary_ru": "Согласование сделок с ФАС, защита при проверках, дела о недобросовестной конкуренции и рекламе.",
+   "summary_en": "Clearance of transactions with the FAS, defence during inspections, unfair competition and advertising cases.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 11,
+  "fields": {
+   "key": "intl",
+   "group": 2,
+   "order": 11,
+   "title_ru": "Международное право",
+   "title_en": "International law",
+   "summary_ru": "Сделки и споры с иностранным элементом, признание и исполнение решений иностранных судов и арбитражей.",
+   "summary_en": "Transactions and disputes with a foreign element, recognition and enforcement of foreign court and arbitral awards.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 12,
+  "fields": {
+   "key": "ip",
+   "group": 3,
+   "order": 12,
+   "title_ru": "Интеллектуальная собственность",
+   "title_en": "Intellectual property",
+   "summary_ru": "Авторские и смежные права, товарные знаки, защита от неправомерного использования объектов ИС, в том числе в интернете.",
+   "summary_en": "Copyright and neighbouring rights, trade marks, protection against unlawful use of IP, including online.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 13,
+  "fields": {
+   "key": "ipc",
+   "group": 3,
+   "order": 13,
+   "title_ru": "Центр правовой защиты ИС",
+   "title_en": "Centre for the Legal Protection of IP",
+   "summary_ru": "",
+   "summary_en": "",
+   "links_to_ip_centre": true
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 14,
+  "fields": {
+   "key": "fam",
+   "group": 4,
+   "order": 14,
+   "title_ru": "Семейное право",
+   "title_en": "Family law",
+   "summary_ru": "Раздел имущества супругов, споры о детях, брачные договоры, соглашения об алиментах.",
+   "summary_en": "Division of marital property, child-related disputes, prenuptial agreements, maintenance agreements.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 15,
+  "fields": {
+   "key": "inh",
+   "group": 4,
+   "order": 15,
+   "title_ru": "Наследственное право",
+   "title_en": "Inheritance law",
+   "summary_ru": "Оформление и защита наследственных прав, споры о завещаниях и составе наследства.",
+   "summary_en": "Formalising and protecting inheritance rights, disputes over wills and the composition of an estate.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 16,
+  "fields": {
+   "key": "re",
+   "group": 4,
+   "order": 16,
+   "title_ru": "Недвижимость и строительство",
+   "title_en": "Real estate and construction",
+   "summary_ru": "Сделки с объектами, споры с подрядчиками и застройщиками, вопросы землепользования и разрешительной документации.",
+   "summary_en": "Property transactions, disputes with contractors and developers, land use and permitting matters.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.practice",
+  "pk": 17,
+  "fields": {
+   "key": "hous",
+   "group": 4,
+   "order": 17,
+   "title_ru": "Вопросы жилищного права",
+   "title_en": "Housing law",
+   "summary_ru": "Права на жилые помещения, споры с управляющими компаниями, приватизация, выселение и перепланировки.",
+   "summary_en": "Rights to residential premises, disputes with management companies, privatisation, eviction and alterations.",
+   "links_to_ip_centre": false
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 1,
+  "fields": {
+   "slug": "kisterev",
+   "order": 1,
+   "group": "presidium",
+   "on_home": true,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%9A%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B5%D0%B2.jpg",
+   "silhouette": false,
+   "practices": [
+    1,
+    2,
+    5,
+    8,
+    9,
+    11
+   ],
+   "name_ru": "Кистерев Дмитрий Дмитриевич",
+   "name_en": "Dmitry D. Kisterev",
+   "position_ru": "Председатель Президиума коллегии",
+   "position_en": "Chairman of the Presidium",
+   "short_role_ru": "Председатель Президиума",
+   "short_role_en": "Chairman of the Presidium",
+   "kicker_ru": "Президиум",
+   "kicker_en": "Presidium",
+   "role_ru": "Председатель Президиума коллегии · кандидат юридических наук",
+   "role_en": "Chairman of the Presidium · PhD in Law",
+   "registry_ru": "77/424",
+   "registry_en": "77/424",
+   "bio_ru": [
+    "Дмитрий Дмитриевич Кистерев в 2000 году окончил международно-правовой факультет МГИМО МИД РФ. Кандидат юридических наук.",
+    "В составе МКА «Клишин и Партнеры» Дмитрий Дмитриевич работает с 1998 года. В 2002 году включен в региональный реестр адвокатов г. Москвы.",
+    "15 апреля 2004 г. Дмитрий Дмитриевич избран в Президиум МКА «Клишин и Партнеры». 24 ноября 2022 года защитил кандидатскую диссертацию.",
+    "Адвокат Дмитрий Кистерев — высококвалифицированный специалист в области ценных бумаг, антимонопольного законодательства, корпоративного, гражданского и трудового права, гражданского и арбитражного процесса.",
+    "Дмитрий Дмитриевич неоднократно отстаивал интересы крупных российских предприятий в процессах, направленных на защиту от рейдерских захватов. Участвовал в подготовке и реализации сложных многокомпонентных сделок на рынке слияний и поглощений, в том числе с участием компаний иностранных юрисдикций.",
+    "На протяжении нескольких лет вместе с коллегами адвокат Дмитрий Кистерев оказывал квалифицированную юридическую помощь крупнейшим предприятиям энергетической отрасли Российской Федерации, в частности, в связи с аварией на Саяно-Шушенской ГЭС им. П. А. Непорожнего, произошедшей 17 августа 2009 года.",
+    "Дмитрий Дмитриевич вносит значительный вклад в профессиональное становление и воспитание молодых адвокатов коллегии. Также адвокат ведёт большую научную работу, являясь автором многочисленных публикаций и монографий по трудовому, международному и интеллектуальному праву, а также одним из авторов учебника по адвокатуре и адвокатской деятельности.",
+    "Знание иностранных языков: английский."
+   ],
+   "bio_en": [
+    "Dmitry Kisterev graduated from the International Law Faculty of MGIMO University (Ministry of Foreign Affairs of Russia) in 2000. He holds a PhD in Law.",
+    "He has worked at Klishin & Partners since 1998 and was admitted to the Moscow regional register of advocates in 2002.",
+    "On 15 April 2004 he was elected to the Presidium of Klishin & Partners. On 24 November 2022 he defended his PhD thesis.",
+    "Dmitry Kisterev is a highly qualified specialist in securities, antitrust law, corporate, civil and labour law, and civil and commercial (arbitrazh) procedure.",
+    "He has repeatedly defended major Russian enterprises in proceedings aimed at protection against hostile takeovers, and has taken part in structuring and executing complex multi-component M&A transactions, including those involving companies from foreign jurisdictions.",
+    "For several years, together with his colleagues, he provided legal assistance to the largest enterprises of the Russian energy sector, in particular in connection with the accident at the Sayano-Shushenskaya hydroelectric power station on 17 August 2009.",
+    "He makes a significant contribution to the professional development of the association's young advocates. He is also active in academic work as the author of numerous publications and monographs on labour, international and intellectual property law, and a co-author of a textbook on the legal profession and advocacy.",
+    "Languages: English."
+   ],
+   "extra_title_ru": "",
+   "extra_title_en": "",
+   "extra_ru": [],
+   "extra_en": [],
+   "specialisation_ru": [
+    "Арбитражная практика",
+    "Гражданское право. Гражданский процесс",
+    "Практика ЕСПЧ",
+    "Due diligence — правовая оценка инвестиционных рисков",
+    "Банковское и финансовое право. Валютное регулирование и контроль",
+    "Международное право"
+   ],
+   "specialisation_en": [
+    "Arbitrazh (commercial) litigation",
+    "Civil law and civil procedure",
+    "ECHR practice",
+    "Due diligence — legal assessment of investment risks",
+    "Banking and finance. Currency regulation and control",
+    "International law"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Почетная грамота ФПА РФ",
+    "Почетная грамота Минюста России",
+    "Серебряная медаль «За содействие» Минюста России",
+    "Звание «Заслуженный адвокат Адвокатской палаты г. Москвы»"
+   ],
+   "awards_en": [
+    "Certificate of Honour of the Federal Chamber of Advocates of Russia",
+    "Certificate of Honour of the Russian Ministry of Justice",
+    "Silver Medal “For Assistance” of the Russian Ministry of Justice",
+    "Title of Honoured Advocate of the Moscow Chamber of Advocates"
+   ],
+   "news_ru": [
+    [
+     "15.12.2022",
+     "Поздравляем Дмитрия Дмитриевича Кистерева с защитой кандидатской диссертации!"
+    ],
+    [
+     "21.11.2022",
+     "Интеллектуальные права ребенка в Российской Федерации как элемент его правового статуса"
+    ],
+    [
+     "21.11.2022",
+     "Договоры и обязательства в интеллектуальной сфере с участием ребенка по гражданскому законодательству РФ"
+    ],
+    [
+     "22.11.2022",
+     "Кистерев Д.Д., Шугаев А.А. «Правовое регулирование труда в Российской Федерации и Федеративной Республике Германии»"
+    ]
+   ],
+   "news_en": [
+    [
+     "15.12.2022",
+     "Congratulations to Dmitry Kisterev on defending his PhD thesis"
+    ],
+    [
+     "21.11.2022",
+     "Intellectual property rights of the child in the Russian Federation as an element of legal status"
+    ],
+    [
+     "21.11.2022",
+     "Contracts and obligations in the intellectual sphere involving a child under Russian civil law"
+    ],
+    [
+     "22.11.2022",
+     "D. Kisterev, A. Shugaev, “Legal Regulation of Labour in the Russian Federation and the Federal Republic of Germany”"
+    ]
+   ]
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 2,
+  "fields": {
+   "slug": "shmerkin",
+   "order": 2,
+   "group": "presidium",
+   "on_home": true,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%A8%D0%BC%D0%B5%D1%80%D0%BA%D0%B8%D0%BD.jpg",
+   "silhouette": false,
+   "practices": [
+    1,
+    2,
+    5,
+    16,
+    11,
+    6
+   ],
+   "name_ru": "Шмеркин Дмитрий Сергеевич",
+   "name_en": "Dmitry S. Shmerkin",
+   "position_ru": "Заместитель Председателя Президиума коллегии",
+   "position_en": "Deputy Chairman of the Presidium",
+   "short_role_ru": "Зам. Председателя Президиума",
+   "short_role_en": "Deputy Chairman of the Presidium",
+   "kicker_ru": "Президиум",
+   "kicker_en": "Presidium",
+   "role_ru": "Заместитель Председателя Президиума коллегии",
+   "role_en": "Deputy Chairman of the Presidium",
+   "registry_ru": "77/14262",
+   "registry_en": "77/14262",
+   "bio_ru": [
+    "Дмитрий Сергеевич Шмеркин закончил юридический факультет МГУ им. Ломоносова.",
+    "С 2013 по 2015 годы Дмитрий Сергеевич трудился юристом в крупном строительном холдинге. В январе 2016 года приступил к работе в МКА «Клишин и Партнеры», в 2018 — получил статус адвоката.",
+    "В 2019 году назначен управляющим адвокатом коллегии, а уже в 2020 году избран Заместителем Председателя Президиума МКА «Клишин и Партнеры».",
+    "Дмитрий Сергеевич Шмеркин — высококвалифицированный специалист в сфере корпоративного и гражданского права, гражданского и арбитражного процесса, международного частного права.",
+    "Адвокат неоднократно защищал интересы крупных российских и иностранных предприятий в судебных процессах. В том числе интересы иностранных инвесторов от неправомерных посягательств на принадлежащее им недвижимое имущество, а также дочерние предприятия.",
+    "Дмитрий Шмеркин оказывает консультационные услуги российским организациям по вопросам сделок слияний и поглощений, а также проводит правовую оценку и подготавливает экспертные заключения для иностранных доверителей по сложным вопросам российского права.",
+    "В число компетенций адвоката также входит подготовка жалоб в ЕСПЧ, в частности, адвокат обращался в ЕСПЧ от имени российского производителя авиатехники против иностранного государства по поводу экспроприации зарубежных активов.",
+    "Дмитрий Сергеевич консультирует состоятельных клиентов по вопросам деофшоризации и «амнистии капиталов», прохождения процедур compliance в зарубежных банках, размораживания денежных средств.",
+    "Знание иностранных языков: английский."
+   ],
+   "bio_en": [
+    "Dmitry Shmerkin graduated from the Law Faculty of Lomonosov Moscow State University.",
+    "From 2013 to 2015 he worked as a lawyer at a major construction holding. In January 2016 he joined Klishin & Partners and in 2018 was admitted to the bar.",
+    "In 2019 he was appointed managing advocate of the association, and in 2020 was elected Deputy Chairman of the Presidium of Klishin & Partners.",
+    "Dmitry Shmerkin is a highly qualified specialist in corporate and civil law, civil and arbitrazh procedure, and private international law.",
+    "He has repeatedly defended major Russian and foreign enterprises in court, including protecting foreign investors against unlawful claims on their real estate and subsidiaries.",
+    "He advises Russian organisations on M&A transactions and prepares legal assessments and expert opinions for foreign clients on complex issues of Russian law.",
+    "His competences also include preparing applications to the European Court of Human Rights; in particular, he applied to the ECHR on behalf of a Russian aircraft manufacturer against a foreign state over the expropriation of assets abroad.",
+    "He advises high-net-worth clients on de-offshorisation and the capital amnesty, compliance procedures at foreign banks, and the release of frozen funds.",
+    "Languages: English."
+   ],
+   "extra_title_ru": "Успешные проекты",
+   "extra_title_en": "Selected matters",
+   "extra_ru": [
+    "Одним из увенчавшихся успехом сложнейших проектов адвоката Дмитрия Шмеркина является представление интересов иностранного инвестора в корпоративном конфликте, связанном с потерей инвестором контроля над объектом недвижимости стоимостью более 500 млн рублей, в Арбитражном суде г. Москвы.",
+    "Защита интересов иностранной компании от неправомерных посягательств на недвижимое имущество стоимостью более 400 млн рублей на основании подложного решения третейского суда.",
+    "Представление интересов крупной энергетической компании при взыскании денежных средств на сумму более 5 млрд рублей.",
+    "Консультирование крупнейшей девелоперской компании России по вопросу консолидации 100% акций компании с привлечением кредитного финансирования.",
+    "Консультирование производителя беспилотных летательных аппаратов по процедуре реструктуризации корпоративной структуры владения и финансирования проекта.",
+    "Защита интересов акционера компании стоимостью более 30 млрд рублей о выходе из корпоративного конфликта.",
+    "Консультирование немецкого производителя пластмассы по вопросам функционирования дочернего общества в РФ.",
+    "В качестве одного из руководителей МКА «Клишин и Партнеры» Дмитрий Сергеевич управляет рабочими группами адвокатов по различным проектам, вносит значительный вклад в профессиональное воспитание и становление стажеров и помощников адвокатов."
+   ],
+   "extra_en": [
+    "One of his most complex successful matters was representing a foreign investor before the Moscow Arbitrazh Court in a corporate conflict involving the investor's loss of control over a property worth more than RUB 500 million.",
+    "Defending a foreign company against unlawful claims on real estate worth more than RUB 400 million based on a forged arbitral award.",
+    "Representing a major energy company in the recovery of more than RUB 5 billion.",
+    "Advising Russia's largest development company on consolidating 100% of a company's shares with debt financing.",
+    "Advising a manufacturer of unmanned aerial vehicles on restructuring its corporate ownership and project financing.",
+    "Defending a shareholder of a company valued at more than RUB 30 billion in exiting a corporate conflict.",
+    "Advising a German plastics manufacturer on the operation of its Russian subsidiary.",
+    "As one of the heads of Klishin & Partners, Dmitry Shmerkin manages working groups of advocates on various projects and makes a significant contribution to the professional training of trainees and assistant advocates."
+   ],
+   "specialisation_ru": [
+    "Арбитражная практика",
+    "Гражданское право. Гражданский процесс",
+    "Практика ЕСПЧ",
+    "Недвижимость и строительство",
+    "Международное право"
+   ],
+   "specialisation_en": [
+    "Arbitrazh (commercial) litigation",
+    "Civil law and civil procedure",
+    "ECHR practice",
+    "Real estate and construction",
+    "International law"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Почетный диплом Адвокатской палаты г. Москвы"
+   ],
+   "awards_en": [
+    "Diploma of Honour of the Moscow Chamber of Advocates"
+   ],
+   "news_ru": [
+    [
+     "05.11.2024",
+     "Дмитрий Шмеркин — «Коммерсанту» о взыскании активов итальянского ответчика на территории Российской Федерации"
+    ],
+    [
+     "13.05.2024",
+     "Дмитрий Шмеркин — «Коммерсанту»: кубанский арбитраж поддержал решение судов Узбекистана в международном споре"
+    ],
+    [
+     "27.03.2024",
+     "Студенты МГИМО-Ташкент в Коллегии адвокатов «Клишин и Партнеры»"
+    ]
+   ],
+   "news_en": [
+    [
+     "05.11.2024",
+     "Dmitry Shmerkin for Kommersant on recovering an Italian defendant's assets in Russia"
+    ],
+    [
+     "13.05.2024",
+     "Dmitry Shmerkin for Kommersant: the Kuban arbitrazh court upheld Uzbek court rulings in an international dispute"
+    ],
+    [
+     "27.03.2024",
+     "MGIMO Tashkent students visit Klishin & Partners"
+    ]
+   ]
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 3,
+  "fields": {
+   "slug": "bogomolov",
+   "order": 3,
+   "group": "presidium",
+   "on_home": true,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%91%D0%BE%D0%B3%D0%B0%D0%BC%D0%BE%D0%BB%D0%BE%D0%B2.jpg",
+   "silhouette": false,
+   "practices": [
+    1,
+    2,
+    5,
+    3,
+    6,
+    10,
+    4
+   ],
+   "name_ru": "Богомолов Виталий Анатольевич",
+   "name_en": "Vitaly A. Bogomolov",
+   "position_ru": "Заместитель Председателя Президиума коллегии",
+   "position_en": "Deputy Chairman of the Presidium",
+   "short_role_ru": "Зам. Председателя Президиума",
+   "short_role_en": "Deputy Chairman of the Presidium",
+   "kicker_ru": "Президиум",
+   "kicker_en": "Presidium",
+   "role_ru": "Заместитель Председателя Президиума коллегии",
+   "role_en": "Deputy Chairman of the Presidium",
+   "registry_ru": "77/665",
+   "registry_en": "77/665",
+   "bio_ru": [
+    "Виталий Анатольевич Богомолов в 1998 году окончил Академию Федеральной Службы Безопасности РФ по специальности правоведение.",
+    "С 1998 г. работал на должности старшего следователя в экономическом отделе Следственной службы УФСБ РФ по г. Москве и Московской области. Принимал участие в расследовании преступлений в таможенной и предпринимательской сферах.",
+    "В составе МКА «Клишин и Партнеры» — с 2002 года. В 2002 году включен в региональный реестр адвокатов г. Москвы, регистрационный номер 77/665.",
+    "22 апреля 2005 г. избран в Президиум МКА «Клишин и Партнеры».",
+    "Виталий Богомолов представляет интересы как российских юридических и физических лиц, так и иностранных клиентов в области корпоративного права, гражданского, арбитражного судопроизводства.",
+    "Так, в 2009 г. осуществлял представительство интересов ОАО «РусГидро» во взаимоотношениях со страховой компанией «РОСНО» по получению страхового возмещения при наступлении страхового случая.",
+    "Адвокат Виталий Анатольевич Богомолов является успешным практиком по уголовным и гражданским делам. Неоднократно представлял интересы клиентов в рамках уголовного процесса. Имеет большой опыт работы как с российскими юридическими и физическими лицами, так и с иностранными клиентами.",
+    "За время участия в МКА «Клишин и Партнеры» Богомолов В.А. успешно представляет интересы российских юридических и физических лиц, так и иностранных клиентов в области корпоративного права, гражданского, арбитражного судопроизводства. Защищал интересы таких крупных компаний как: ОАО «РусГидро», ПАО «Россети», ФСК ЕЭС, ОАО «МРСК Урала».",
+    "Учитывая личные достижения в адвокатской деятельности, в 2010 году адвокат Богомолов В.А. был награжден Почетной грамотой Федеральной палаты адвокатов Российской Федерации и Почетной грамотой Министерства юстиции Российской Федерации.",
+    "Неоднократно сотрудничал со средствами массовой информации в просветительских целях, разъяснял нововведения в законодательство РФ.",
+    "Юридическая помощь своим доверителям, которую оказывает адвокат Богомолов основана на добросовестности, профессионализме, неуклонном соблюдении норм закона и этики адвокатской деятельности.",
+    "Знание иностранных языков: английский."
+   ],
+   "bio_en": [
+    "Vitaly Bogomolov graduated from the Academy of the Federal Security Service of Russia in 1998 with a degree in law.",
+    "From 1998 he served as a senior investigator in the economic department of the Investigation Service of the FSB Directorate for Moscow and the Moscow Region, taking part in the investigation of customs and business crimes.",
+    "He has been with Klishin & Partners since 2002, when he was admitted to the Moscow regional register of advocates under number 77/665.",
+    "On 22 April 2005 he was elected to the Presidium of Klishin & Partners.",
+    "Vitaly Bogomolov represents Russian legal entities and individuals as well as foreign clients in corporate law and civil and arbitrazh proceedings.",
+    "In 2009, for example, he represented RusHydro in its dealings with the insurer ROSNO on recovering an insurance payout.",
+    "He is an accomplished practitioner in criminal and civil matters, has repeatedly represented clients in criminal proceedings and has extensive experience with both Russian and foreign clients.",
+    "During his time at Klishin & Partners he has successfully represented clients including RusHydro, Rosseti, FGC UES and IDGC of Urals.",
+    "In recognition of his professional achievements, in 2010 he was awarded Certificates of Honour by the Federal Chamber of Advocates of Russia and the Russian Ministry of Justice.",
+    "He regularly works with the media for educational purposes, explaining new developments in Russian legislation.",
+    "His legal assistance is founded on good faith, professionalism and strict observance of the law and the ethics of the legal profession.",
+    "Languages: English."
+   ],
+   "extra_title_ru": "",
+   "extra_title_en": "",
+   "extra_ru": [],
+   "extra_en": [],
+   "specialisation_ru": [
+    "Арбитражная практика",
+    "Гражданское право. Гражданский процесс",
+    "Практика ЕСПЧ",
+    "Трудовые споры",
+    "Корпоративное право, регулирование и конфликты",
+    "Антимонопольное регулирование и контроль"
+   ],
+   "specialisation_en": [
+    "Arbitrazh (commercial) litigation",
+    "Civil law and civil procedure",
+    "ECHR practice",
+    "Labour disputes",
+    "Corporate law, regulation and disputes",
+    "Antitrust regulation and control"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Почетная грамота Адвокатской Палаты г. Москвы",
+    "Почетная грамота Министерства Юстиции России",
+    "Почетный Диплом Адвокатской Палаты г. Москвы"
+   ],
+   "awards_en": [
+    "Certificate of Honour of the Moscow Chamber of Advocates",
+    "Certificate of Honour of the Russian Ministry of Justice",
+    "Diploma of Honour of the Moscow Chamber of Advocates"
+   ],
+   "news_ru": [
+    [
+     "17.03.2026",
+     "С 1 марта онлайн-сервисы не вправе списывать деньги с банковских карт, данные которых пользователь ранее отвязал и запретил использовать для дальнейших расчетов. Об этом «Газете.Ru» рассказал Виталий Богомолов."
+    ],
+    [
+     "17.02.2026",
+     "Виталий Богомолов в беседе с RT предупредил, как не быть обманутым мошенниками при покупке онлайн-курсов"
+    ],
+    [
+     "11.02.2026",
+     "В случае потери паспорта на территории России необходимо незамедлительно лично обратиться в ближайший отдел полиции с письменным заявлением об утрате паспорта. Об этом рассказал в беседе с RT Виталий Богомолов"
+    ],
+    [
+     "19.01.2026",
+     "Как вернуть деньги за некачественные онлайн-курсы, рассказал РИА Новости адвокат МКА «Клишин и партнеры» Виталий Богомолов"
+    ]
+   ],
+   "news_en": [
+    [
+     "17.03.2026",
+     "From 1 March, online services may no longer charge bank cards that users have unlinked and barred from further payments, Vitaly Bogomolov told Gazeta.Ru"
+    ],
+    [
+     "17.02.2026",
+     "Vitaly Bogomolov told RT how to avoid being defrauded when buying online courses"
+    ],
+    [
+     "11.02.2026",
+     "If a passport is lost in Russia, the holder must immediately report it in person at the nearest police station, Vitaly Bogomolov told RT"
+    ],
+    [
+     "19.01.2026",
+     "How to get a refund for substandard online courses — Vitaly Bogomolov for RIA Novosti"
+    ]
+   ]
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 4,
+  "fields": {
+   "slug": "malakhov",
+   "order": 4,
+   "group": "presidium",
+   "on_home": true,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%9C%D0%B0%D0%BB%D0%B0%D1%85%D0%BE%D0%B2.jpg",
+   "silhouette": false,
+   "practices": [
+    1,
+    2,
+    5,
+    9,
+    6,
+    7,
+    10
+   ],
+   "name_ru": "Малахов Александр Владимирович",
+   "name_en": "Alexander V. Malakhov",
+   "position_ru": "Адвокат, член Президиума коллегии",
+   "position_en": "Advocate, member of the Presidium",
+   "short_role_ru": "Адвокат, член Президиума",
+   "short_role_en": "Advocate, member of the Presidium",
+   "kicker_ru": "Президиум",
+   "kicker_en": "Presidium",
+   "role_ru": "Адвокат, член Президиума Коллегии",
+   "role_en": "Advocate, member of the Presidium",
+   "registry_ru": "77/792",
+   "registry_en": "77/792",
+   "bio_ru": [
+    "Александр Владимирович Малахов по окончанию гуманитарного факультета Московского государственного Индустриального университета (МГИУ) был принят в штат МКА «Клишин и партнеры г. Москва» ассистентом адвоката.",
+    "В июне 2002 года Александр Малахов получил статус адвоката (регистрационный № 77/792 в реестре адвокатов г. Москвы) и по настоящее время является адвокатом МКА «Клишин и партнеры г. Москва». В 2005 году стал членом Президиума МКА «Клишин и Партнеры».",
+    "Александр Малахов — высококвалифицированный специалист в области корпоративного права, антимонопольного регулирования, а также в гражданском и арбитражном процессе."
+   ],
+   "bio_en": [
+    "After graduating from the Humanities Faculty of Moscow State Industrial University, Alexander Malakhov joined Klishin & Partners as an assistant advocate.",
+    "In June 2002 he was admitted to the bar (No. 77/792 in the Moscow register of advocates) and has practised at Klishin & Partners ever since. In 2005 he became a member of the Presidium.",
+    "Alexander Malakhov is a highly qualified specialist in corporate law, antitrust regulation, and civil and arbitrazh procedure."
+   ],
+   "extra_title_ru": "Успешные проекты",
+   "extra_title_en": "Selected matters",
+   "extra_ru": [
+    "Александр Малахов успешно защищает интересы крупных компаний, в том числе, в арбитражных судах. Среди его клиентов — такие компании, как ОАО «ФСК ЕЭС», ПАО «Россети», ОАО «Русгидро», ОАО «Химпром», ОАО «Промсинтез», ЗАО «БСК-М», ЗАО «Экспоцентр» и многие другие.",
+    "За время своей адвокатской практики Малахов осуществлял юридический контроль ряда приватизационных процессов в крупных предприятиях РФ.",
+    "Адвокат Малахов принимает активное участие в реализации мероприятий по реорганизации юридических лиц различных организационно-правовых форм и проводит успешную работу по сопровождению большого числа сделок купли-продажи ценных бумаг, долей в уставном капитале ООО, оформлению соглашений между акционерами (участниками), включая разрешение преддоговорных споров.",
+    "Александр Малахов активно сотрудничает со СМИ юридической направленности, разъясняя изменения в законодательстве РФ, а также комментируя актуальные вопросы, возникающие в юридической практике.",
+    "Знание иностранных языков: английский."
+   ],
+   "extra_en": [
+    "He successfully represents major companies, including before arbitrazh courts. His clients include FGC UES, Rosseti, RusHydro, Khimprom, Promsintez, BSK-M, Expocentre and many others.",
+    "In the course of his practice he has exercised legal oversight of a number of privatisation processes at large Russian enterprises.",
+    "He takes an active part in the reorganisation of legal entities of various forms and has supported a large number of transactions in securities and LLC participation interests, as well as shareholder agreements, including the resolution of pre-contractual disputes.",
+    "He works closely with the legal press, explaining changes in Russian legislation and commenting on current issues in legal practice.",
+    "Languages: English."
+   ],
+   "specialisation_ru": [
+    "Арбитражная практика",
+    "Гражданское право. Гражданский процесс",
+    "Практика ЕСПЧ",
+    "Банковское и финансовое право. Валютное регулирование и контроль",
+    "Корпоративное право, регулирование и конфликты",
+    "Юридическое сопровождение деятельности предприятий",
+    "Антимонопольное регулирование и контроль"
+   ],
+   "specialisation_en": [
+    "Arbitrazh (commercial) litigation",
+    "Civil law and civil procedure",
+    "ECHR practice",
+    "Banking and finance. Currency regulation and control",
+    "Corporate law, regulation and disputes",
+    "Legal support for businesses",
+    "Antitrust regulation and control"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Почетная грамота Адвокатской палаты г. Москвы",
+    "Почетная грамота Минюста России",
+    "Почетный диплом Адвокатской Палаты г. Москвы"
+   ],
+   "awards_en": [
+    "Certificate of Honour of the Moscow Chamber of Advocates",
+    "Certificate of Honour of the Russian Ministry of Justice",
+    "Diploma of Honour of the Moscow Chamber of Advocates"
+   ],
+   "news_ru": [
+    [
+     "19.01.2026",
+     "Александр Малахов — «Коммерсанту»: «У нас непрецедентное право, поэтому вступившие в законную силу судебные акты не дают оснований судам в последующих делах ими руководствоваться, однако и не исключают такой возможности»"
+    ],
+    [
+     "19.01.2026",
+     "Александр Малахов — «РБК»: «Для оспаривания сделки истцу, по его словам, придется предоставить прямые доказательства мнимости, например переписку или свидетельские показания, подтверждающие сговор об обходе санкций»"
+    ],
+    [
+     "03.03.2025",
+     "Александр Малахов — «Коммерсанту»: «Представляется, что в кассационной инстанции отменить вынесенные судебные акты не получится»"
+    ],
+    [
+     "16.10.2024",
+     "Александр Малахов — «Ведомостям»: «Обычно для банка залог – это первое условие выдачи кредита и уровень кредитоспособности вряд ли может повлиять на необходимость залога»"
+    ],
+    [
+     "29.11.2022",
+     "Александр Малахов — РБК: «В России могут приводиться в исполнение сотни решений иностранных третейских судов и международных коммерческих арбитражей»"
+    ]
+   ],
+   "news_en": [
+    [
+     "19.01.2026",
+     "Alexander Malakhov for Kommersant: “Ours is not a precedent-based system, so final judgments do not bind courts in later cases, though they do not rule out such reliance either”"
+    ],
+    [
+     "19.01.2026",
+     "Alexander Malakhov for RBC: to challenge a transaction, the claimant must provide direct evidence of sham, such as correspondence or witness testimony confirming collusion to circumvent sanctions"
+    ],
+    [
+     "03.03.2025",
+     "Alexander Malakhov for Kommersant: “It seems unlikely that the cassation court will overturn the judgments”"
+    ],
+    [
+     "16.10.2024",
+     "Alexander Malakhov for Vedomosti: “For a bank, collateral is usually the first condition of a loan, and creditworthiness is unlikely to change that”"
+    ],
+    [
+     "29.11.2022",
+     "Alexander Malakhov for RBC: “Hundreds of foreign arbitral awards may be enforced in Russia”"
+    ]
+   ]
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 5,
+  "fields": {
+   "slug": "entin",
+   "order": 5,
+   "group": "advocates",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%AD%D0%BD%D1%82%D0%B8%D0%BD.png",
+   "silhouette": false,
+   "practices": [
+    2,
+    5,
+    12,
+    13,
+    11
+   ],
+   "name_ru": "Энтин Владимир Львович",
+   "name_en": "Vladimir L. Entin",
+   "position_ru": "Адвокат, директор Центра защиты ИС",
+   "position_en": "Advocate, Director of the IP Centre",
+   "short_role_ru": "Директор Центра защиты ИС",
+   "short_role_en": "Director of the IP Centre",
+   "kicker_ru": "Адвокаты",
+   "kicker_en": "Advocates",
+   "role_ru": "Адвокат, директор Центра правовой защиты интеллектуальной собственности · кандидат юридических наук",
+   "role_en": "Advocate, Director of the Centre for Legal Protection of Intellectual Property · PhD in Law",
+   "registry_ru": "",
+   "registry_en": "",
+   "bio_ru": [
+    "Адвокат Владимир Львович Энтин имеет два высших образования, кандидат юридических наук. Более 10 лет Владимир Львович занимался научной работой в Институте государства и права РАН; с 1992 по 1994 гг. — представитель Российского Агентства Интеллектуальной Собственности во Франции, Великобритании и странах Бенилюкса, затем — 1-ый секретарь Постпредства России при ЮНЕСКО (Париж), преподавал в Сорбонне.",
+    "С 1998 г. адвокат Энтин работает в Межтерриториальной коллегии адвокатов «Клишин и Партнеры г. Москва». Одновременно с 1999 г. возглавил Некоммерческий фонд «Центр правовой защиты интеллектуальной собственности», учрежденный МКА «Клишин и Партнеры», Национальной ассоциацией телерадиовещателей (НАТ), Государственной Третьяковской Галереей и газетой «Комсомольская правда».",
+    "Владимир Львович активно занимается законотворческой деятельностью. Он — один из авторов (Ю. М. Батурин, М. А. Федотов, В. Л. Энтин) законопроектов: «О печати и других средствах массовой информации», «О средствах массовой информации», «Об архивах и архивном деле», закона РФ «О средствах массовой информации». Участвовал в разработке закона РФ «Об авторском праве и смежных правах». Лауреат премии Союза Журналистов СССР за личный вклад в становление законодательства о свободе печати 1991 г.",
+    "Адвокат Энтин — член Научно-консультативного совета при ВАС РФ (гражданско-правовая секция и секция международного частного права). Член научно-консультативного совета журнала «Россия в глобальной политике». Эксперт ЮНЕСКО по авторскому праву и праву СМИ.",
+    "Действительный член Международной академии сравнительного права, Париж, Франция («ACADEMIE INTERNATIONALE DE DROIT COMPARE»).",
+    "Владимир Львович ведет в МГИМО МИД РФ спецкурс «Интеллектуальная собственность в Европейском праве», а также является доцентом кафедры адвокатуры МГИМО. На протяжении ряда лет в Институте Европейского права МГИМО МИД РФ Владимир Львович читает курс лекций для магистрантов по теме «Интеллектуальная собственность в Европейском праве».",
+    "Автор более 120 научных работ на русском, английском и французском языках по правовому положению средств массовой информации, авторскому праву и смежным правам, в том числе глав учебников и научно-практических комментариев.",
+    "Автор инициативных законопроектов «О печати и других средствах массовой информации», «О средствах массовой информации», ставших законами СССР и России.",
+    "Участвовал в правовом обеспечении лесных концессий совместных предприятий с английским капиталом в Томской области, проекте Флемингс Инвестмент ТУ 204 с двигателями Роллс Ройс. Эксперт по законодательству о средствах массовой информации и авторскому праву ЮНЕСКО, эксперт АН России по законодательству об интеллектуальной собственности.",
+    "Член научно-технического совета Роспатента, член экспертного совета Комитета по собственности Государственной думы Федерального Собрания Российской Федерации.",
+    "Знание иностранных языков: английский, французский."
+   ],
+   "bio_en": [
+    "Vladimir Entin holds two higher degrees and a PhD in Law. For more than ten years he carried out research at the Institute of State and Law of the Russian Academy of Sciences; from 1992 to 1994 he represented the Russian Intellectual Property Agency in France, the UK and the Benelux countries, then served as First Secretary of the Permanent Delegation of Russia to UNESCO (Paris) and taught at the Sorbonne.",
+    "He has practised at Klishin & Partners since 1998. Since 1999 he has also headed the non-profit Centre for Legal Protection of Intellectual Property, founded by Klishin & Partners, the National Association of Broadcasters, the State Tretyakov Gallery and the newspaper Komsomolskaya Pravda.",
+    "He is actively involved in law-making. He is one of the authors (with Yu. Baturin and M. Fedotov) of the draft laws “On the Press and Other Mass Media”, “On Mass Media”, “On Archives and Archival Affairs” and the Russian Law “On Mass Media”, and took part in drafting the Russian Law “On Copyright and Related Rights”. In 1991 he received the USSR Union of Journalists award for his personal contribution to press freedom legislation.",
+    "He is a member of the Scientific Advisory Council of the Supreme Arbitrazh Court of Russia (civil law and private international law sections), of the advisory board of the journal Russia in Global Affairs, and a UNESCO expert on copyright and media law.",
+    "Full member of the International Academy of Comparative Law, Paris (Académie internationale de droit comparé).",
+    "He teaches the special course “Intellectual Property in European Law” at MGIMO University and is an associate professor at its Advocacy Department. For a number of years he has lectured to master's students at the MGIMO Institute of European Law on the same subject.",
+    "Author of more than 120 academic works in Russian, English and French on the legal status of the media, copyright and related rights, including textbook chapters and practical commentaries.",
+    "Author of the initiative draft laws “On the Press and Other Mass Media” and “On Mass Media”, which became laws of the USSR and Russia.",
+    "He provided legal support for forestry concessions of joint ventures with British capital in the Tomsk Region and for the Flemings Investment Tu-204 project with Rolls-Royce engines. UNESCO expert on media and copyright law; expert of the Russian Academy of Sciences on intellectual property legislation.",
+    "Member of the Scientific and Technical Council of Rospatent and of the expert council of the State Duma Committee on Property.",
+    "Languages: English, French."
+   ],
+   "extra_title_ru": "Книги",
+   "extra_title_en": "Books",
+   "extra_ru": [
+    "«Авторское право в виртуальной реальности (новые возможности и вызовы цифровой эпохи)». Издательство «Статут», 2017 г., серия «Монографии».",
+    "Соавтор учебников «Адвокатура и адвокатская деятельность» (2-е и 3-е изд.) и «Адвокатская практика» (изд. «Статут»)."
+   ],
+   "extra_en": [
+    "“Copyright in Virtual Reality (New Opportunities and Challenges of the Digital Age)”. Statut, 2017, Monographs series.",
+    "Co-author of the textbooks “The Legal Profession and Advocacy” (2nd and 3rd editions) and “Advocacy Practice” (Statut)."
+   ],
+   "specialisation_ru": [
+    "Гражданское право, правовой процесс",
+    "Практика ЕСПЧ",
+    "Интеллектуальная собственность",
+    "Международные отношения"
+   ],
+   "specialisation_en": [
+    "Civil law and procedure",
+    "ECHR practice",
+    "Intellectual property",
+    "International relations"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Медали II и I степени «За заслуги в защите прав и свобод граждан»",
+    "Благодарность от группы «Тату» за защиту авторских прав",
+    "Благодарность от Московского музея анимации за защиту авторских прав и коммерческих интересов",
+    "Благодарность от режиссёра Алексея Котёночкина за защиту авторских прав",
+    "Благодарность от художника-мультипликатора Леонида Шварцмана за защиту авторских прав",
+    "Благодарность от солиста группы «Звери» за защиту авторских прав"
+   ],
+   "awards_en": [
+    "Medals of the 2nd and 1st class “For Merit in Protecting the Rights and Freedoms of Citizens”",
+    "Letter of thanks from the group t.A.T.u. for copyright protection",
+    "Letter of thanks from the Moscow Animation Museum for protecting its copyright and commercial interests",
+    "Letter of thanks from director Alexey Kotyonochkin for copyright protection",
+    "Letter of thanks from animator Leonid Shvartsman for copyright protection",
+    "Letter of thanks from the lead singer of the group Zveri for copyright protection"
+   ],
+   "news_ru": [
+    [
+     "10.03.2026",
+     "Как объяснил в беседе с RT Владимир Энтин, потребитель должен легко ориентироваться в городской среде (в том числе в рекламе) и получать полные сведения о предлагаемых товарах и услугах на русском языке"
+    ],
+    [
+     "17.02.2026",
+     "Владимир Энтин — «Ведомостям»: «Новый механизм расширит практику блокировок контента, но на деле данный процесс — это все то же, что черпать воду решетом»"
+    ],
+    [
+     "03.12.2025",
+     "Штрафы до 5 млн рублей за использование музыки стали получать владельцы общепита, бьюти-салонов и частных медклиник по всей России. О причинах этого явления в беседе с «Газетой.Ru» рассказал Владимир Энтин"
+    ],
+    [
+     "03.12.2025",
+     "Владимир Энтин — «РИА Новостям»: «Обычная регистрация товарных знаков преследует несколько целей для автопроизводителей»"
+    ],
+    [
+     "14.12.2022",
+     "Энтин В.Л. — РБК: Роскомнадзор проверит родственников владельцев российских СМИ"
+    ],
+    [
+     "14.12.2022",
+     "Владимир Энтин — РБК о соответствии размеров «рекламных» изображений настоящим"
+    ]
+   ],
+   "news_en": [
+    [
+     "10.03.2026",
+     "Consumers must be able to navigate the urban environment, including advertising, and receive full information about goods and services in Russian, Vladimir Entin told RT"
+    ],
+    [
+     "17.02.2026",
+     "Vladimir Entin for Vedomosti: “The new mechanism will expand content blocking, but in practice it is still like carrying water in a sieve”"
+    ],
+    [
+     "03.12.2025",
+     "Fines of up to RUB 5 million for playing music are being issued to restaurants, beauty salons and private clinics across Russia — Vladimir Entin explains why for Gazeta.Ru"
+    ],
+    [
+     "03.12.2025",
+     "Vladimir Entin for RIA Novosti: “Routine trademark registration serves several purposes for car makers”"
+    ],
+    [
+     "14.12.2022",
+     "Vladimir Entin for RBC: Roskomnadzor to check relatives of Russian media owners"
+    ],
+    [
+     "14.12.2022",
+     "Vladimir Entin for RBC on whether “advertising” images match reality"
+    ]
+   ]
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 6,
+  "fields": {
+   "slug": "pashin",
+   "order": 6,
+   "group": "advocates",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%9F%D0%B0%D1%88%D0%B8%D0%BD.jpg",
+   "silhouette": false,
+   "practices": [
+    1,
+    2,
+    9,
+    6,
+    7,
+    10
+   ],
+   "name_ru": "Пашин Дмитрий Витальевич",
+   "name_en": "Dmitry V. Pashin",
+   "position_ru": "Адвокат",
+   "position_en": "Advocate",
+   "short_role_ru": "Адвокат",
+   "short_role_en": "Advocate",
+   "kicker_ru": "Адвокаты",
+   "kicker_en": "Advocates",
+   "role_ru": "Адвокат",
+   "role_en": "Advocate",
+   "registry_ru": "77/16625",
+   "registry_en": "77/16625",
+   "bio_ru": [
+    "Дмитрий Витальевич Пашин в 2017 г. окончил Институт судебных экспертиз Московского государственного юридического университета им. О.Е. Кутафина (МГЮА) по специальности: «Судебная экспертиза».",
+    "После окончания службы в армии с февраля 2018 г. работает в качестве стажера адвоката в МКА «Клишин и Партнеры». С 2021 г. является адвокатом. Регистрационный номер в реестре адвокатов — 77/16625.",
+    "Знание иностранных языков: немецкий, английский."
+   ],
+   "bio_en": [
+    "Dmitry Pashin graduated in 2017 from the Institute of Forensic Expertise of Kutafin Moscow State Law University (MSAL) with a degree in forensic expertise.",
+    "After military service he joined Klishin & Partners as a trainee advocate in February 2018. He has been an advocate since 2021, No. 77/16625 in the register of advocates.",
+    "Languages: German, English."
+   ],
+   "extra_title_ru": "Успешные проекты",
+   "extra_title_en": "Selected matters",
+   "extra_ru": [
+    "Активно участвовал в судебных процессах в судах общей юрисдикции по гражданским делам."
+   ],
+   "extra_en": [
+    "He has taken an active part in civil proceedings before courts of general jurisdiction."
+   ],
+   "specialisation_ru": [
+    "Арбитражная практика",
+    "Гражданское право. Гражданский процесс",
+    "Банковское и финансовое право. Валютное регулирование и контроль",
+    "Корпоративное право, регулирование и конфликты",
+    "Юридическое сопровождение деятельности предприятий",
+    "Антимонопольное регулирование и контроль"
+   ],
+   "specialisation_en": [
+    "Arbitrazh (commercial) litigation",
+    "Civil law and civil procedure",
+    "Banking and finance. Currency regulation and control",
+    "Corporate law, regulation and disputes",
+    "Legal support for businesses",
+    "Antitrust regulation and control"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [],
+   "awards_en": [],
+   "news_ru": [
+    [
+     "11.02.2026",
+     "Дмитрий Пашин — «РИА Новости»: «Банки рекомендуют перевыпустить такую карту онлайн или в ближайшем отделении банка, при этом никакого запрета на использование механически поврежденной карты нет»"
+    ],
+    [
+     "11.02.2026",
+     "Банки блокируют переводы из-за нетипичного поведения россиян — кредитные организации может насторожить нехарактерный объем операции, время ее совершения и даже устройство, с помощью которого она проводится, рассказал РИА Новости Дмитрий Пашин."
+    ],
+    [
+     "27.01.2026",
+     "Россиянам стоит внимательнее подходить к покупке смартфонов и гаджетов «с рук» — банки могут блокировать операции, если те проходят с устройств, которые ранее использовались в мошеннических целях, рассказал РИА Новости адвокат Дмитрий Пашин."
+    ],
+    [
+     "22.12.2025",
+     "Дмитрий Пашин — «РИА Новостям»: «Блокировки банковских карт и счетов россиян в последнее время не редкость»"
+    ]
+   ],
+   "news_en": [
+    [
+     "11.02.2026",
+     "Dmitry Pashin for RIA Novosti: “Banks recommend reissuing such a card online or at the nearest branch, but there is no ban on using a mechanically damaged card”"
+    ],
+    [
+     "11.02.2026",
+     "Banks block transfers over atypical behaviour — an unusual transaction amount, time or even device may raise a flag, Dmitry Pashin told RIA Novosti"
+    ],
+    [
+     "27.01.2026",
+     "Buyers of second-hand smartphones should be careful: banks may block operations from devices previously used for fraud, Dmitry Pashin told RIA Novosti"
+    ],
+    [
+     "22.12.2025",
+     "Dmitry Pashin for RIA Novosti: “Blocking of bank cards and accounts has become common of late”"
+    ]
+   ]
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 7,
+  "fields": {
+   "slug": "palubin",
+   "order": 7,
+   "group": "advocates",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%9F%D0%B0%D0%B1%D1%83%D0%BB%D0%B8%D0%BD.jpg",
+   "silhouette": false,
+   "practices": [
+    2,
+    5,
+    9,
+    6,
+    7,
+    15,
+    16
+   ],
+   "name_ru": "Палубин Дмитрий Алексеевич",
+   "name_en": "Dmitry A. Palubin",
+   "position_ru": "Адвокат",
+   "position_en": "Advocate",
+   "short_role_ru": "Адвокат",
+   "short_role_en": "Advocate",
+   "kicker_ru": "Адвокаты",
+   "kicker_en": "Advocates",
+   "role_ru": "Адвокат",
+   "role_en": "Advocate",
+   "registry_ru": "77/8566",
+   "registry_en": "77/8566",
+   "bio_ru": [
+    "Дмитрий Алексеевич Палубин в 2004 году окончил юридический факультет Академии «Международного университета в Москве» по специальности юриспруденция.",
+    "В составе МКА «Клишин и Партнеры г. Москва» — с 2003 года. В 2007 году включен в региональный реестр адвокатов г. Москвы, регистрационный номер 77/8566.",
+    "Дмитрий Алексеевич Палубин осуществляет представительство в арбитражных судах по экономическим спорам, по делам о банкротстве, а также связанным с переходом права собственности на доли, акции и иные ценные бумаги, а также деятельности регистраторов и депозитариев."
+   ],
+   "bio_en": [
+    "Dmitry Palubin graduated in 2004 from the Law Faculty of the International University in Moscow with a degree in law.",
+    "He has been with Klishin & Partners since 2003 and was admitted to the Moscow regional register of advocates in 2007 under number 77/8566.",
+    "Dmitry Palubin represents clients before arbitrazh courts in economic disputes, bankruptcy cases, and matters concerning the transfer of title to participation interests, shares and other securities, as well as the activities of registrars and depositaries."
+   ],
+   "extra_title_ru": "Успешные проекты",
+   "extra_title_en": "Selected matters",
+   "extra_ru": [
+    "За время своей профессиональной деятельности адвокат Палубин успешно обжаловал решения, принятые на общих собраниях, советах директоров, наблюдательных советах. Успешно защищал интересы Доверителей в судебных спорах о признании недействительными договоров купли-продажи долей и акций хозяйственных обществ. Адвокат Палубин также неоднократно оспаривал решения регуляторов рынка ценных бумаг, антимонопольных органов, Росспорта, Федеральной налоговой службы, представлял интересы в делах об административных правонарушениях.",
+    "Дмитрий Алексеевич Палубин успешно представляет интересы доверителей в судах общей юрисдикции по делам, связанным с установлением юридических фактов, принятием и разделом наследства, взысканием задолженности по кредитным договорам, обращением взыскания на заложенное имущество.",
+    "Адвокат осуществляет юридическую помощь при попытках захватов объектов недвижимости и производственных активов, включая обращения в арбитражные суды, органы МВД, прокуратуры, участвует в переговорах с атакующими структурами. Дмитрий Алексеевич сопровождает сделки с долями, акциями хозяйственных обществ, производит регистрацию юридических лиц, выпусков ценных бумаг, прав на недвижимое имущество, принимает участие в исполнительном производстве.",
+    "Адвокат Палубин успешно работает с делами о банкротстве, субсидиарной ответственности, с претензиями кредиторов.",
+    "Знание иностранных языков: английский."
+   ],
+   "extra_en": [
+    "He has successfully challenged decisions of general meetings, boards of directors and supervisory boards, and defended clients in disputes over the invalidation of share and interest purchase agreements. He has repeatedly contested decisions of securities regulators, antitrust authorities, Rossport and the Federal Tax Service, and represented clients in administrative offence cases.",
+    "He successfully represents clients before courts of general jurisdiction in cases involving the establishment of legal facts, acceptance and division of inheritance, recovery of loan debt and foreclosure on pledged property.",
+    "He provides legal assistance against attempted seizures of real estate and production assets, including applications to arbitrazh courts, the police and prosecutors, and takes part in negotiations with hostile parties. He supports transactions in shares and participation interests, registers legal entities, securities issues and real estate rights, and participates in enforcement proceedings.",
+    "He works successfully on bankruptcy, subsidiary liability and creditor claims.",
+    "Languages: English."
+   ],
+   "specialisation_ru": [
+    "Гражданское право. Гражданский процесс",
+    "Практика ЕСПЧ",
+    "Банковское и финансовое право",
+    "Валютное регулирование и контроль",
+    "Корпоративное право, регулирование и конфликты",
+    "Юридическое сопровождение деятельности предприятий"
+   ],
+   "specialisation_en": [
+    "Civil law and civil procedure",
+    "ECHR practice",
+    "Banking and finance",
+    "Currency regulation and control",
+    "Corporate law, regulation and disputes",
+    "Legal support for businesses"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Почетная грамота Адвокатской палаты г. Москвы за высокое профессиональное мастерство в деле защиты прав, свобод и законных интересов граждан и юридических лиц"
+   ],
+   "awards_en": [
+    "Certificate of Honour of the Moscow Chamber of Advocates for high professional skill in protecting the rights, freedoms and lawful interests of citizens and legal entities"
+   ],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 8,
+  "fields": {
+   "slug": "soldatov",
+   "order": 8,
+   "group": "advocates",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%A1%D0%BE%D0%BB%D0%B4%D0%B0%D1%82%D0%BE%D0%B2.jpg",
+   "silhouette": false,
+   "practices": [
+    1,
+    2,
+    5,
+    6,
+    7,
+    14,
+    15,
+    17
+   ],
+   "name_ru": "Солдатов Олег Николаевич",
+   "name_en": "Oleg N. Soldatov",
+   "position_ru": "Адвокат",
+   "position_en": "Advocate",
+   "short_role_ru": "Адвокат",
+   "short_role_en": "Advocate",
+   "kicker_ru": "Адвокаты",
+   "kicker_en": "Advocates",
+   "role_ru": "Адвокат",
+   "role_en": "Advocate",
+   "registry_ru": "50/4545 (Московская область)",
+   "registry_en": "50/4545 (Moscow Region)",
+   "bio_ru": [
+    "Олег Николаевич Солдатов окончил факультет экономики и права Московского университета потребительской кооперации в 2000 году.",
+    "С 2001 года работал юрисконсультом в системе «РАО ЕЭС России», а также в различных государственных и коммерческих организациях, получив богатый опыт правового сопровождения сделок, а также претензионно-исковой работы.",
+    "В составе МКА «Клишин и Партнеры» — с 2003 года. В 2004 году ему присвоен статус адвоката. Включён в региональный реестр адвокатов Московской области, регистрационный номер 50/4545.",
+    "Солдатов О.Н. является высококвалифицированным специалистом в области корпоративного и договорного права, гражданского и арбитражного процессов.",
+    "На протяжении многих лет адвокат Солдатов О.Н. оказывает квалифицированную юридическую помощь физическим и юридическим лицам в ведении дел в судах общей юрисдикции, в мировых и арбитражных судах РФ. За время своей профессиональной деятельности он успешно представлял интересы своих доверителей в судебных делах и корпоративных спорах.",
+    "Среди клиентов адвоката Солдатова О.Н. были такие крупные энергетические компании, как ОАО «РАО ЕЭС России», ОАО «ФСК ЕЭС», ОАО «Мосэнерго», ОАО «Чувашэнерго», ОАО «Кировэнерго», ОАО «ТГК № 5» и ОАО «ТГК № 6».",
+    "В 2008-2009 году адвокат Солдатов О.Н. в составе рабочей группы адвокатов МКА «Клишин и Партнеры» защищал интересы Международного Инвестиционного Банка в Международном коммерческом арбитражном суде при Торгово-Промышленной Палате (ТПП) России в рамках судебного процесса по взысканию задолженности национального банка Кубы по кредитным и депозитным договорам.",
+    "В 2009 году Олег Николаевич участвовал в подготовке экспертных заключений по заданию Министерства Юстиции РФ.",
+    "Летом 2009 г. Солдатов О.Н. в качестве делегата от Российской Федерации принимал участие в 40-й учебной сессии Международного Института по Правам Человека в Страсбурге.",
+    "В 2010 г. адвокат Олег Николаевич Солдатов в составе рабочей группы адвокатов МКА «Клишин и Партнеры» осуществлял помощь в работе Общероссийской общественной организации «Российский Красный Крест» в рамках реализации Постановления Правительства РФ от 23.12.2009 г. № 1079 «Об утверждении Правил предоставления субсидии из федерального бюджета Общероссийской общественной организации «Российский Красный Крест» по мероприятиям, проводимым «Красным Крестом» в России.",
+    "Иностранные языки: английский."
+   ],
+   "bio_en": [
+    "Oleg Soldatov graduated from the Faculty of Economics and Law of the Moscow University of Consumer Cooperation in 2000.",
+    "From 2001 he worked as in-house counsel within RAO UES of Russia and at various state and commercial organisations, gaining extensive experience in transaction support and claims and litigation work.",
+    "He has been with Klishin & Partners since 2003 and was admitted to the bar in 2004. He is listed in the Moscow Region register of advocates under number 50/4545.",
+    "Oleg Soldatov is a highly qualified specialist in corporate and contract law, and civil and arbitrazh procedure.",
+    "For many years he has provided legal assistance to individuals and legal entities before courts of general jurisdiction, magistrates' courts and arbitrazh courts, successfully representing clients in litigation and corporate disputes.",
+    "His clients have included major energy companies such as RAO UES of Russia, FGC UES, Mosenergo, Chuvashenergo, Kirovenergo, TGC-5 and TGC-6.",
+    "In 2008–2009, as part of a Klishin & Partners working group, he defended the International Investment Bank before the International Commercial Arbitration Court at the Russian Chamber of Commerce and Industry in proceedings to recover debt from the National Bank of Cuba under loan and deposit agreements.",
+    "In 2009 he took part in preparing expert opinions commissioned by the Russian Ministry of Justice.",
+    "In summer 2009 he attended the 40th study session of the International Institute of Human Rights in Strasbourg as a delegate from the Russian Federation.",
+    "In 2010, as part of a Klishin & Partners working group, he assisted the Russian Red Cross in implementing Government Resolution No. 1079 of 23 December 2009 on federal subsidies for Red Cross activities in Russia.",
+    "Languages: English."
+   ],
+   "extra_title_ru": "",
+   "extra_title_en": "",
+   "extra_ru": [],
+   "extra_en": [],
+   "specialisation_ru": [
+    "Арбитражная практика",
+    "Гражданское право. Гражданский процесс",
+    "Практика ЕСПЧ",
+    "Корпоративное право, регулирование и конфликты",
+    "Юридическое сопровождение деятельности предприятий"
+   ],
+   "specialisation_en": [
+    "Arbitrazh (commercial) litigation",
+    "Civil law and civil procedure",
+    "ECHR practice",
+    "Corporate law, regulation and disputes",
+    "Legal support for businesses"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Почетная грамота Минюста России",
+    "Серебряная медаль «За содействие» Минюста России",
+    "Почетная грамота Федеральной Палаты Адвокатов РФ"
+   ],
+   "awards_en": [
+    "Certificate of Honour of the Russian Ministry of Justice",
+    "Silver Medal “For Assistance” of the Russian Ministry of Justice",
+    "Certificate of Honour of the Federal Chamber of Advocates of Russia"
+   ],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 9,
+  "fields": {
+   "slug": "talyzin",
+   "order": 9,
+   "group": "advocates",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%A2%D0%B0%D0%BB%D1%8B%D0%B7%D0%B8%D0%BD.jpeg",
+   "silhouette": false,
+   "practices": [
+    4
+   ],
+   "name_ru": "Талызин Денис Александрович",
+   "name_en": "Denis A. Talyzin",
+   "position_ru": "Адвокат",
+   "position_en": "Advocate",
+   "short_role_ru": "Адвокат",
+   "short_role_en": "Advocate",
+   "kicker_ru": "Адвокаты",
+   "kicker_en": "Advocates",
+   "role_ru": "Адвокат",
+   "role_en": "Advocate",
+   "registry_ru": "77/11762",
+   "registry_en": "77/11762",
+   "bio_ru": [
+    "Денис Александрович Талызин окончил в 1997 году юридический институт МВД РФ. После окончания и до 2001 года работал следователем, расследовал уголовные дела о преступлениях в сфере экономики, а также тяжкие и особо тяжкие преступления общеуголовной направленности. Далее служил в различных подразделениях правоохранительных органов.",
+    "В 2014 году Денису Александровичу Талызину присвоен статус адвоката. Д.А. Талызин является специалистом по уголовному праву и процессу, в защите интересов юридических лиц, пострадавших от совершения преступлений, как при расследовании и судебном рассмотрении уголовных дел, так и при подготовке материала для возбуждения уголовного дела.",
+    "Включен в региональный реестр адвокатов г. Москвы, регистрационный номер 77/11762.",
+    "Знание иностранных языков: английский."
+   ],
+   "bio_en": [
+    "Denis Talyzin graduated from the Law Institute of the Russian Ministry of Internal Affairs in 1997. Until 2001 he worked as an investigator on economic crimes and on grave and especially grave criminal offences, and then served in various law enforcement units.",
+    "In 2014 he was admitted to the bar. He specialises in criminal law and procedure and in protecting legal entities that have suffered from crime, both during investigation and trial and when preparing materials to initiate criminal proceedings.",
+    "He is listed in the Moscow regional register of advocates under number 77/11762.",
+    "Languages: English."
+   ],
+   "extra_title_ru": "Успешные проекты",
+   "extra_title_en": "Selected matters",
+   "extra_ru": [
+    "Адвокат Денис Александрович Талызин представляет интересы доверителей в уголовных делах по экономическим преступлениям (мошенничество, присвоение или растрата, уклонение от уплаты налогов и пр.)."
+   ],
+   "extra_en": [
+    "Denis Talyzin represents clients in criminal cases involving economic crimes (fraud, misappropriation or embezzlement, tax evasion and others)."
+   ],
+   "specialisation_ru": [
+    "Уголовное право. Уголовный процесс"
+   ],
+   "specialisation_en": [
+    "Criminal law and criminal procedure"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Почетная грамота Адвокатской Палаты г. Москвы"
+   ],
+   "awards_en": [
+    "Certificate of Honour of the Moscow Chamber of Advocates"
+   ],
+   "news_ru": [
+    [
+     "17.03.2026",
+     "Ответственность за передачу сим-карт третьим лицам установлена административным и уголовным законодательством, напомнил в беседе с RT Денис Талызин"
+    ],
+    [
+     "10.03.2026",
+     "Россиянам, чтобы не стать жертвой мошенников, нужно не совершать поспешных действий, не сообщать личные данные неизвестным абонентам и не переходить по ссылкам от них, рассказал РИА Новости Денис Талызин."
+    ],
+    [
+     "11.02.2026",
+     "Подпись человека является значимым элементом любого документа. Распространение нейросетей и технологий искусственного интеллекта привело к тому, что мошенники часто их используют для фальсификации подписей. Об этом рассказал в беседе с RT Денис Талызин"
+    ],
+    [
+     "11.02.2026",
+     "С помощью фото паспорта преступники могут оформить сим-карту для обмана. Об этом рассказал в беседе с RT Денис Талызин"
+    ]
+   ],
+   "news_en": [
+    [
+     "17.03.2026",
+     "Liability for passing SIM cards to third parties is set out in administrative and criminal law, Denis Talyzin reminded RT"
+    ],
+    [
+     "10.03.2026",
+     "To avoid fraud, do not act in haste, share personal data with unknown callers or follow their links, Denis Talyzin told RIA Novosti"
+    ],
+    [
+     "11.02.2026",
+     "A signature is a key element of any document, and fraudsters increasingly use neural networks and AI to forge them, Denis Talyzin told RT"
+    ],
+    [
+     "11.02.2026",
+     "With a photo of a passport, criminals can register a SIM card for fraud, Denis Talyzin told RT"
+    ]
+   ]
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 10,
+  "fields": {
+   "slug": "shvedchenko",
+   "order": 10,
+   "group": "advocates",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2025/09/%D0%A8%D0%B2%D0%B5%D0%B4%D1%87%D0%B5%D0%BD%D0%BA%D0%BE-%D0%92.%D0%90-683x1024.jpg",
+   "silhouette": false,
+   "practices": [
+    4,
+    2,
+    17
+   ],
+   "name_ru": "Шведченко Владислав Анатольевич",
+   "name_en": "Vladislav A. Shvedchenko",
+   "position_ru": "Адвокат",
+   "position_en": "Advocate",
+   "short_role_ru": "Адвокат",
+   "short_role_en": "Advocate",
+   "kicker_ru": "Адвокаты",
+   "kicker_en": "Advocates",
+   "role_ru": "Адвокат адвокатской палаты Московской области",
+   "role_en": "Advocate, Moscow Region Chamber of Advocates",
+   "registry_ru": "50/10425",
+   "registry_en": "50/10425",
+   "bio_ru": [
+    "Владислав Анатольевич Шведченко — адвокат адвокатской палаты Московской области. Регистрационный номер в едином государственном реестре адвоката: 50/10425.",
+    "Опыт работы с физическими и юридическими лицами в области юриспруденции — с 2020 года.",
+    "Моя специализация — уголовные, гражданские, арбитражные, административные дела (КАС РФ), дела об административных правонарушениях (КоАП РФ) и др. Готов оказать Вам квалифицированную юридическую помощь по делам различной степени сложности.",
+    "В 2020 году окончил юридический факультет Московского государственного университета имени М. В. Ломоносова по специализации «Юриспруденция», уголовно-правовой профиль.",
+    "В 2022 году с отличием завершил обучение на юридическом факультете имени М. М. Сперанского Российской академии народного хозяйства и государственной службы при Президенте РФ по направлению «Юрист корпорации».",
+    "С 2022 года по настоящее время обучается и занимается написанием кандидатской диссертации в юридическом институте РУТ (МИИТ) по научной специальности «Уголовно-правовые науки»."
+   ],
+   "bio_en": [
+    "Vladislav Shvedchenko is an advocate of the Moscow Region Chamber of Advocates, No. 50/10425 in the unified state register of advocates.",
+    "He has worked with individuals and legal entities in the legal field since 2020.",
+    "He specialises in criminal, civil, arbitrazh and administrative cases (Administrative Procedure Code), administrative offence cases (Code of Administrative Offences) and more, and provides qualified legal assistance in matters of any complexity.",
+    "In 2020 he graduated from the Law Faculty of Lomonosov Moscow State University with a degree in law, criminal law track.",
+    "In 2022 he graduated with distinction from the Speransky Law Faculty of the Russian Presidential Academy of National Economy and Public Administration (RANEPA) in corporate law.",
+    "Since 2022 he has been a doctoral student at the Law Institute of the Russian University of Transport (MIIT), writing a PhD thesis in criminal law sciences."
+   ],
+   "extra_title_ru": "Преподавание и научная деятельность",
+   "extra_title_en": "Teaching and research",
+   "extra_ru": [
+    "Преподавал студентам такие дисциплины, как «Уголовное право» и «Уголовный процесс», «Правовые основы борьбы с наркоманией», «Проектная деятельность».",
+    "Является автором различных статей, в том числе в изданиях, рекомендованных Высшей аттестационной комиссией (ВАК), касающихся вопросов уголовного права и процесса."
+   ],
+   "extra_en": [
+    "He has taught Criminal Law, Criminal Procedure, Legal Foundations of Combating Drug Abuse, and Project Work.",
+    "He is the author of articles on criminal law and procedure, including in journals recommended by the Higher Attestation Commission."
+   ],
+   "specialisation_ru": [
+    "Уголовное право",
+    "Уголовный процесс",
+    "Правовые основы борьбы с наркоманией",
+    "Проектная деятельность"
+   ],
+   "specialisation_en": [
+    "Criminal law",
+    "Criminal procedure",
+    "Legal foundations of combating drug abuse",
+    "Project work"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [],
+   "awards_en": [],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 11,
+  "fields": {
+   "slug": "likhota",
+   "order": 11,
+   "group": "staff",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/-e1669210412519-683x1024.jpeg",
+   "silhouette": false,
+   "practices": [
+    12,
+    13
+   ],
+   "name_ru": "Лихота Рита Григорьевна",
+   "name_en": "Rita G. Likhota",
+   "position_ru": "Исполнительный директор",
+   "position_en": "Executive Director",
+   "short_role_ru": "Исполнительный директор Центра ИС",
+   "short_role_en": "Executive Director, IP Centre",
+   "kicker_ru": "Администрация",
+   "kicker_en": "Administration",
+   "role_ru": "Исполнительный директор Центра правовой защиты интеллектуальной собственности",
+   "role_en": "Executive Director of the Centre for Legal Protection of Intellectual Property",
+   "registry_ru": "",
+   "registry_en": "",
+   "bio_ru": [
+    "Рита Григорьевна Лихота — исполнительный директор Центра правовой защиты интеллектуальной собственности.",
+    "Знание иностранных языков: английский."
+   ],
+   "bio_en": [
+    "Rita Likhota is Executive Director of the Centre for Legal Protection of Intellectual Property.",
+    "Languages: English."
+   ],
+   "extra_title_ru": "",
+   "extra_title_en": "",
+   "extra_ru": [],
+   "extra_en": [],
+   "specialisation_ru": [
+    "Авторское право",
+    "Смежные права: права исполнителей, права производителей фонограммы, права вещательных организаций",
+    "Анализ законодательства и судебной практики по охране интеллектуальной собственности в России, ЕС и Великобритании",
+    "Промышленная собственность: патентное право, товарные знаки, фирменные наименования, промышленные образцы, полезные модели, доменные имена, пресечение недобросовестной конкуренции",
+    "Конфиденциальная информация: «ноу-хау», коммерческая тайна",
+    "Использование объектов интеллектуальной собственности в сети интернет",
+    "Защита чести, достоинства и деловой репутации",
+    "Юридическая помощь при создании онлайн-платформ"
+   ],
+   "specialisation_en": [
+    "Copyright",
+    "Related rights: rights of performers, phonogram producers and broadcasters",
+    "Analysis of legislation and case law on IP protection in Russia, the EU and the UK",
+    "Industrial property: patents, trademarks, trade names, industrial designs, utility models, domain names, suppression of unfair competition",
+    "Confidential information: know-how, trade secrets",
+    "Use of intellectual property online",
+    "Protection of honour, dignity and business reputation",
+    "Legal assistance in creating online platforms"
+   ],
+   "awards_title_ru": "Вид услуг",
+   "awards_title_en": "Services",
+   "awards_ru": [
+    "Консультации",
+    "Сопровождение проектов",
+    "Правовая экспертиза",
+    "Разработка контрактов и соглашений",
+    "Регистрация товарных знаков в России и за рубежом",
+    "Патентование изобретений, промышленных образцов в России и за рубежом",
+    "Регистрация лицензионных соглашений и договоров уступки",
+    "Представление в Палате по патентным спорам, в Федеральной антимонопольной службе",
+    "Переговоры с третьими лицами",
+    "Досудебная и судебная защита"
+   ],
+   "awards_en": [
+    "Consultations",
+    "Project support",
+    "Legal expertise",
+    "Drafting contracts and agreements",
+    "Trademark registration in Russia and abroad",
+    "Patenting of inventions and industrial designs in Russia and abroad",
+    "Registration of licence and assignment agreements",
+    "Representation before the Chamber for Patent Disputes and the Federal Antimonopoly Service",
+    "Negotiations with third parties",
+    "Pre-trial and court defence"
+   ],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 12,
+  "fields": {
+   "slug": "voronina",
+   "order": 12,
+   "group": "staff",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/11/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%B8%D0%BD%D0%B0.png",
+   "silhouette": false,
+   "practices": [
+    1,
+    2,
+    14,
+    15,
+    17
+   ],
+   "name_ru": "Воронина Надежда Александровна",
+   "name_en": "Nadezhda A. Voronina",
+   "position_ru": "Юрист",
+   "position_en": "Lawyer",
+   "short_role_ru": "Юрист",
+   "short_role_en": "Trainee advocate",
+   "kicker_ru": "Юристы",
+   "kicker_en": "Lawyers",
+   "role_ru": "Стажёр адвоката",
+   "role_en": "Trainee advocate",
+   "registry_ru": "",
+   "registry_en": "",
+   "bio_ru": [
+    "Надежда Александровна Воронина в 2008 г. окончила юридический факультет Государственного университета управления (ГУУ) по специальности: «Юриспруденция» (гражданско-правовая специализация).",
+    "С 2008 по 2016 годы работала в Мосэнерго на должности юриста.",
+    "С сентября 2016 г. работает в качестве стажера адвоката в МКА «Клишин и Партнеры».",
+    "Знание иностранных языков: английский."
+   ],
+   "bio_en": [
+    "Nadezhda Voronina graduated in 2008 from the Law Faculty of the State University of Management with a degree in law (civil law specialisation).",
+    "From 2008 to 2016 she worked as a lawyer at Mosenergo.",
+    "Since September 2016 she has worked as a trainee advocate at Klishin & Partners.",
+    "Languages: English."
+   ],
+   "extra_title_ru": "Успешные проекты",
+   "extra_title_en": "Selected matters",
+   "extra_ru": [
+    "Активно участвовала в судебных процессах в судах общей юрисдикции и арбитражных судах."
+   ],
+   "extra_en": [
+    "She has taken an active part in proceedings before courts of general jurisdiction and arbitrazh courts."
+   ],
+   "specialisation_ru": [
+    "Арбитражная практика",
+    "Гражданское право. Гражданский процесс"
+   ],
+   "specialisation_en": [
+    "Arbitrazh (commercial) litigation",
+    "Civil law and civil procedure"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [],
+   "awards_en": [],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 13,
+  "fields": {
+   "slug": "abdulkerimov",
+   "order": 13,
+   "group": "staff",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2022/12/%D0%90%D0%B1%D0%B4%D1%83%D0%BB%D0%BA%D0%B5%D1%80%D0%B8%D0%BC%D0%BE%D0%B2-745x1024.jpeg",
+   "silhouette": false,
+   "practices": [
+    11
+   ],
+   "name_ru": "Абдулкеримов Абдула Зайпуллаевич",
+   "name_en": "Abdula Z. Abdulkerimov",
+   "position_ru": "Юрист",
+   "position_en": "Lawyer",
+   "short_role_ru": "Юрист",
+   "short_role_en": "Trainee advocate",
+   "kicker_ru": "Юристы",
+   "kicker_en": "Lawyers",
+   "role_ru": "Стажёр адвоката",
+   "role_en": "Trainee advocate",
+   "registry_ru": "",
+   "registry_en": "",
+   "bio_ru": [
+    "Абдулкеримов Абдула Зайпуллаевич в 2021 году окончил бакалавриат Всероссийской Академии Внешней Торговли по направлению «международное право».",
+    "Работает в коллегии с 2022 года в качестве стажера адвоката.",
+    "Иностранные языки: английский, испанский."
+   ],
+   "bio_en": [
+    "Abdula Abdulkerimov graduated in 2021 from the Russian Foreign Trade Academy with a bachelor's degree in international law.",
+    "He has worked at the association as a trainee advocate since 2022.",
+    "Languages: English, Spanish."
+   ],
+   "extra_title_ru": "",
+   "extra_title_en": "",
+   "extra_ru": [],
+   "extra_en": [],
+   "specialisation_ru": [
+    "Международное право"
+   ],
+   "specialisation_en": [
+    "International law"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [],
+   "awards_en": [],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 14,
+  "fields": {
+   "slug": "khvatova",
+   "order": 14,
+   "group": "staff",
+   "on_home": false,
+   "photo_url": "https://klishin.ru/wp-content/uploads/2025/10/photo_2025-10-14_17-32-19-682x1024.jpg",
+   "silhouette": false,
+   "practices": [
+    2,
+    6,
+    1
+   ],
+   "name_ru": "Хватова Анастасия Сергеевна",
+   "name_en": "Anastasia S. Khvatova",
+   "position_ru": "Юрист",
+   "position_en": "Lawyer",
+   "short_role_ru": "Юрист",
+   "short_role_en": "Trainee advocate",
+   "kicker_ru": "Юристы",
+   "kicker_en": "Lawyers",
+   "role_ru": "Стажёр адвоката",
+   "role_en": "Trainee advocate",
+   "registry_ru": "",
+   "registry_en": "",
+   "bio_ru": [
+    "Хватова Анастасия Сергеевна — выпускница Университета Мировых Цивилизаций имени В. В. Жириновского. В 2025 году окончила университет с отличием по направлению «Юриспруденция».",
+    "С 2024 года начала работу в МКА «Клишин и Партнеры» в качестве помощника.",
+    "С сентября 2025 года работает в МКА «Клишин и Партнеры» на должности стажера адвоката. В рамках профессиональной деятельности занимается подготовкой проектов процессуальных документов, участвует в анализе судебной практики, выполняет задания и поручения адвоката-куратора."
+   ],
+   "bio_en": [
+    "Anastasia Khvatova is a graduate of the Zhirinovsky University of World Civilizations, where she completed a law degree with distinction in 2025.",
+    "She joined Klishin & Partners as an assistant in 2024.",
+    "Since September 2025 she has worked as a trainee advocate. She drafts procedural documents, takes part in case-law analysis and carries out assignments from her supervising advocate."
+   ],
+   "extra_title_ru": "",
+   "extra_title_en": "",
+   "extra_ru": [],
+   "extra_en": [],
+   "specialisation_ru": [
+    "Гражданский процесс",
+    "Корпоративное право",
+    "Арбитражный процесс"
+   ],
+   "specialisation_en": [
+    "Civil procedure",
+    "Corporate law",
+    "Arbitrazh procedure"
+   ],
+   "awards_title_ru": "Знание языков",
+   "awards_title_en": "Languages",
+   "awards_ru": [
+    "Английский"
+   ],
+   "awards_en": [
+    "English"
+   ],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.lawyer",
+  "pk": 15,
+  "fields": {
+   "slug": "boychenko",
+   "order": 15,
+   "group": "staff",
+   "on_home": false,
+   "photo_url": "",
+   "silhouette": true,
+   "practices": [
+    4
+   ],
+   "name_ru": "Бойченко Дмитрий Леонидович",
+   "name_en": "Dmitry L. Boychenko",
+   "position_ru": "Юрисконсульт",
+   "position_en": "Legal Counsel",
+   "short_role_ru": "Юрисконсульт",
+   "short_role_en": "Legal Counsel",
+   "kicker_ru": "Юрисконсульты",
+   "kicker_en": "Legal counsel",
+   "role_ru": "Юрисконсульт",
+   "role_en": "Legal Counsel",
+   "registry_ru": "",
+   "registry_en": "",
+   "bio_ru": [
+    "Дмитрий Леонидович Бойченко в 2011 году окончил военно-юридический факультет Национальной юридической академии Украины им. Ярослава Мудрого (г. Харьков). В 2013 году получил второе высшее образование в «Межрегиональной академии управления персоналом», г. Северодонецк Луганской области.",
+    "Дмитрий Леонидович имеет большой опыт работы в сфере уголовного права и процесса. Свой служебный путь начинал в органах прокуратуры Украины. В период с 2011 по 2014 год проходил службу на различных прокурорско-следственных должностях в Военной прокуратуре Одесского и Криворожского гарнизонов Южного региона Украины, а также в прокуратуре Куйбышевского района г. Донецка.",
+    "Затем продолжил службу в органах прокуратуры Донецкой Народной Республики в качестве заместителя начальника следственного отдела Главной военной прокуратуры Донецкой Народной Республики, а в 2016 году был переведён на должность заместителя прокурора Старобешевского района ДНР. В последующем назначен прокурором этого района.",
+    "Во время руководства районной прокуратурой осуществлял контроль за надзорной деятельностью работников прокуратуры, надзор за соблюдением уголовно-процессуального законодательства при проведении оперативно-розыскной деятельности, дознания и предварительного следствия сотрудниками Старобешевского РО МВД Донецкой Народной Республики, поддержание государственного обвинения в суде первой инстанции и др.",
+    "В последующем был переведен на должность следователя по особо важным делам Следственного управления Генеральной прокуратуры ДНР. За время работы получил огромный опыт в расследовании уголовных дел различной категории, в том числе — резонансных.",
+    "Иностранные языки: украинский, английский."
+   ],
+   "bio_en": [
+    "Dmitry Boychenko graduated in 2011 from the Military Law Faculty of the Yaroslav Mudryi National Law Academy of Ukraine (Kharkiv). In 2013 he received a second higher degree from the Interregional Academy of Personnel Management in Severodonetsk, Luhansk Region.",
+    "He has extensive experience in criminal law and procedure. He began his career in the prosecution service of Ukraine, serving from 2011 to 2014 in various prosecutorial and investigative positions at the Military Prosecutor's Office of the Odesa and Kryvyi Rih garrisons and at the prosecutor's office of the Kuibyshevsky District of Donetsk.",
+    "He then continued in the prosecution service of the Donetsk People's Republic as deputy head of the investigation department of the Chief Military Prosecutor's Office; in 2016 he was transferred to the post of deputy prosecutor of the Starobeshevsky District and later appointed prosecutor of that district.",
+    "As head of the district prosecutor's office he oversaw the supervisory work of its staff, supervised compliance with criminal procedure law in operational, inquiry and pre-trial investigation activities of the Starobeshevsky district police, and supported the state prosecution at first instance.",
+    "He was subsequently transferred to the post of investigator for especially important cases at the Investigation Directorate of the Prosecutor General's Office, gaining extensive experience in investigating criminal cases of various categories, including high-profile ones.",
+    "Languages: Ukrainian, English."
+   ],
+   "extra_title_ru": "",
+   "extra_title_en": "",
+   "extra_ru": [],
+   "extra_en": [],
+   "specialisation_ru": [
+    "Уголовное право. Уголовный процесс"
+   ],
+   "specialisation_en": [
+    "Criminal law and criminal procedure"
+   ],
+   "awards_title_ru": "",
+   "awards_title_en": "",
+   "awards_ru": [
+    "Благодарность за высокий уровень профессионализма, добросовестный труд и значительный личный вклад от Главы ДНР"
+   ],
+   "awards_en": [
+    "Letter of gratitude from the Head of the DPR for high professionalism, diligent work and significant personal contribution"
+   ],
+   "news_ru": [],
+   "news_en": []
+  }
+ },
+ {
+  "model": "core.case",
+  "pk": 1,
+  "fields": {
+   "order": 1,
+   "title_ru": "Первое крупное дело. Голден АДА",
+   "title_en": "The first major case. Golden ADA",
+   "text_ru": "Участие в возврате государственных активов, выведенных за рубеж. Дело стало основой практики коллегии по международным расследованиям и взаимодействию с иностранными юрисдикциями.",
+   "text_en": "Participation in the recovery of state assets moved abroad. The case became the foundation of the association’s work on cross-border investigations and cooperation with foreign jurisdictions.",
+   "on_home": true,
+   "home_order": 2,
+   "home_title_ru": "Первое крупное дело. Голден АДА",
+   "home_title_en": "The first major case. Golden ADA",
+   "home_text_ru": "Дело, с которого началась практика коллегии в области возврата активов и международных расследований.",
+   "home_text_en": "The case that began the association's work in asset recovery and cross-border investigations."
+  }
+ },
+ {
+  "model": "core.case",
+  "pk": 2,
+  "fields": {
+   "order": 2,
+   "title_ru": "Юридические услуги Аппарату Уполномоченного РФ при ЕСПЧ",
+   "title_en": "Legal services to the Office of the Representative of the Russian Federation at the ECHR",
+   "text_ru": "Подготовка правовых позиций и сопровождение дел в Европейском суде по правам человека, включая анализ практики и процессуальных документов.",
+   "text_en": "Preparing legal positions and handling cases before the European Court of Human Rights, including analysis of case law and procedural documents.",
+   "on_home": false,
+   "home_order": 0,
+   "home_title_ru": "",
+   "home_title_en": "",
+   "home_text_ru": "",
+   "home_text_en": ""
+  }
+ },
+ {
+  "model": "core.case",
+  "pk": 3,
+  "fields": {
+   "order": 3,
+   "title_ru": "Участие в проектах по приватизации",
+   "title_en": "Privatisation projects",
+   "text_ru": "Правовое сопровождение сделок и структурных преобразований на этапе формирования российского рынка: оценка рисков, подготовка документов, защита в спорах.",
+   "text_en": "Legal support for transactions and restructurings during the formation of the Russian market: risk assessment, documentation, defence in disputes.",
+   "on_home": false,
+   "home_order": 0,
+   "home_title_ru": "",
+   "home_title_en": "",
+   "home_text_ru": "",
+   "home_text_en": ""
+  }
+ },
+ {
+  "model": "core.case",
+  "pk": 4,
+  "fields": {
+   "order": 4,
+   "title_ru": "Защита интересов Правительства РФ",
+   "title_en": "Representing the Government of the Russian Federation",
+   "text_ru": "Представление интересов государства в спорах с иностранными участниками, в том числе в международных инстанциях.",
+   "text_en": "Acting for the state in disputes involving foreign parties, including before international bodies.",
+   "on_home": true,
+   "home_order": 1,
+   "home_title_ru": "Защита интересов Правительства РФ",
+   "home_title_en": "Representing the Government of the Russian Federation",
+   "home_text_ru": "Представление интересов государства в спорах с иностранными участниками, в том числе в международных инстанциях.",
+   "home_text_en": "Acting for the state in disputes involving foreign parties, including before international bodies."
+  }
+ },
+ {
+  "model": "core.case",
+  "pk": 5,
+  "fields": {
+   "order": 5,
+   "title_ru": "Удаление недостоверной информации из социальных сетей",
+   "title_en": "Removing false information from social networks",
+   "text_ru": "Защита чести, достоинства и деловой репутации доверителей в цифровой среде: удаление публикаций, опровержение сведений, взыскание компенсаций.",
+   "text_en": "Protecting clients’ honour, dignity and business reputation online: removal of publications, retractions and recovery of compensation.",
+   "on_home": true,
+   "home_order": 3,
+   "home_title_ru": "Удаление недостоверной информации из соцсетей",
+   "home_title_en": "Removing false information from social networks",
+   "home_text_ru": "Защита деловой репутации доверителей в цифровой среде: удаление публикаций и опровержение сведений.",
+   "home_text_en": "Defending clients' reputation online: removal of publications and retraction of false statements."
+  }
+ },
+ {
+  "model": "core.practicehighlight",
+  "pk": 1,
+  "fields": {
+   "order": 1,
+   "label_ru": "01 · Споры",
+   "label_en": "01 · Disputes",
+   "title_ru": "Арбитражный и гражданский процесс",
+   "title_en": "Arbitration and civil litigation",
+   "text_ru": "Корпоративные и коммерческие споры, банкротство, исполнение решений иностранных судов и арбитражей.",
+   "text_en": "Corporate and commercial disputes, insolvency, enforcement of foreign court and arbitral awards."
+  }
+ },
+ {
+  "model": "core.practicehighlight",
+  "pk": 2,
+  "fields": {
+   "order": 2,
+   "label_ru": "02 · Бизнес",
+   "label_en": "02 · Business",
+   "title_ru": "Корпоративное и финансовое право",
+   "title_en": "Corporate and finance",
+   "text_ru": "Сопровождение деятельности предприятий, due diligence, антимонопольное регулирование, банковское право.",
+   "text_en": "Day-to-day support of companies, due diligence, antitrust compliance, banking and finance law."
+  }
+ },
+ {
+  "model": "core.practicehighlight",
+  "pk": 3,
+  "fields": {
+   "order": 3,
+   "label_ru": "03 · Репутация",
+   "label_en": "03 · Reputation",
+   "title_ru": "Интеллектуальная собственность",
+   "title_en": "Intellectual property",
+   "text_ru": "Авторское и смежные права, использование объектов ИС в интернете, защита деловой репутации.",
+   "text_en": "Copyright and neighbouring rights, use of IP online, protection of business reputation."
+  }
+ },
+ {
+  "model": "core.practicehighlight",
+  "pk": 4,
+  "fields": {
+   "order": 4,
+   "label_ru": "04 · Частные клиенты",
+   "label_en": "04 · Private clients",
+   "title_ru": "Семья, наследство, недвижимость",
+   "title_en": "Family, inheritance, property",
+   "text_ru": "Раздел имущества, наследственные дела, жилищные вопросы, сделки с недвижимостью и строительство.",
+   "text_en": "Division of assets, inheritance matters, housing questions, real estate deals and construction."
+  }
+ },
+ {
+  "model": "core.pressitem",
+  "pk": 1,
+  "fields": {
+   "date": "2026-03-17",
+   "order": 1,
+   "title_ru": "Ответственность за передачу сим-карт третьим лицам установлена административным и уголовным законодательством",
+   "title_en": "Liability for handing SIM cards to third parties is set out in administrative and criminal law",
+   "text_ru": "Адвокат Денис Талызин объяснил RT, что грозит за передачу сим-карты другому человеку.",
+   "text_en": "Advocate Denis Talyzin explained to RT what penalties apply for giving a SIM card to another person.",
+   "byline_ru": "Денис Талызин — RT",
+   "byline_en": "Denis Talyzin — RT",
+   "source_ru": "RT",
+   "source_en": "RT",
+   "url": "https://russian.rt.com/russia/article/1527441-shtrafy-za-peredachu-sim-kart",
+   "on_home": true
+  }
+ },
+ {
+  "model": "core.pressitem",
+  "pk": 2,
+  "fields": {
+   "date": "2026-03-17",
+   "order": 2,
+   "title_ru": "С 1 марта онлайн-сервисы не вправе списывать деньги с карт, которые пользователь отвязал",
+   "title_en": "From 1 March, online services may not charge cards a user has unlinked",
+   "text_ru": "Виталий Богомолов рассказал «Газете.Ru», что делать, если деньги списали с ранее отвязанной карты.",
+   "text_en": "Vitaly Bogomolov told Gazeta.Ru what to do if money is taken from a card that was previously unlinked.",
+   "byline_ru": "Виталий Богомолов — «Газета.Ru»",
+   "byline_en": "Vitaly Bogomolov — Gazeta.Ru",
+   "source_ru": "Богомолов — комментарий",
+   "source_en": "Bogomolov — commentary",
+   "url": "https://realconsult.ru/436453n-kak-vernut-dengi-pri-spisanii-s-otvyazannyih-kart-novyie-pravila-s-marta",
+   "on_home": true
+  }
+ },
+ {
+  "model": "core.pressitem",
+  "pk": 3,
+  "fields": {
+   "date": "2026-03-10",
+   "order": 3,
+   "title_ru": "Как не стать жертвой мошенников",
+   "title_en": "How not to fall victim to fraud",
+   "text_ru": "Денис Талызин — РИА Новости: не совершать поспешных действий, не сообщать личные данные неизвестным абонентам и не переходить по ссылкам.",
+   "text_en": "Denis Talyzin — RIA Novosti: do not act in haste, do not share personal data with unknown callers and do not follow their links.",
+   "byline_ru": "Денис Талызин — РИА Новости",
+   "byline_en": "Denis Talyzin — RIA Novosti",
+   "source_ru": "РИА Новости",
+   "source_en": "RIA Novosti",
+   "url": "https://ria.ru/20260227/moshennik-2077031868.html",
+   "on_home": true
+  }
+ },
+ {
+  "model": "core.publication",
+  "pk": 1,
+  "fields": {
+   "order": 1,
+   "author_ru": "Владимир Энтин — РБК",
+   "author_en": "Vladimir Entin — RBC",
+   "title_ru": "Роскомнадзор проверит родственников владельцев российских СМИ",
+   "title_en": "Roskomnadzor to review the relatives of Russian media owners",
+   "url": "https://www.rbc.ru/technology_and_media/14/11/2017/5a0ac3f59a79476d1072a73e"
+  }
+ },
+ {
+  "model": "core.publication",
+  "pk": 2,
+  "fields": {
+   "order": 2,
+   "author_ru": "Александр Малахов — РБК",
+   "author_en": "Alexander Malakhov — RBC",
+   "title_ru": "В России могут приводиться в исполнение решения иностранных третейских судов и международных арбитражей",
+   "title_en": "Decisions of foreign arbitral tribunals and international commercial arbitrations may be enforced in Russia",
+   "url": "https://www.rbc.ru/economics/08/07/2019/5d1f77bb9a7947fa7757f796"
+  }
+ },
+ {
+  "model": "core.publication",
+  "pk": 3,
+  "fields": {
+   "order": 3,
+   "author_ru": "Алексей Клишин",
+   "author_en": "Alexey Klishin",
+   "title_ru": "Мы столкнулись с массовым нарушением гражданских прав на Западе",
+   "title_en": "We are facing widespread violations of civil rights in the West",
+   "url": "https://globalaffairs.ru/authors/aleksej-klishin/"
+  }
+ },
+ {
+  "model": "core.publication",
+  "pk": 4,
+  "fields": {
+   "order": 4,
+   "author_ru": "Д. Д. Кистерев — Вестник ТвГУ",
+   "author_en": "D. D. Kisterev — Tver State University Herald",
+   "title_ru": "Интеллектуальные права ребёнка в Российской Федерации как элемент его правового статуса",
+   "title_en": "A child's intellectual property rights in the Russian Federation as an element of legal status",
+   "url": "https://klishin.ru/?page_id=1077"
+  }
+ },
+ {
+  "model": "core.researchitem",
+  "pk": 1,
+  "fields": {
+   "order": 1,
+   "title_ru": "Научно-экспертный совет",
+   "title_en": "Academic expert council",
+   "text_ru": "Правовые заключения по сложным вопросам практики.",
+   "text_en": "Legal opinions on difficult questions of practice."
+  }
+ },
+ {
+  "model": "core.researchitem",
+  "pk": 2,
+  "fields": {
+   "order": 2,
+   "title_ru": "Кафедра адвокатуры МГИМО",
+   "title_en": "Department of Advocacy, MGIMO",
+   "text_ru": "Преподавание и подготовка учебных курсов по адвокатской деятельности.",
+   "text_en": "Teaching and course development in advocacy."
+  }
+ },
+ {
+  "model": "core.researchitem",
+  "pk": 3,
+  "fields": {
+   "order": 3,
+   "title_ru": "Академия международного права «Beringoff»",
+   "title_en": "Beringoff Academy of International Law",
+   "text_ru": "Совместные образовательные и исследовательские программы.",
+   "text_en": "Joint educational and research programmes."
+  }
+ },
+ {
+  "model": "core.researchitem",
+  "pk": 4,
+  "fields": {
+   "order": 4,
+   "title_ru": "Книги и учебники",
+   "title_en": "Books and textbooks",
+   "text_ru": "Учебники по адвокатуре и адвокатской практике, сравнительно-правовые исследования.",
+   "text_en": "Textbooks on advocacy and legal practice, comparative legal studies."
+  }
+ },
+ {
+  "model": "core.iparea",
+  "pk": 1,
+  "fields": {
+   "order": 1,
+   "short_ru": "Авторское право",
+   "short_en": "Copyright",
+   "full_ru": "Авторское право",
+   "full_en": "Copyright",
+   "on_home": true
+  }
+ },
+ {
+  "model": "core.iparea",
+  "pk": 2,
+  "fields": {
+   "order": 2,
+   "short_ru": "Смежные права",
+   "short_en": "Neighbouring rights",
+   "full_ru": "Смежные права: права исполнителей, производителей фонограмм, вещательных организаций",
+   "full_en": "Neighbouring rights: performers, phonogram producers, broadcasters",
+   "on_home": true
+  }
+ },
+ {
+  "model": "core.iparea",
+  "pk": 3,
+  "fields": {
+   "order": 3,
+   "short_ru": "Объекты ИС в сети интернет",
+   "short_en": "Intellectual property online",
+   "full_ru": "Использование объектов интеллектуальной собственности в сети интернет",
+   "full_en": "Use of intellectual property on the internet",
+   "on_home": true
+  }
+ },
+ {
+  "model": "core.iparea",
+  "pk": 4,
+  "fields": {
+   "order": 4,
+   "short_ru": "Защита деловой репутации",
+   "short_en": "Business reputation",
+   "full_ru": "Защита чести, достоинства и деловой репутации",
+   "full_en": "Protection of honour, dignity and business reputation",
+   "on_home": true
+  }
+ },
+ {
+  "model": "core.iparea",
+  "pk": 5,
+  "fields": {
+   "order": 5,
+   "short_ru": "Товарные знаки и бренды",
+   "short_en": "Trade marks and brands",
+   "full_ru": "",
+   "full_en": "",
+   "on_home": true
+  }
+ }
+]

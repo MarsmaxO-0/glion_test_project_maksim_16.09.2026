@@ -1,0 +1,93 @@
+{% load static %}<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ ui.brand }}{% endblock %} — {{ ui.brand }}</title>
+<meta name="description" content="{% block description %}{{ ui.footer_blurb }}{% endblock %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400..800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/site.css' %}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314315C'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23F0A192' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="site">
+  <div class="topbar">
+    <div class="wrap topbar__row">
+      <span>{{ contacts.phones.0 }}</span>
+      <span>{{ contacts.email }}</span>
+      <span class="topbar__hours">{{ ui.hours }}</span>
+      <span class="topbar__spacer"></span>
+      <span class="lang">
+        <a href="{{ lang_urls.ru }}" class="lang__link{% if lang == 'ru' %} is-active{% endif %}" hreflang="ru">RU</a>
+        <span class="lang__sep">/</span>
+        <a href="{{ lang_urls.en }}" class="lang__link{% if lang == 'en' %} is-active{% endif %}" hreflang="en">EN</a>
+      </span>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="wrap header__row">
+      <a href="{% url 'core:home' %}" class="brand">
+        <span class="brand__name">{{ ui.brand }}</span>
+        <span class="brand__tagline">{{ ui.tagline }}</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="site-nav">
+        <a href="{% url 'core:practices' %}" class="nav__link{% if nav_active == 'practices' %} is-active{% endif %}">{{ ui.nav.practices }}</a>
+        <a href="{% url 'core:team' %}" class="nav__link{% if nav_active == 'team' %} is-active{% endif %}">{{ ui.nav.team }}</a>
+        <a href="{% url 'core:cases' %}" class="nav__link{% if nav_active == 'cases' %} is-active{% endif %}">{{ ui.nav.cases }}</a>
+        <a href="{% url 'core:ip' %}" class="nav__link{% if nav_active == 'ip' %} is-active{% endif %}">{{ ui.nav.ip }}</a>
+        <a href="{% url 'core:press' %}" class="nav__link{% if nav_active == 'press' %} is-active{% endif %}">{{ ui.nav.press }}</a>
+        <a href="{% url 'core:contacts' %}" class="nav__link{% if nav_active == 'contacts' %} is-active{% endif %}">{{ ui.nav.contacts }}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    {% block content %}{% endblock %}
+    <div class="page-end"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">{{ ui.brand }}</div>
+          <p class="footer__text">{{ ui.footer_blurb }}</p>
+        </div>
+        <div>
+          <div class="footer__head">{{ ui.sections }}</div>
+          <div class="footer__links">
+            <a href="{% url 'core:practices' %}">{{ ui.nav.practices }}</a>
+            <a href="{% url 'core:team' %}">{{ ui.nav.team }}</a>
+            <a href="{% url 'core:cases' %}">{{ ui.nav.cases }}</a>
+            <a href="{% url 'core:press' %}">{{ ui.nav.press }}</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__head">{{ ui.nav.contacts }}</div>
+          <div class="footer__links">
+            <a href="{{ phone_hrefs.0.1 }}">{{ phone_hrefs.0.0 }}</a>
+            <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+            <span class="footer__muted">{{ ui.hours }}</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer__head">{{ ui.address_label }}</div>
+          <p class="footer__text footer__text--light">{{ ui.footer_address }}</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>{{ ui.copyright }}</span>
+        <span class="footer__disclaimer">{{ ui.disclaimer }}</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="{% static 'js/site.js' %}" defer></script>
+</body>
+</html>
