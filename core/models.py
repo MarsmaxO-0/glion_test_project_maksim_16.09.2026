@@ -68,7 +68,7 @@ class Lawyer(Translatable):
     on_home = models.BooleanField(default=False, help_text='Show in the Presidium block on the home page.')
     photo = models.ImageField(upload_to='team/', blank=True, help_text='Uploaded photo (preferred).')
     photo_url = models.URLField(blank=True, help_text='External photo URL, used when no file is uploaded.')
-    silhouette = models.BooleanField(default=False, help_text='No photo: show a neutral silhouette.')
+    silhouette = models.BooleanField(default=True, help_text='Show a neutral silhouette instead of the external link (an uploaded photo always wins).')
     practices = models.ManyToManyField(Practice, blank=True, related_name='lawyers')
 
     name_ru = models.CharField(max_length=120)

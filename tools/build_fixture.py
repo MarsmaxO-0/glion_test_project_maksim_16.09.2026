@@ -183,7 +183,7 @@ def main():
         fixtures.append({'model': 'core.lawyer', 'pk': order, 'fields': {
             'slug': lid, 'order': order, 'group': group_of[ru['name']],
             'on_home': group_of[ru['name']] == 'presidium',
-            'photo_url': photos.get(lid, ''), 'silhouette': lid not in photos,
+            'photo_url': photos.get(lid, ''), 'silhouette': True,  # silhouettes until photos are uploaded in the admin
             'practices': [practice_pk[k.strip().strip('"')] for k in plist.split(',')],
             'name_ru': ru['name'], 'name_en': en['name'],
             'position_ru': team_ru[ru['name']], 'position_en': team_en[en['name']],
