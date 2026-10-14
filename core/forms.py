@@ -5,7 +5,6 @@ import urllib.request
 from django import forms
 from django.conf import settings
 
-from . import captcha
 from .models import ContactMessage
 
 
@@ -25,8 +24,6 @@ def verify_turnstile(token, remote_ip=''):
 class ContactForm(forms.ModelForm):
     # Honeypot: real visitors leave it empty, simple bots fill every field.
     website = forms.CharField(required=False, widget=forms.HiddenInput)
-    # Slide-puzzle captcha: the slider offset; the answer lives in the session.
-    captcha = forms.IntegerField(widget=forms.HiddenInput)
 
     class Meta:
         model = ContactMessage
@@ -45,13 +42,7 @@ class ContactForm(forms.ModelForm):
         for name, label in (labels or {}).items():
             if name in self.fields:
                 self.fields[name].label = label
-                if name != 'captcha':
-                    self.fields[name].widget.attrs['placeholder'] = label
-
-    def clean_captcha(self):
-        if not captcha.verify(self.session, self.cleaned_data['captcha']):
-            raise forms.ValidationError('puzzle not solved')
-        return self.cleaned_data['captcha']
+                self.fields[name].widget.attrs['placeholder'] = label
 
     def clean(self):
         data = super().clean()

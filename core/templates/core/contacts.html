@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block title %}{{ ui.nav.contacts }}<script src="{% static 'js/puzzle.js' %}" defer></script>
-{% if turnstile_site_key %}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{% endif %}
-{% endblock %}
-{% block description %}{{ ui.contacts.lead }}<script src="{% static 'js/puzzle.js' %}" defer></script>
-{% if turnstile_site_key %}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{% endif %}
-{% endblock %}
+{% block title %}{{ ui.nav.contacts }}{% endblock %}
+{% block description %}{{ ui.contacts.lead }}{% endblock %}
 {% block content %}
 {% include 'core/_hero.html' with kicker=ui.contacts.kicker title=ui.contacts.title lead=ui.contacts.lead %}
 <section class="wrap block block--tight">
@@ -66,30 +61,17 @@
       <label class="field{% if form.message.errors %} has-error{% endif %}">
         <span class="field__label">{{ form.message.label }}</span>{{ form.message }}
       </label>
-      <div class="field{% if form.captcha.errors %} has-error{% endif %}">
-        <span class="field__label">{{ form.captcha.label }}</span>
-        <div class="puzzle{% if form.captcha.errors %} is-error{% endif %}" data-puzzle data-refresh-url="{% url 'captcha_new' %}" data-done-text="{{ ui.contacts.captcha_done }}"
-             data-bg="{{ puzzle.bg }}" data-piece="{{ puzzle.piece }}" data-y="{{ puzzle.y }}" data-size="{{ puzzle.size }}" data-width="{{ puzzle.width }}">
-          <div class="puzzle__stage">
-            <img class="puzzle__bg" alt="" draggable="false">
-            <img class="puzzle__piece" alt="" draggable="false">
-            <button type="button" class="puzzle__refresh" data-puzzle-refresh title="{{ ui.contacts.captcha_refresh }}" aria-label="{{ ui.contacts.captcha_refresh }}">↻</button>
-          </div>
-          <div class="puzzle__track">
-            <span class="puzzle__hint" data-puzzle-hint>{{ ui.contacts.captcha_hint }}</span>
-            <span class="puzzle__fill" data-puzzle-fill></span>
-            <button type="button" class="puzzle__handle" data-puzzle-handle aria-label="{{ ui.contacts.captcha_hint }}">⇆</button>
-          </div>
-          {{ form.captcha }}
-        </div>
-        {% if form.captcha.errors %}<span class="field__error">{{ ui.contacts.captcha_error }}</span>{% endif %}
-        {% if turnstile_site_key %}<div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}" data-language="{{ lang }}"></div>{% endif %}
+      {% if turnstile_site_key %}
+      <div class="field{% if form.non_field_errors %} has-error{% endif %}">
+        <span class="field__label">{{ ui.contacts.form_captcha }}</span>
+        <div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}" data-language="{{ lang }}" data-theme="light"></div>
+        {% if form.non_field_errors %}<span class="field__error">{{ ui.contacts.captcha_error }}</span>{% endif %}
       </div>
+      {% endif %}
       <button type="submit" class="btn btn--primary">{{ ui.contacts.form_submit }}</button>
     </form>
     {% endif %}
   </div>
 </section>
-<script src="{% static 'js/puzzle.js' %}" defer></script>
 {% if turnstile_site_key %}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{% endif %}
 {% endblock %}

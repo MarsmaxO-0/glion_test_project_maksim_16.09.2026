@@ -191,7 +191,6 @@ TELEGRAM_ASSISTANT_TOKEN = os.environ.get('TELEGRAM_ASSISTANT_TOKEN', '')
 BACKUP_DIR = os.environ.get('BACKUP_DIR', str(BASE_DIR / 'backups'))
 BACKUP_KEEP = int(os.environ.get('BACKUP_KEEP', '14'))
 
-# Contact-form spam protection. The arithmetic question is always on;
-# Cloudflare Turnstile is added when both keys are set.
+# Contact-form spam protection: honeypot always; Cloudflare Turnstile captcha when both keys are set.
 TURNSTILE_SITE_KEY = os.environ.get('TURNSTILE_SITE_KEY', '')
 TURNSTILE_SECRET_KEY = os.environ.get('TURNSTILE_SECRET_KEY', '')

@@ -5,7 +5,6 @@ from django.utils import translation
 
 from . import press as press_feed
 from . import telegram
-from . import captcha
 from .forms import ContactForm
 from .models import (
     Case, IpArea, Lawyer, Practice, PracticeGroup, PracticeHighlight, PressItem, Publication, ResearchItem,
@@ -84,7 +83,7 @@ def press(request):
 def contacts(request):
     lang = (translation.get_language() or 'ru')[:2]
     ui = strings(lang)['contacts']
-    labels = {'name': ui['form_name'], 'contact': ui['form_contact'], 'message': ui['form_message'], 'captcha': ui['form_captcha']}
+    labels = {'name': ui['form_name'], 'contact': ui['form_contact'], 'message': ui['form_message']}
     common = dict(labels=labels, session=request.session, remote_ip=request.META.get('REMOTE_ADDR', ''))
     if request.method == 'POST':
         form = ContactForm(request.POST, turnstile_token=request.POST.get('cf-turnstile-response', ''), **common)
@@ -98,19 +97,12 @@ def contacts(request):
             return redirect(f"{request.path}?sent=1#contact-form")
     else:
         form = ContactForm(**common)
-    puzzle = captcha.new_puzzle(request.session)
     return _render(
         request, 'core/contacts.html', 'contacts',
         form=form, sent=request.GET.get('sent') == '1',
-        puzzle=puzzle,
         turnstile_site_key=settings.TURNSTILE_SITE_KEY if settings.TURNSTILE_SECRET_KEY else '',
         map_url=CONTACTS[f'map_{lang}'],
     )
-
-
-def captcha_new(request):
-    """A fresh puzzle for the "another picture" button."""
-    return JsonResponse(captcha.new_puzzle(request.session))
 
 
 def healthz(request):

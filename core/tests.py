@@ -72,41 +72,40 @@ class PagesTest(ContentMixin, TestCase):
 
 
 class ContactFormTest(ContentMixin, TestCase):
-    def _captcha(self, lang='ru'):
-        """Open the form so a puzzle is stored in the session, then return its answer (the piece offset)."""
-        self.client.get(f'/{lang}/contacts/')
-        return self.client.session['captcha']['x']
-
     def test_valid_message_is_saved(self):
-        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': '+7 900 000-00-00', 'message': 'Вопрос',
-                                                  'captcha': self._captcha()})
+        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': '+7 900 000-00-00', 'message': 'Вопрос'})
         self.assertRedirects(resp, '/ru/contacts/?sent=1#contact-form', fetch_redirect_response=False)
         msg = ContactMessage.objects.get()
         self.assertEqual(msg.language, 'ru')
         self.assertEqual(msg.name, 'Анна')
 
-    def test_wrong_captcha_is_rejected(self):
-        answer = self._captcha()
-        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос', 'captcha': answer + 40})
-        self.assertEqual(resp.status_code, 200)
-        self.assertFalse(ContactMessage.objects.exists())
+    def test_turnstile_required_when_configured(self):
+        data = {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос'}
+        with self.settings(TURNSTILE_SITE_KEY='site', TURNSTILE_SECRET_KEY='secret'):
+            self.assertContains(self.client.get('/ru/contacts/'), 'cf-turnstile')
+            resp = self.client.post('/ru/contacts/', data)                       # no token
+            self.assertEqual(resp.status_code, 200)
+            self.assertFalse(ContactMessage.objects.exists())
+            with mock.patch('core.forms.verify_turnstile', return_value=True) as v:
+                resp = self.client.post('/ru/contacts/', {**data, 'cf-turnstile-response': 'tok'})
+            self.assertEqual(resp.status_code, 302)
+            self.assertEqual(v.call_args.args[0], 'tok')
+        self.assertTrue(ContactMessage.objects.exists())
 
     def test_enquiry_is_sent_to_telegram(self):
-        answer = self._captcha()
         with self.settings(TELEGRAM_BOT_TOKEN='t', TELEGRAM_ADMIN_CHAT_ID='1'), mock.patch('core.telegram._call') as call:
-            self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос', 'captcha': answer})
+            self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос'})
         self.assertEqual(call.call_args.args[0], 'sendMessage')
         self.assertIn('Анна', call.call_args.args[1]['text'])
 
     def test_invalid_message_is_rejected(self):
-        resp = self.client.post('/en/contacts/', {'name': '', 'contact': '', 'message': '', 'captcha': self._captcha('en')})
+        resp = self.client.post('/en/contacts/', {'name': '', 'contact': '', 'message': ''})
         self.assertEqual(resp.status_code, 200)
         self.assertContains(resp, 'Please check the fields.')
         self.assertFalse(ContactMessage.objects.exists())
 
     def test_honeypot_blocks_bots(self):
-        self.client.post('/en/contacts/', {'name': 'Bot', 'contact': 'x', 'message': 'y', 'website': 'http://spam',
-                                           'captcha': self._captcha('en')})
+        self.client.post('/en/contacts/', {'name': 'Bot', 'contact': 'x', 'message': 'y', 'website': 'http://spam'})
         self.assertFalse(ContactMessage.objects.exists())
 
 
@@ -218,25 +217,6 @@ class OpsTest(ContentMixin, TestCase):
             self.assertEqual(len(archives), 1)
             with tarfile.open(os.path.join(tmp, archives[0])) as tar:
                 self.assertTrue(any(n.startswith('db.') for n in tar.getnames()))
-
-
-class PuzzleCaptchaTest(TestCase):
-    def test_puzzle_roundtrip(self):
-        from . import captcha
-        session = {}
-        data = captcha.new_puzzle(session)
-        self.assertTrue(data['bg'].startswith('data:image/png;base64,'))
-        self.assertTrue(data['piece'].startswith('data:image/png;base64,'))
-        x = session['captcha']['x']
-        self.assertFalse(captcha.verify(session, x + captcha.TOLERANCE + 1))   # near miss fails, puzzle still active
-        self.assertTrue(captcha.verify(session, x + captcha.TOLERANCE))        # within tolerance passes
-        self.assertFalse(captcha.verify(session, x))                            # single use
-
-    def test_new_puzzle_endpoint(self):
-        resp = self.client.get('/captcha/new/')
-        self.assertEqual(resp.status_code, 200)
-        self.assertIn('piece', resp.json())
-        self.assertIn('captcha', self.client.session)
 
 
 class TelegramBotTest(ContentMixin, TestCase):

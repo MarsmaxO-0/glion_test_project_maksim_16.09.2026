@@ -84,10 +84,10 @@ rm /opt/klishin/MAINTENANCE        # back to normal
 
 ## Spam protection
 
-The contact form has a honeypot field and a slide-puzzle captcha (generated on the server, no third-party service). To add
-Cloudflare Turnstile as well, create a widget at
-https://dash.cloudflare.com/?to=/:account/turnstile and set
-`TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in `/etc/klishin.env`.
+The contact form uses Cloudflare Turnstile (free). Create a widget at
+https://dash.cloudflare.com/?to=/:account/turnstile for your domain, then set
+`TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in `/etc/klishin.env` and
+`systemctl restart klishin`. Without the keys only the honeypot field is active.
 
 ## Everyday commands
 
