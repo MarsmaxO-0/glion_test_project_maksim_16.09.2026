@@ -45,6 +45,7 @@ UI = {
             'send': 'Отправить',
             'close': 'Закрыть',
             'thinking': 'Печатает…',
+            'telegram': 'Продолжить в Telegram',
             'suggestions': ['Кто занимается наследственными делами?', 'Как записаться на консультацию?', 'Какой срок исковой давности?', 'Чем занимается Центр ИС?'],
         },
         'home': {
@@ -116,6 +117,8 @@ UI = {
             'address': ['107078, Москва,', 'Большой Козловский пер.,', 'дом 10, строение 3'],
             'phones_label': 'Телефоны',
             'email_label': 'Почта и часы приёма',
+            'telegram_label': 'Telegram',
+            'telegram_text': 'Задать вопрос боту коллегии',
             'map_title': 'Карта: Большой Козловский пер., 10с3',
             'form_title': 'Написать в коллегию',
             'form_lead': 'Опишите ситуацию в нескольких словах — мы перезвоним или ответим письмом в рабочее время.',
@@ -169,6 +172,7 @@ UI = {
             'send': 'Send',
             'close': 'Close',
             'thinking': 'Typing…',
+            'telegram': 'Continue in Telegram',
             'suggestions': ['Who handles inheritance matters?', 'How do I book a consultation?', 'What is the limitation period?', 'What does the IP Centre do?'],
         },
         'home': {
@@ -240,6 +244,8 @@ UI = {
             'address': ['Bolshoy Kozlovsky Lane,', '10 bldg. 3,', 'Moscow 107078'],
             'phones_label': 'Telephone',
             'email_label': 'Email and hours',
+            'telegram_label': 'Telegram',
+            'telegram_text': 'Ask the association’s bot',
             'map_title': 'Map: Bolshoy Kozlovsky Lane, 10 bld. 3',
             'form_title': 'Write to the association',
             'form_lead': 'Describe your situation in a few words and we will call or write back during office hours.',

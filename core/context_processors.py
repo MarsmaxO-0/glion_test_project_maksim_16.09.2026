@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.urls import translate_url
 from django.utils import translation
 
@@ -16,4 +17,5 @@ def site(request):
         'lang_urls': {code: translate_url(path, code) for code in ('ru', 'en')},
         'nav_active': getattr(request, 'nav_active', ''),
         'chat_enabled': chat.enabled(),
+        'telegram_url': f'https://t.me/{settings.TELEGRAM_BOT_USERNAME}' if settings.TELEGRAM_BOT_USERNAME else '',
     }

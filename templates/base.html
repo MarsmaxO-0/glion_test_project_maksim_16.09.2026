@@ -73,6 +73,7 @@
           <div class="footer__links">
             <a href="{{ phone_hrefs.0.1 }}">{{ phone_hrefs.0.0 }}</a>
             <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+            {% if telegram_url %}<a href="{{ telegram_url }}" target="_blank" rel="noopener">Telegram: @{{ telegram_url|cut:"https://t.me/" }}</a>{% endif %}
             <span class="footer__muted">{{ ui.hours }}</span>
           </div>
         </div>

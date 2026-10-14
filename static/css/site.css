@@ -351,6 +351,10 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .chat__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 18px 18px 16px 22px; background: var(--ink); color: #fff; }
 .chat__title { font-family: var(--serif); font-size: 18px; font-weight: 600; }
 .chat__subtitle { font-size: 12px; color: var(--on-ink-muted); margin-top: 4px; line-height: 1.4; }
+.chat__head-actions { display: flex; align-items: center; gap: 10px; }
+.chat__tg { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.1); color: #fff; }
+.chat__tg:hover { background: var(--accent); color: #fff; }
+.tg-link { display: inline-flex; align-items: center; gap: 8px; }
 .chat__close { background: transparent; border: 0; color: var(--on-ink-dim); font-size: 26px; line-height: 1; cursor: pointer; padding: 0 2px; }
 .chat__close:hover { color: var(--peach); }
 .chat__log { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 10px; background: var(--paper); }

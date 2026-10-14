@@ -53,6 +53,7 @@ fi
 # Keys added in later versions: append if missing so older installs keep working.
 grep -q '^SITE_URL=' "$ENV_FILE" || echo "SITE_URL=http://$(grep -o 'DJANGO_ALLOWED_HOSTS=[^,]*' "$ENV_FILE" | cut -d= -f2)" >> "$ENV_FILE"
 grep -q '^TELEGRAM_BOT_TOKEN=' "$ENV_FILE" || printf '# Telegram notifications (enquiries, backups, outages): token from @BotFather, chat id from @userinfobot\nTELEGRAM_BOT_TOKEN=\nTELEGRAM_ADMIN_CHAT_ID=\n' >> "$ENV_FILE"
+grep -q '^TELEGRAM_BOT_USERNAME=' "$ENV_FILE" || printf '# Public assistant bot: username without @ (shows "Write in Telegram" links); optional separate token\nTELEGRAM_BOT_USERNAME=\nTELEGRAM_ASSISTANT_TOKEN=\n' >> "$ENV_FILE"
 grep -q '^BACKUP_DIR=' "$ENV_FILE" || echo "BACKUP_DIR=/var/backups/klishin" >> "$ENV_FILE"
 grep -q '^TURNSTILE_SITE_KEY=' "$ENV_FILE" || printf '# Optional Cloudflare Turnstile captcha keys\nTURNSTILE_SITE_KEY=\nTURNSTILE_SECRET_KEY=\n' >> "$ENV_FILE"
 
@@ -87,6 +88,32 @@ UNIT
 systemctl daemon-reload
 systemctl enable -q klishin
 systemctl restart klishin
+
+echo "==> telegram assistant bot"
+cat > /etc/systemd/system/klishin-bot.service <<UNIT
+[Unit]
+Description=Klishin Telegram assistant bot
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=$APP_DIR
+EnvironmentFile=$ENV_FILE
+ExecStart=$APP_DIR/.venv/bin/python manage.py telegram_bot
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+systemctl daemon-reload
+if grep -Eq '^TELEGRAM_(BOT|ASSISTANT)_TOKEN=.+' "$ENV_FILE" && grep -Eq '^ANTHROPIC_API_KEY=.+' "$ENV_FILE"; then
+  systemctl enable -q klishin-bot && systemctl restart klishin-bot && echo "    bot started"
+else
+  systemctl disable -q --now klishin-bot 2>/dev/null || true
+  echo "    bot not started (needs TELEGRAM_BOT_TOKEN and ANTHROPIC_API_KEY in $ENV_FILE)"
+fi
 
 echo "==> backup and watchdog timers"
 mkdir -p /var/backups/klishin && chown www-data:www-data /var/backups/klishin
@@ -175,6 +202,6 @@ curl -fsS -o /dev/null --unix-socket /run/klishin/gunicorn.sock -H "Host: $FIRST
   || { echo "the app does not answer; see: journalctl -u klishin -n 50"; exit 1; }
 
 echo
-echo "Done. The site answers on http://$(grep -o 'DJANGO_ALLOWED_HOSTS=[^,]*' "$ENV_FILE" | cut -d= -f2)/"
+echo "Done. The site answers on $(grep -o '^SITE_URL=.*' "$ENV_FILE" | cut -d= -f2)"
 echo "Next: edit $ENV_FILE (nano $ENV_FILE) to add ANTHROPIC_API_KEY, then: systemctl restart klishin"
 echo "Admin user: cd $APP_DIR && set -a && . $ENV_FILE && set +a && .venv/bin/python manage.py createsuperuser"

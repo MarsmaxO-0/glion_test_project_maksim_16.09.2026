@@ -237,3 +237,38 @@ class PuzzleCaptchaTest(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertIn('piece', resp.json())
         self.assertIn('captcha', self.client.session)
+
+
+class TelegramBotTest(ContentMixin, TestCase):
+    def test_markdown_to_telegram_html(self):
+        from core.management.commands.telegram_bot import to_telegram_html
+        out = to_telegram_html('**Команда**: [здесь](/ru/team/) & <b>', 'https://example.com')
+        self.assertEqual(out, '<b>Команда</b>: <a href="https://example.com/ru/team/">здесь</a> &amp; &lt;b&gt;')
+
+    def test_language_detection(self):
+        from core.management.commands.telegram_bot import detect_lang
+        self.assertEqual(detect_lang('Какой срок?'), 'ru')
+        self.assertEqual(detect_lang('What is the deadline?'), 'en')
+        self.assertEqual(detect_lang('???', 'en'), 'en')
+
+    def test_question_is_answered_and_logged(self):
+        from core.management.commands.telegram_bot import Bot
+        from .models import ChatLog
+        bot = Bot('token')
+        with self.settings(ANTHROPIC_API_KEY='sk-test', SITE_URL='https://example.com'), \
+                mock.patch('core.management.commands.telegram_bot.chat.ask', return_value='Смотрите [Команда](/ru/team/).'), \
+                mock.patch.object(bot, 'api') as api:
+            bot.handle({'update_id': 1, 'message': {'chat': {'id': 42}, 'text': '/start', 'from': {'language_code': 'ru'}}})
+            bot.handle({'update_id': 2, 'message': {'chat': {'id': 42}, 'text': 'Кто занимается наследством?', 'from': {}}})
+        sent = [c.args[1]['text'] for c in api.call_args_list]
+        self.assertIn('Здравствуйте', sent[0])
+        self.assertIn('<a href="https://example.com/ru/team/">Команда</a>', sent[1])
+        log = ChatLog.objects.get()
+        self.assertEqual(log.session_key, 'tg:42')
+        self.assertEqual(len(bot.history[42]), 2)
+
+    def test_site_shows_telegram_links_when_username_set(self):
+        with self.settings(TELEGRAM_BOT_USERNAME='klishin_bot'):
+            resp = self.client.get('/ru/contacts/')
+        self.assertContains(resp, 'https://t.me/klishin_bot')
+        self.assertNotContains(self.client.get('/ru/contacts/'), 't.me/')

@@ -182,6 +182,10 @@ MAINTENANCE_FILE = os.environ.get('MAINTENANCE_FILE', str(BASE_DIR / 'MAINTENANC
 TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 TELEGRAM_ADMIN_CHAT_ID = os.environ.get('TELEGRAM_ADMIN_CHAT_ID', '')
 SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
+# Public assistant bot in Telegram. Username (without @) enables the "Write in Telegram" links on the site;
+# a separate token lets the assistant run on a different bot than the admin notifications.
+TELEGRAM_BOT_USERNAME = os.environ.get('TELEGRAM_BOT_USERNAME', '').lstrip('@')
+TELEGRAM_ASSISTANT_TOKEN = os.environ.get('TELEGRAM_ASSISTANT_TOKEN', '')
 
 # Backups: python manage.py backup
 BACKUP_DIR = os.environ.get('BACKUP_DIR', str(BASE_DIR / 'backups'))

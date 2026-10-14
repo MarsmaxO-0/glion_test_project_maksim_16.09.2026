@@ -61,6 +61,20 @@ Manual backup: `systemctl start klishin-backup` · Restore: stop the site,
 unpack the archive into `/opt/klishin` (it contains `db.sqlite3` and `media/`),
 `chown -R www-data:www-data /opt/klishin`, start the site.
 
+## Telegram assistant bot
+
+The same assistant as the site chat, inside Telegram. It uses the bot from
+the section above (or a separate one via `TELEGRAM_ASSISTANT_TOKEN`). Set
+the bot's username so the site shows "Write in Telegram" links:
+
+```
+TELEGRAM_BOT_USERNAME=klishin_bot
+```
+
+then re-run the installer (it creates and starts the `klishin-bot` service)
+or `systemctl restart klishin-bot`. Logs: `journalctl -u klishin-bot -n 50`.
+Commands in Telegram: `/start`, `/contacts`, `/new` (forget the conversation).
+
 ## Maintenance mode
 
 ```sh
