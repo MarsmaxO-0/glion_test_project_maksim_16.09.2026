@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
+from django.utils import timezone as dj_tz
 
 from .models import PressItem
 
@@ -37,8 +38,9 @@ def _external(html):
     if not links:
         return None
     for url in links:
-        for host, name in OUTLETS:
-            if host in url:
+        host = (urlparse(url).hostname or '').removeprefix('www.')
+        for outlet, name in OUTLETS:
+            if host == outlet or host.endswith('.' + outlet):
                 return {'url': url, 'source': name}
     host = urlparse(links[0]).hostname or ''
     return {'url': links[0], 'source': host.removeprefix('www.')}
@@ -90,7 +92,7 @@ def press_items(lang, ui):
     live = fetch_live()
     if live:
         items, at = live
-        local = at.astimezone()
+        local = dj_tz.localtime(at)
         fmt = '%d.%m.%Y, %H:%M'
         return items, ui['press']['status_live'].format(time=local.strftime(fmt))
     saved = [{

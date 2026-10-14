@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ ui.brand }}{% endblock %} — {{ ui.brand }}</title>
 <meta name="description" content="{% block description %}{{ ui.footer_blurb }}{% endblock %}">
-<link rel="alternate" hreflang="ru" href="{{ lang_urls.ru }}">
-<link rel="alternate" hreflang="en" href="{{ lang_urls.en }}">
+<link rel="alternate" hreflang="ru" href="{{ abs_lang_urls.ru }}">
+<link rel="alternate" hreflang="en" href="{{ abs_lang_urls.en }}">
+<link rel="alternate" hreflang="x-default" href="{{ abs_lang_urls.ru }}">
 <meta property="og:site_name" content="{{ ui.brand }}">
 <meta property="og:title" content="{% block og_title %}{{ ui.brand }}{% endblock %}">
 <meta property="og:description" content="{{ ui.footer_blurb }}">

@@ -1,7 +1,7 @@
 {% load i18n_content %}<div class="person">
   <a href="{{ person.get_absolute_url }}" class="person__photo">
     {% if not person.photo_src %}
-      <svg viewBox="0 0 64 80" class="person__silhouette" aria-hidden="true"><circle cx="32" cy="26" r="13" fill="currentColor"></circle><path d="M6 76c0-14.4 11.6-26 26-26s26 11.6 26 26z" fill="currentColor"></path></svg>
+      {% include 'core/_silhouette.html' %}
     {% else %}
       <img src="{{ person.photo_src }}" alt="{{ person|tr:'name' }}" loading="lazy">
     {% endif %}

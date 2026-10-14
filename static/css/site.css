@@ -46,11 +46,12 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 
 /* Top bar */
 .topbar { background: var(--ink); color: var(--on-ink-dim); font-size: 13px; letter-spacing: .02em; }
-.topbar__row { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; padding-top: 9px; padding-bottom: 9px; }
+.topbar__row { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; padding-top: 6px; padding-bottom: 6px; }
+.topbar__row > span, .topbar__row > a { display: inline-flex; align-items: center; min-height: 28px; }
 .topbar__hours { color: #93A6C4; }
 .topbar__spacer { flex: 1; }
 .lang { display: flex; align-items: center; gap: 10px; }
-.lang__link { font-weight: 600; color: var(--on-ink-dim); }
+.lang__link { font-weight: 600; color: var(--on-ink-dim); display: inline-block; padding: 4px 4px; }
 .lang__link.is-active { color: var(--peach); }
 .lang__link:hover { color: var(--peach); }
 .lang__sep { color: #3C69AC; }
@@ -90,7 +91,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
   mask-composite: intersect;
 }
 .hero__grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 64px; align-items: end; }
-.hero__back { display: inline-block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--peach); margin-bottom: 22px; }
+.hero__back { display: inline-block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--peach); margin-bottom: 18px; padding: 6px 0; }
 .hero__back:hover { color: #fff; }
 .hero__title { font-size: 45px; font-weight: 600; line-height: 1.12; margin: 0 0 20px; text-wrap: pretty; }
 .hero__title--xl { font-size: 54px; line-height: 1.1; letter-spacing: -.005em; margin-bottom: 26px; }
@@ -114,7 +115,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .btn--ghost { border-color: #3C69AC; color: #fff; font-weight: 500; }
 .btn--ghost:hover { border-color: var(--peach); color: var(--peach); }
 .btn--sm { padding: 14px 30px; }
-.link-accent { display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent); letter-spacing: .02em; }
+.link-accent { display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent); letter-spacing: .02em; padding: 4px 0; }
 .link-accent:hover { color: var(--ink); }
 
 /* Blocks */
@@ -275,7 +276,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .footer__text { font-size: 14px; line-height: 1.65; margin: 0; color: var(--on-ink-muted); }
 .footer__text--light { color: var(--on-ink-dim); }
 .footer__links { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.footer__links a { color: var(--on-ink-dim); }
+.footer__links a { color: var(--on-ink-dim); display: inline-block; padding: 3px 0; }
 .footer__links a:hover { color: var(--peach); }
 .footer__muted { color: var(--on-ink-muted); }
 .footer__bottom { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; padding-top: 24px; font-size: 12px; color: #94A5C0; }
@@ -286,7 +287,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .js .reveal.is-visible { animation: reveal .65s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes reveal { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 .js .main { animation: page-in .52s cubic-bezier(.2,.7,.2,1) both; }
-@keyframes page-in { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+@keyframes page-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal, .js .main { animation: none; opacity: 1; transform: none; }
   .nav__link:hover { transform: none; }
@@ -362,7 +363,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .chat__send:hover { background: var(--accent-hover); }
 .chat__form.is-busy .chat__send { opacity: .5; pointer-events: none; }
 @media (max-width: 720px) {
-  .chat { right: 12px; bottom: 12px; }
+  body { overflow-x: hidden; }
+  .chat { right: 12px; bottom: 12px; max-width: calc(100vw - 24px); }
   .chat__fab span { display: none; }
   .chat__fab { padding: 14px; }
   .chat.is-open { inset: 0; }

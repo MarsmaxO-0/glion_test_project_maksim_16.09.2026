@@ -195,3 +195,16 @@ BACKUP_KEEP = int(os.environ.get('BACKUP_KEEP', '14'))
 # Contact-form spam protection: honeypot always; Cloudflare Turnstile captcha when both keys are set.
 TURNSTILE_SITE_KEY = os.environ.get('TURNSTILE_SITE_KEY', '')
 TURNSTILE_SECRET_KEY = os.environ.get('TURNSTILE_SECRET_KEY', '')
+
+# Production hardening (nginx already redirects HTTP to HTTPS; the health check uses plain HTTP on the socket,
+# so SECURE_SSL_REDIRECT stays off and the proxy header above tells Django when a request was HTTPS).
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 60 * 60 * 24 * 30
+    # Hashed static file names so browsers never keep an old site.css after an update.
+    STORAGES = {
+        'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
+        'staticfiles': {'BACKEND': 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'},
+    }
+SILENCED_SYSTEM_CHECKS = ['mail.E001']  # the site sends no e-mail

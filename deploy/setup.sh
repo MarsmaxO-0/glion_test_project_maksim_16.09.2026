@@ -60,6 +60,10 @@ ENV
 fi
 # Keys added in later versions: append if missing so older installs keep working.
 grep -q '^SITE_URL=' "$ENV_FILE" || echo "SITE_URL=http://$(grep -o 'DJANGO_ALLOWED_HOSTS=[^,]*' "$ENV_FILE" | cut -d= -f2)" >> "$ENV_FILE"
+# With a domain, absolute links (robots, Telegram, the bot) must use it over HTTPS.
+if [ "$SERVER_NAME" != "_" ]; then
+  sed -i "s|^SITE_URL=.*|SITE_URL=https://${SERVER_NAME%% *}|" "$ENV_FILE"
+fi
 grep -q '^TELEGRAM_BOT_TOKEN=' "$ENV_FILE" || printf '# Telegram notifications (enquiries, backups, outages): token from @BotFather, chat id from @userinfobot\nTELEGRAM_BOT_TOKEN=\nTELEGRAM_ADMIN_CHAT_ID=\n' >> "$ENV_FILE"
 grep -q '^TELEGRAM_BOT_USERNAME=' "$ENV_FILE" || printf '# Public assistant bot: username without @ (shows "Write in Telegram" links); optional separate token\nTELEGRAM_BOT_USERNAME=\nTELEGRAM_ASSISTANT_TOKEN=\n' >> "$ENV_FILE"
 grep -q '^BACKUP_DIR=' "$ENV_FILE" || echo "BACKUP_DIR=/var/backups/klishin" >> "$ENV_FILE"

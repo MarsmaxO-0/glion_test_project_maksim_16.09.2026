@@ -72,12 +72,14 @@ class Bot:
         self.offset = None
 
     def api(self, method, data):
-        old = settings.TELEGRAM_BOT_TOKEN
-        settings.TELEGRAM_BOT_TOKEN = self.token
-        try:
-            return _call(method, data, timeout=45)
-        finally:
-            settings.TELEGRAM_BOT_TOKEN = old
+        return _call(method, data, timeout=45, token=self.token)
+
+    def prune(self):
+        """Forget chats idle for over an hour so a long-running process does not grow forever."""
+        now = time.time()
+        for chat_id in [c for c, q in self.stamps.items() if not q or now - q[-1] > 3600]:
+            self.stamps.pop(chat_id, None)
+            self.history.pop(chat_id, None)
 
     def send(self, chat_id, text, html_mode=True):
         data = {'chat_id': chat_id, 'text': text[:4000], 'disable_web_page_preview': True}
@@ -111,7 +113,6 @@ class Bot:
         text = msg['text'].strip()
         # Commands carry no language signal: fall back to the Telegram UI language.
         lang = detect_lang('' if text.startswith('/') else text, (msg.get('from') or {}).get('language_code', ''))
-        err = strings(lang)
 
         if text.startswith('/start') or text.startswith('/help'):
             self.history[chat_id].clear()
@@ -157,6 +158,7 @@ class Bot:
                 data = {'timeout': 30, 'allowed_updates': ['message']}
                 if self.offset is not None:
                     data['offset'] = self.offset
+                self.prune()
                 for update in self.api('getUpdates', data).get('result', []):
                     self.offset = update['update_id'] + 1
                     try:

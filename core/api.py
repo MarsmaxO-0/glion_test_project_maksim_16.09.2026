@@ -2,6 +2,7 @@ import json
 import logging
 
 import anthropic
+from django.core.cache import cache
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
@@ -9,6 +10,21 @@ from . import chat
 from .models import ChatLog
 
 log = logging.getLogger(__name__)
+
+CHAT_LIMIT_PER_HOUR = 20
+
+
+def _over_limit(request):
+    """At most CHAT_LIMIT_PER_HOUR questions per browser session (or IP when there is no session)."""
+    if not request.session.session_key:
+        request.session.save()
+    key = f"chat-rate:{request.session.session_key or request.META.get('REMOTE_ADDR', '')}"
+    count = cache.get(key, 0)
+    if count >= CHAT_LIMIT_PER_HOUR:
+        return True
+    cache.set(key, count + 1, 3600)
+    return False
+
 
 ERRORS = {
     'ru': {
@@ -43,6 +59,8 @@ def chat_api(request):
     history = chat.clean_history(payload.get('messages') or [])
     if not history:
         return JsonResponse({'error': err['bad']}, status=400)
+    if _over_limit(request):
+        return JsonResponse({'error': err['busy']}, status=429)
     try:
         reply = chat.ask(history, lang)
     except anthropic.RateLimitError as exc:

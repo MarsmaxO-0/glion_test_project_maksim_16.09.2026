@@ -28,8 +28,21 @@ def _system(lang):
     return text
 
 
+_client = None
+
+
+def client():
+    """One SDK client per process with a bounded wait: gunicorn kills a worker after 120 s."""
+    global _client
+    if _client is None or _client.api_key != settings.ANTHROPIC_API_KEY:
+        _client = anthropic.Anthropic(api_key=settings.ANTHROPIC_API_KEY, timeout=60.0, max_retries=1)
+    return _client
+
+
 def clean_history(raw):
     """Keep only well-formed alternating user/assistant text turns, ending with a user turn."""
+    if not isinstance(raw, list):
+        return []
     turns = []
     for m in raw[-MAX_HISTORY:]:
         if not isinstance(m, dict):
@@ -51,8 +64,7 @@ def clean_history(raw):
 
 def ask(history, lang):
     """Return the assistant's reply text for the given conversation."""
-    client = anthropic.Anthropic(api_key=settings.ANTHROPIC_API_KEY)
-    response = client.beta.messages.create(
+    response = client().beta.messages.create(
         model=settings.CHAT_MODEL,
         max_tokens=1024,
         output_config={'effort': 'low'},   # chat: short answers, fast

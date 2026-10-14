@@ -15,6 +15,7 @@ def site(request):
         'contacts': CONTACTS,
         'phone_hrefs': [(p, tel_href(p)) for p in CONTACTS['phones']],
         'lang_urls': {code: translate_url(path, code) for code in ('ru', 'en')},
+        'abs_lang_urls': {code: request.build_absolute_uri(translate_url(path, code)) for code in ('ru', 'en')},
         'nav_active': getattr(request, 'nav_active', ''),
         'chat_enabled': chat.enabled(),
         'telegram_url': f'https://t.me/{settings.TELEGRAM_BOT_USERNAME}' if settings.TELEGRAM_BOT_USERNAME else '',

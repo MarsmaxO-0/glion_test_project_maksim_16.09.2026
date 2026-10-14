@@ -27,3 +27,5 @@ urlpatterns += i18n_patterns(
 
 # Uploaded photos in development (nginx serves /media/ in production).
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler500 = 'core.views.server_error'

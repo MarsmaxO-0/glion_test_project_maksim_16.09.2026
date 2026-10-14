@@ -17,8 +17,8 @@ def enabled():
     return bool(settings.TELEGRAM_BOT_TOKEN and settings.TELEGRAM_ADMIN_CHAT_ID)
 
 
-def _call(method, data=None, files=None, timeout=30):
-    url = API.format(token=settings.TELEGRAM_BOT_TOKEN, method=method)
+def _call(method, data=None, files=None, timeout=30, token=None):
+    url = API.format(token=token or settings.TELEGRAM_BOT_TOKEN, method=method)
     if files:
         boundary = uuid.uuid4().hex
         body = b''

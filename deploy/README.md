@@ -103,7 +103,8 @@ https://dash.cloudflare.com/?to=/:account/turnstile for your domain, then set
 
 Point the domain's A record at the server IP, add the domain to
 `DJANGO_ALLOWED_HOSTS` in `/etc/klishin.env`, re-run the installer with
-`SERVER_NAME=example.com`, then obtain a certificate:
+`SERVER_NAME=example.com` (this also sets `SITE_URL=https://example.com`, used for
+absolute links in robots.txt, Telegram messages and the bot), then obtain a certificate:
 
 ```sh
 apt-get install -y certbot python3-certbot-nginx

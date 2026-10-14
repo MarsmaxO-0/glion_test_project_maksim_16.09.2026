@@ -9,7 +9,7 @@ from .models import ContactMessage
 
 
 def verify_turnstile(token, remote_ip=''):
-    if not settings.TURNSTILE_SECRET_KEY:
+    if not (settings.TURNSTILE_SECRET_KEY and settings.TURNSTILE_SITE_KEY):
         return True
     if not token:
         return False
@@ -34,9 +34,8 @@ class ContactForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'rows': 5}),
         }
 
-    def __init__(self, *args, labels=None, session=None, turnstile_token='', remote_ip='', **kwargs):
+    def __init__(self, *args, labels=None, turnstile_token='', remote_ip='', **kwargs):
         super().__init__(*args, **kwargs)
-        self.session = session if session is not None else {}
         self.turnstile_token = turnstile_token
         self.remote_ip = remote_ip
         for name, label in (labels or {}).items():
