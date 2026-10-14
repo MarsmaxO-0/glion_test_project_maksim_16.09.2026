@@ -13,6 +13,10 @@ with **Django 6 / Python 3.13**, plain **HTML, CSS and JavaScript**, and a
 - Press centre reads the public klishin.ru feed server-side, caches it for
   24 hours and falls back to the saved items in the database.
 - Contact form that stores enquiries in SQLite (with a honeypot field).
+- Site assistant: a chat widget powered by Claude that knows the site's content
+  (pages, practices, lawyers, contacts) and a short Russian-law reference, and
+  points visitors to the right practice and advocate. Conversations are logged
+  in the admin.
 - Django admin for every content type: lawyers, practices, cases, press items,
   publications, research items, IP Centre areas and received messages.
 - Responsive layout, scroll-reveal animations, mobile navigation.
@@ -26,6 +30,9 @@ with **Django 6 / Python 3.13**, plain **HTML, CSS and JavaScript**, and a
 | `core/views.py`, `core/urls.py` | Page views and routes. |
 | `core/ui.py` | Fixed page copy and interface strings in both languages. |
 | `core/press.py` | Live press feed with caching and database fallback. |
+| `core/chat.py`, `core/api.py` | Claude call and the `/api/chat/` endpoint for the assistant. |
+| `core/knowledge.py`, `core/legal_notes.py` | The assistant's system prompt: site description built from the database plus the Russian-law reference. |
+| `static/js/chat.js`, `core/templates/core/_chat.html` | The chat widget. |
 | `core/templates/core/` | Page templates; `templates/base.html` is the shared layout. |
 | `static/css/site.css`, `static/js/site.js` | Styles and behaviour. |
 | `core/fixtures/site_content.json` | All site content, loaded into SQLite with `loaddata`. |
@@ -64,6 +71,25 @@ Environment variables (all optional):
 | `DJANGO_ALLOWED_HOSTS` | `localhost,127.0.0.1` | Comma-separated host list. |
 | `PRESS_FEED_ENABLED` | `1` | Set to `0` to show only the saved press items. |
 | `PRESS_FEED_URL` | klishin.ru WordPress API | Source of the live news feed. |
+| `ANTHROPIC_API_KEY` | empty | Claude API key. The chat widget appears only when it is set. |
+| `CHAT_MODEL` | `claude-opus-5-5` | Model used by the assistant. |
+
+## Site assistant
+
+Set the key before starting the server and the "Ask a question" button appears
+on every page:
+
+```sh
+export ANTHROPIC_API_KEY=sk-ant-...      # Windows PowerShell: $env:ANTHROPIC_API_KEY="sk-ant-..."
+python manage.py runserver
+```
+
+The assistant answers in the visitor's language, links to site pages, explains
+basic legal terms from `core/legal_notes.py`, and declines to give advice on a
+specific case, directing the visitor to the relevant practice and the contact
+form instead. Edit `core/legal_notes.py` to extend the legal reference and
+`core/knowledge.py` to change the assistant's rules. Questions and answers are
+stored in the admin under "Chat logs".
 
 Lawyer photos are loaded from klishin.ru and the map is a Yandex Maps embed, so
 those parts need network access to render.

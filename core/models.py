@@ -229,3 +229,18 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f'{self.name} · {self.created:%d.%m.%Y}'
+
+
+class ChatLog(models.Model):
+    """Questions asked to the site assistant and the answers given."""
+    created = models.DateTimeField(auto_now_add=True)
+    session_key = models.CharField(max_length=64, blank=True)
+    language = models.CharField(max_length=2, default='ru')
+    question = models.TextField()
+    answer = models.TextField()
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return f'{self.created:%d.%m.%Y %H:%M} · {self.question[:60]}'

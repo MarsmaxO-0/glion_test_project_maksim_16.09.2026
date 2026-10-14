@@ -154,3 +154,8 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
+
+# Site assistant (Claude). The chat widget appears only when a key is configured.
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
+CHAT_MODEL = os.environ.get('CHAT_MODEL', 'claude-opus-5-5')
+CHAT_PROMPT_TTL = 10 * 60  # seconds the site description is kept before re-reading the database

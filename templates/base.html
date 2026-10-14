@@ -88,6 +88,7 @@
     </div>
   </footer>
 </div>
+{% if chat_enabled %}{% include 'core/_chat.html' %}{% endif %}
 <script src="{% static 'js/site.js' %}" defer></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (
-    Case, ContactMessage, IpArea, Lawyer, Practice, PracticeGroup, PracticeHighlight, PressItem, Publication,
+    Case, ChatLog, ContactMessage, IpArea, Lawyer, Practice, PracticeGroup, PracticeHighlight, PressItem, Publication,
     ResearchItem,
 )
 
@@ -82,3 +82,15 @@ class ContactMessageAdmin(admin.ModelAdmin):
     list_filter = ('handled', 'language')
     list_editable = ('handled',)
     readonly_fields = ('created', 'language', 'name', 'contact', 'message')
+
+
+@admin.register(ChatLog)
+class ChatLogAdmin(admin.ModelAdmin):
+    list_display = ('created', 'language', 'question_short', 'session_key')
+    list_filter = ('language',)
+    search_fields = ('question', 'answer')
+    readonly_fields = ('created', 'session_key', 'language', 'question', 'answer')
+
+    @admin.display(description='Question')
+    def question_short(self, obj):
+        return obj.question[:80]

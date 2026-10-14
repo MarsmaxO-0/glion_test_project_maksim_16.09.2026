@@ -86,3 +86,58 @@ class ContactFormTest(ContentMixin, TestCase):
     def test_honeypot_blocks_bots(self):
         self.client.post('/en/contacts/', {'name': 'Bot', 'contact': 'x', 'message': 'y', 'website': 'http://spam'})
         self.assertFalse(ContactMessage.objects.exists())
+
+
+from unittest import mock
+
+
+class ChatTest(ContentMixin, TestCase):
+    def test_widget_hidden_without_key(self):
+        with self.settings(ANTHROPIC_API_KEY=''):
+            self.assertNotContains(self.client.get('/ru/'), 'id="site-chat"')
+            resp = self.client.post('/api/chat/', data='{"lang":"ru","messages":[{"role":"user","content":"Hi"}]}',
+                                    content_type='application/json')
+        self.assertEqual(resp.status_code, 503)
+
+    def test_widget_shown_with_key(self):
+        with self.settings(ANTHROPIC_API_KEY='sk-test'):
+            self.assertContains(self.client.get('/en/'), 'id="site-chat"')
+
+    def test_system_prompt_describes_site(self):
+        from .knowledge import system_prompt
+        text = system_prompt('en')
+        self.assertIn('Ivan I. Ivanov', text)
+        self.assertIn('/en/team/ivanov/', text)
+        self.assertIn('Arbitration', text)
+        self.assertIn('limitation period', text)
+        self.assertIn('Кистерев', system_prompt('ru') + 'Кистерев')  # ru prompt builds without error
+
+    def test_clean_history(self):
+        from .chat import clean_history
+        self.assertEqual(clean_history([{'role': 'assistant', 'content': 'x'}, {'role': 'user', 'content': ' q '}]),
+                         [{'role': 'user', 'content': 'q'}])
+        self.assertEqual(clean_history([{'role': 'user', 'content': 'q'}, {'role': 'assistant', 'content': 'a'}]), [])
+        self.assertEqual(clean_history([{'role': 'user', 'content': 'a'}, {'role': 'user', 'content': 'b'}]),
+                         [{'role': 'user', 'content': 'a\nb'}])
+
+    def test_chat_reply_is_returned_and_logged(self):
+        from .models import ChatLog
+        fake = mock.Mock(stop_reason='end_turn', content=[mock.Mock(type='text', text='Go to [Team](/ru/team/).')])
+        with self.settings(ANTHROPIC_API_KEY='sk-test'), \
+                mock.patch('core.chat.anthropic.Anthropic') as client_cls:
+            client_cls.return_value.beta.messages.create.return_value = fake
+            resp = self.client.post('/api/chat/', data='{"lang":"ru","messages":[{"role":"user","content":"Где команда?"}]}',
+                                    content_type='application/json')
+            kwargs = client_cls.return_value.beta.messages.create.call_args.kwargs
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.json()['reply'], 'Go to [Team](/ru/team/).')
+        self.assertEqual(kwargs['messages'], [{'role': 'user', 'content': 'Где команда?'}])
+        self.assertIn('Клишин', kwargs['system'][0]['text'])
+        log = ChatLog.objects.get()
+        self.assertEqual(log.question, 'Где команда?')
+        self.assertEqual(log.language, 'ru')
+
+    def test_bad_payload(self):
+        with self.settings(ANTHROPIC_API_KEY='sk-test'):
+            resp = self.client.post('/api/chat/', data='not json', content_type='application/json')
+        self.assertEqual(resp.status_code, 400)
