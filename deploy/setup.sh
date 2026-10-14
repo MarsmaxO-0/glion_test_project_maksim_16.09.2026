@@ -22,6 +22,7 @@ apt-get update -q
 apt-get install -y -q python3 python3-venv python3-pip git nginx
 
 echo "==> Code"
+git config --global --add safe.directory "$APP_DIR"   # the checkout is owned by www-data
 if [ -d "$APP_DIR/.git" ]; then
   git -C "$APP_DIR" fetch -q origin "$BRANCH"
   git -C "$APP_DIR" checkout -q "$BRANCH"
