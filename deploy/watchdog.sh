@@ -3,7 +3,7 @@
 # it does not answer, and reports to Telegram (when configured).
 set -u
 ENV_FILE=/etc/klishin.env
-STATE=/run/klishin/watchdog.state
+STATE=/var/tmp/klishin-watchdog.state   # outside /run/klishin, which systemd wipes on restart
 set -a; . "$ENV_FILE"; set +a
 HOST=$(echo "${DJANGO_ALLOWED_HOSTS:-localhost}" | cut -d, -f1)
 
