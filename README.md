@@ -60,6 +60,11 @@ Run the tests with:
 python manage.py test
 ```
 
+## Deploying to a server
+
+See `deploy/README.md`: one script installs everything on an Ubuntu server
+(gunicorn + nginx + systemd).
+
 ## Configuration
 
 Environment variables (all optional):
