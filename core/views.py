@@ -1,8 +1,11 @@
+from django.conf import settings
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import translation
 
 from . import press as press_feed
-from .forms import ContactForm
+from . import telegram
+from .forms import ContactForm, new_captcha
 from .models import (
     Case, IpArea, Lawyer, Practice, PracticeGroup, PracticeHighlight, PressItem, Publication, ResearchItem,
 )
@@ -80,18 +83,32 @@ def press(request):
 def contacts(request):
     lang = (translation.get_language() or 'ru')[:2]
     ui = strings(lang)['contacts']
-    labels = {'name': ui['form_name'], 'contact': ui['form_contact'], 'message': ui['form_message']}
+    labels = {'name': ui['form_name'], 'contact': ui['form_contact'], 'message': ui['form_message'], 'captcha': ui['form_captcha']}
+    common = dict(labels=labels, session=request.session, remote_ip=request.META.get('REMOTE_ADDR', ''))
     if request.method == 'POST':
-        form = ContactForm(request.POST, labels=labels)
+        form = ContactForm(request.POST, turnstile_token=request.POST.get('cf-turnstile-response', ''), **common)
         if form.is_valid():
             msg = form.save(commit=False)
             msg.language = lang
             msg.save()
+            request.session.pop('captcha_answer', None)
+            telegram.send_message(
+                f"Новая заявка с сайта\n\nИмя: {msg.name}\nКонтакт: {msg.contact}\n\n{msg.message}\n\n"
+                f"{settings.SITE_URL}/admin/core/contactmessage/{msg.pk}/change/")
             return redirect(f"{request.path}?sent=1#contact-form")
     else:
-        form = ContactForm(labels=labels)
+        form = ContactForm(**common)
+    captcha_question = new_captcha(request.session)
     return _render(
         request, 'core/contacts.html', 'contacts',
         form=form, sent=request.GET.get('sent') == '1',
+        captcha_question=captcha_question,
+        turnstile_site_key=settings.TURNSTILE_SITE_KEY if settings.TURNSTILE_SECRET_KEY else '',
         map_url=CONTACTS[f'map_{lang}'],
     )
+
+
+def healthz(request):
+    """Liveness check for the watchdog and external monitors: touches the database."""
+    from .models import Lawyer
+    return JsonResponse({'ok': True, 'lawyers': Lawyer.objects.count()})

@@ -34,6 +34,47 @@ ANTHROPIC_API_KEY=sk-ant-... enables the chat assistant
 
 After editing it: `systemctl restart klishin`.
 
+## Telegram notifications, backups, monitoring
+
+1. In Telegram open **@BotFather**, send `/newbot`, follow the prompts and copy the token.
+2. Open **@userinfobot** (or write anything to your new bot and open
+   `https://api.telegram.org/bot<TOKEN>/getUpdates`) to find your numeric chat id.
+3. Put both into `/etc/klishin.env`:
+
+```
+TELEGRAM_BOT_TOKEN=123456:ABC...
+TELEGRAM_ADMIN_CHAT_ID=123456789
+```
+
+4. `systemctl restart klishin`.
+
+You then receive: every new enquiry from the contact form, the daily backup
+archive (03:30 server time, also kept in `/var/backups/klishin`, last 14), and
+watchdog alerts. The watchdog (`deploy/watchdog.sh`, every 2 minutes)
+restarts gunicorn if `/healthz/` stops answering and reports the outcome.
+
+For alerts when the whole server is down, add the site to a free external
+monitor such as UptimeRobot (https://uptimerobot.com): monitor type HTTP(s),
+URL `https://your-domain/healthz/`, interval 5 minutes.
+
+Manual backup: `systemctl start klishin-backup` · Restore: stop the site,
+unpack the archive into `/opt/klishin` (it contains `db.sqlite3` and `media/`),
+`chown -R www-data:www-data /opt/klishin`, start the site.
+
+## Maintenance mode
+
+```sh
+touch /opt/klishin/MAINTENANCE     # visitors see the "under maintenance" page (admin keeps working)
+rm /opt/klishin/MAINTENANCE        # back to normal
+```
+
+## Spam protection
+
+The contact form has a honeypot field and an arithmetic question. To add
+Cloudflare Turnstile as well, create a widget at
+https://dash.cloudflare.com/?to=/:account/turnstile and set
+`TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in `/etc/klishin.env`.
+
 ## Everyday commands
 
 | Task | Command |

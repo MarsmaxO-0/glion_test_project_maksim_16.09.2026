@@ -50,6 +50,11 @@ ENV
   chmod 600 "$ENV_FILE"
   echo "    created $ENV_FILE (edit it to add ANTHROPIC_API_KEY or a domain)"
 fi
+# Keys added in later versions: append if missing so older installs keep working.
+grep -q '^SITE_URL=' "$ENV_FILE" || echo "SITE_URL=http://$(grep -o 'DJANGO_ALLOWED_HOSTS=[^,]*' "$ENV_FILE" | cut -d= -f2)" >> "$ENV_FILE"
+grep -q '^TELEGRAM_BOT_TOKEN=' "$ENV_FILE" || printf '# Telegram notifications (enquiries, backups, outages): token from @BotFather, chat id from @userinfobot\nTELEGRAM_BOT_TOKEN=\nTELEGRAM_ADMIN_CHAT_ID=\n' >> "$ENV_FILE"
+grep -q '^BACKUP_DIR=' "$ENV_FILE" || echo "BACKUP_DIR=/var/backups/klishin" >> "$ENV_FILE"
+grep -q '^TURNSTILE_SITE_KEY=' "$ENV_FILE" || printf '# Optional Cloudflare Turnstile captcha keys\nTURNSTILE_SITE_KEY=\nTURNSTILE_SECRET_KEY=\n' >> "$ENV_FILE"
 
 echo "==> Database and static files"
 set -a; . "$ENV_FILE"; set +a
@@ -82,6 +87,46 @@ UNIT
 systemctl daemon-reload
 systemctl enable -q klishin
 systemctl restart klishin
+
+echo "==> backup and watchdog timers"
+mkdir -p /var/backups/klishin && chown www-data:www-data /var/backups/klishin
+cat > /etc/systemd/system/klishin-backup.service <<UNIT
+[Unit]
+Description=Klishin website backup
+[Service]
+Type=oneshot
+User=www-data
+WorkingDirectory=$APP_DIR
+EnvironmentFile=$ENV_FILE
+ExecStart=$APP_DIR/.venv/bin/python manage.py backup
+UNIT
+cat > /etc/systemd/system/klishin-backup.timer <<UNIT
+[Unit]
+Description=Daily Klishin website backup
+[Timer]
+OnCalendar=*-*-* 03:30:00
+Persistent=true
+[Install]
+WantedBy=timers.target
+UNIT
+cat > /etc/systemd/system/klishin-watchdog.service <<UNIT
+[Unit]
+Description=Klishin website watchdog
+[Service]
+Type=oneshot
+ExecStart=/bin/bash $APP_DIR/deploy/watchdog.sh
+UNIT
+cat > /etc/systemd/system/klishin-watchdog.timer <<UNIT
+[Unit]
+Description=Check the Klishin website every 2 minutes
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+[Install]
+WantedBy=timers.target
+UNIT
+systemctl daemon-reload
+systemctl enable -q --now klishin-backup.timer klishin-watchdog.timer
 
 echo "==> nginx"
 if grep -qs "managed by Certbot" /etc/nginx/sites-available/klishin; then

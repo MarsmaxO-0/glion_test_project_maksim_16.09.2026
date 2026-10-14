@@ -51,6 +51,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "core.middleware.MaintenanceMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -173,3 +174,20 @@ LOGGING = {
     'handlers': {'console': {'class': 'logging.StreamHandler'}},
     'loggers': {'core': {'handlers': ['console'], 'level': 'INFO'}},
 }
+
+# Maintenance mode: create this file to show the "under maintenance" page (admin stays available).
+MAINTENANCE_FILE = os.environ.get('MAINTENANCE_FILE', str(BASE_DIR / 'MAINTENANCE'))
+
+# Telegram notifications (new enquiries, backups, watchdog alerts). Both must be set.
+TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+TELEGRAM_ADMIN_CHAT_ID = os.environ.get('TELEGRAM_ADMIN_CHAT_ID', '')
+SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
+
+# Backups: python manage.py backup
+BACKUP_DIR = os.environ.get('BACKUP_DIR', str(BASE_DIR / 'backups'))
+BACKUP_KEEP = int(os.environ.get('BACKUP_KEEP', '14'))
+
+# Contact-form spam protection. The arithmetic question is always on;
+# Cloudflare Turnstile is added when both keys are set.
+TURNSTILE_SITE_KEY = os.environ.get('TURNSTILE_SITE_KEY', '')
+TURNSTILE_SECRET_KEY = os.environ.get('TURNSTILE_SECRET_KEY', '')

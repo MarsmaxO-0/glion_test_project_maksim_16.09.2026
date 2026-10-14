@@ -1,3 +1,5 @@
+from unittest import mock
+
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import translation
@@ -70,25 +72,44 @@ class PagesTest(ContentMixin, TestCase):
 
 
 class ContactFormTest(ContentMixin, TestCase):
+    def _captcha(self, lang='ru'):
+        """Open the form so a captcha question is stored, then return its answer."""
+        self.client.get(f'/{lang}/contacts/')
+        return self.client.session['captcha_answer']
+
     def test_valid_message_is_saved(self):
-        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': '+7 900 000-00-00', 'message': 'Вопрос'})
+        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': '+7 900 000-00-00', 'message': 'Вопрос',
+                                                  'captcha': self._captcha()})
         self.assertRedirects(resp, '/ru/contacts/?sent=1#contact-form', fetch_redirect_response=False)
         msg = ContactMessage.objects.get()
         self.assertEqual(msg.language, 'ru')
         self.assertEqual(msg.name, 'Анна')
 
+    def test_wrong_captcha_is_rejected(self):
+        answer = self._captcha()
+        resp = self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос', 'captcha': answer + 1})
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(ContactMessage.objects.exists())
+
+    def test_enquiry_is_sent_to_telegram(self):
+        answer = self._captcha()
+        with self.settings(TELEGRAM_BOT_TOKEN='t', TELEGRAM_ADMIN_CHAT_ID='1'), mock.patch('core.telegram._call') as call:
+            self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос', 'captcha': answer})
+        self.assertEqual(call.call_args.args[0], 'sendMessage')
+        self.assertIn('Анна', call.call_args.args[1]['text'])
+
     def test_invalid_message_is_rejected(self):
-        resp = self.client.post('/en/contacts/', {'name': '', 'contact': '', 'message': ''})
+        resp = self.client.post('/en/contacts/', {'name': '', 'contact': '', 'message': '', 'captcha': self._captcha('en')})
         self.assertEqual(resp.status_code, 200)
         self.assertContains(resp, 'Please check the fields.')
         self.assertFalse(ContactMessage.objects.exists())
 
     def test_honeypot_blocks_bots(self):
-        self.client.post('/en/contacts/', {'name': 'Bot', 'contact': 'x', 'message': 'y', 'website': 'http://spam'})
+        self.client.post('/en/contacts/', {'name': 'Bot', 'contact': 'x', 'message': 'y', 'website': 'http://spam',
+                                           'captcha': self._captcha('en')})
         self.assertFalse(ContactMessage.objects.exists())
 
 
-from unittest import mock
 
 
 class ChatTest(ContentMixin, TestCase):
@@ -160,3 +181,40 @@ class PhotoTest(ContentMixin, TestCase):
     def test_silhouette_hides_external_url(self):
         self.lawyer.silhouette = True
         self.assertEqual(self.lawyer.photo_src, '')
+
+
+class OpsTest(ContentMixin, TestCase):
+    def test_healthz(self):
+        resp = self.client.get('/healthz/')
+        self.assertEqual(resp.json(), {'ok': True, 'lawyers': 1})
+
+    def test_404_page_uses_site_layout(self):
+        resp = self.client.get('/en/team/nobody/')
+        self.assertEqual(resp.status_code, 404)
+        self.assertContains(resp, 'Page not found', status_code=404)
+        self.assertContains(resp, 'class="footer"', status_code=404)
+
+    def test_maintenance_mode(self):
+        import tempfile, os
+        with tempfile.TemporaryDirectory() as tmp:
+            flag = os.path.join(tmp, 'MAINTENANCE')
+            with self.settings(MAINTENANCE_FILE=flag):
+                self.assertEqual(self.client.get('/ru/').status_code, 200)
+                open(flag, 'w').close()
+                resp = self.client.get('/en/team/')
+                self.assertEqual(resp.status_code, 503)
+                self.assertContains(resp, 'Site under maintenance', status_code=503)
+                self.assertEqual(self.client.get('/healthz/').status_code, 200)
+
+    def test_backup_command(self):
+        import tempfile, tarfile
+        from io import StringIO
+        from django.core.management import call_command
+        with tempfile.TemporaryDirectory() as tmp, self.settings(BACKUP_DIR=tmp, BACKUP_KEEP=1):
+            out = StringIO()
+            call_command('backup', '--no-upload', stdout=out)
+            call_command('backup', '--no-upload', stdout=out)
+            archives = sorted(os.listdir(tmp)) if (os := __import__('os')) else []
+            self.assertEqual(len(archives), 1)
+            with tarfile.open(os.path.join(tmp, archives[0])) as tar:
+                self.assertTrue(any(n.startswith('db.') for n in tar.getnames()))

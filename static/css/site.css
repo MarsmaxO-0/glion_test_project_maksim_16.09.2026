@@ -262,6 +262,11 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .notice--ok { background: #EAF5EC; color: #2F6B3C; border: 1px solid #CFE6D4; }
 .notice--error { background: var(--tint); color: var(--accent); border: 1px solid #F0C8BE; }
 
+/* Captcha and error pages */
+.form__row--captcha { align-items: end; }
+.field--captcha input { max-width: 160px; }
+.hero__actions--tight { padding-bottom: 0; margin-top: 32px; }
+
 /* Footer */
 .footer { background: var(--ink); color: var(--on-ink-dim); border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding: 64px 0 32px; }
 .footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--rule-ink); }

@@ -125,6 +125,16 @@ UI = {
             'form_submit': 'Отправить',
             'form_sent': 'Спасибо, сообщение получено. Мы свяжемся с вами в рабочее время.',
             'form_error': 'Проверьте заполнение полей.',
+            'form_captcha': 'Проверка, что вы не робот',
+        },
+        'errors': {
+            'not_found_title': 'Такой страницы нет',
+            'not_found_text': 'Возможно, ссылка устарела или в адресе опечатка. Перейдите на главную или свяжитесь с коллегией.',
+            'server_error_title': 'Что-то пошло не так',
+            'server_error_text': 'Мы уже знаем об ошибке и исправляем её. Попробуйте обновить страницу через несколько минут или позвоните нам.',
+            'maintenance_title': 'Сайт на обслуживании',
+            'maintenance_text': 'Мы обновляем сайт, это займёт немного времени. Коллегия работает в обычном режиме: звоните или пишите.',
+            'go_home': 'На главную',
         },
     },
     'en': {
@@ -235,6 +245,16 @@ UI = {
             'form_submit': 'Send',
             'form_sent': 'Thank you, your message has been received. We will contact you during office hours.',
             'form_error': 'Please check the fields.',
+            'form_captcha': 'Confirm you are human',
+        },
+        'errors': {
+            'not_found_title': 'Page not found',
+            'not_found_text': 'The link may be outdated or mistyped. Go to the home page or contact the association.',
+            'server_error_title': 'Something went wrong',
+            'server_error_text': 'We already know about the error and are fixing it. Try again in a few minutes or call us.',
+            'maintenance_title': 'Site under maintenance',
+            'maintenance_text': 'We are updating the site; it will not take long. The association is working as usual: call or write to us.',
+            'go_home': 'Home page',
         },
     },
 }

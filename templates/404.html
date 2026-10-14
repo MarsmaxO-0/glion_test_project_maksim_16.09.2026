@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}404{% endblock %}
+{% block content %}
+<section class="hero hero--compact">
+  <div class="wrap">
+    <div class="kicker kicker--light">404</div>
+    <h1 class="hero__title">{{ ui.errors.not_found_title }}</h1>
+    <p class="hero__lead">{{ ui.errors.not_found_text }}</p>
+    <div class="hero__actions hero__actions--tight">
+      <a href="{% url 'core:home' %}" class="btn btn--primary">{{ ui.errors.go_home }}</a>
+      <a href="{% url 'core:contacts' %}" class="btn btn--ghost">{{ ui.nav.contacts }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

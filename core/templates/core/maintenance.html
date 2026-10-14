@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ ui.errors.maintenance_title }}{% endblock %}
+{% block content %}
+<section class="hero hero--compact">
+  <div class="wrap">
+    <div class="kicker kicker--light">{{ ui.brand }}</div>
+    <h1 class="hero__title">{{ ui.errors.maintenance_title }}</h1>
+    <p class="hero__lead">{{ ui.errors.maintenance_text }}</p>
+    <div class="hero__actions hero__actions--tight">
+      <a href="{{ phone_hrefs.0.1 }}" class="btn btn--primary">{{ phone_hrefs.0.0 }}</a>
+      <a href="mailto:{{ contacts.email }}" class="btn btn--ghost">{{ contacts.email }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

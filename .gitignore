@@ -6,3 +6,5 @@ staticfiles/
 .venv/
 venv/
 media/
+backups/
+MAINTENANCE

@@ -5,10 +5,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 from core.api import chat_api
+from core.views import healthz
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/chat/', chat_api, name='chat_api'),
+    path('healthz/', healthz, name='healthz'),
 ]
 
 urlpatterns += i18n_patterns(
