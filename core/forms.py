@@ -15,7 +15,7 @@ def verify_turnstile(token, remote_ip=''):
         return False
     try:
         data = urllib.parse.urlencode({'secret': settings.TURNSTILE_SECRET_KEY, 'response': token, 'remoteip': remote_ip}).encode()
-        with urllib.request.urlopen('https://challenges.cloudflare.com/turnstile/v0/siteverify', data=data, timeout=8) as resp:
+        with urllib.request.urlopen('https://challenges.cloudflare.com/turnstile/v0/siteverify', data=data, timeout=6) as resp:
             return bool(json.loads(resp.read().decode()).get('success'))
     except Exception:
         return False

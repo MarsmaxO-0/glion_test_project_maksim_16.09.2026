@@ -2,6 +2,7 @@
 import json
 import logging
 import mimetypes
+import threading
 import urllib.request
 import uuid
 from pathlib import Path
@@ -36,17 +37,24 @@ def _call(method, data=None, files=None, timeout=30):
         return json.loads(resp.read().decode())
 
 
-def send_message(text, chat_id=None):
+def send_message(text, chat_id=None, timeout=10):
     """Send a text message to the admin chat. Never raises: notification failures must not break the site."""
     if not settings.TELEGRAM_BOT_TOKEN:
         return False
     try:
         _call('sendMessage', {'chat_id': chat_id or settings.TELEGRAM_ADMIN_CHAT_ID, 'text': text[:4000],
-                              'disable_web_page_preview': True})
+                              'disable_web_page_preview': True}, timeout=timeout)
         return True
     except Exception as exc:
         log.warning('telegram: could not send message: %s', exc)
         return False
+
+
+def notify(text, chat_id=None):
+    """Send a message in the background so a slow Telegram API never delays the visitor's page."""
+    if not settings.TELEGRAM_BOT_TOKEN:
+        return
+    threading.Thread(target=send_message, args=(text, chat_id), kwargs={'timeout': 20}, daemon=True).start()
 
 
 def send_document(path, caption='', chat_id=None):

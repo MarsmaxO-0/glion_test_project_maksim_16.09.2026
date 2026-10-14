@@ -91,7 +91,7 @@ def contacts(request):
             msg = form.save(commit=False)
             msg.language = lang
             msg.save()
-            telegram.send_message(
+            telegram.notify(
                 f"Новая заявка с сайта\n\nИмя: {msg.name}\nКонтакт: {msg.contact}\n\n{msg.message}\n\n"
                 f"{settings.SITE_URL}/admin/core/contactmessage/{msg.pk}/change/")
             return redirect(f"{request.path}?sent=1#contact-form")

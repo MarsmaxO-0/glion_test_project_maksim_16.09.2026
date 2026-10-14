@@ -93,10 +93,11 @@ class ContactFormTest(ContentMixin, TestCase):
         self.assertTrue(ContactMessage.objects.exists())
 
     def test_enquiry_is_sent_to_telegram(self):
-        with self.settings(TELEGRAM_BOT_TOKEN='t', TELEGRAM_ADMIN_CHAT_ID='1'), mock.patch('core.telegram._call') as call:
+        with self.settings(TELEGRAM_BOT_TOKEN='t', TELEGRAM_ADMIN_CHAT_ID='1'), \
+                mock.patch('core.telegram.threading.Thread') as thread:
             self.client.post('/ru/contacts/', {'name': 'Анна', 'contact': 'a@b.c', 'message': 'Вопрос'})
-        self.assertEqual(call.call_args.args[0], 'sendMessage')
-        self.assertIn('Анна', call.call_args.args[1]['text'])
+        self.assertTrue(thread.return_value.start.called)          # sent in the background, not inline
+        self.assertIn('Анна', thread.call_args.kwargs['args'][0])
 
     def test_invalid_message_is_rejected(self):
         resp = self.client.post('/en/contacts/', {'name': '', 'contact': '', 'message': ''})
