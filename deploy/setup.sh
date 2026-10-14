@@ -70,7 +70,7 @@ User=www-data
 Group=www-data
 WorkingDirectory=$APP_DIR
 EnvironmentFile=$ENV_FILE
-ExecStart=$APP_DIR/.venv/bin/gunicorn klishin.wsgi:application --bind unix:/run/klishin.sock --workers 3 --timeout 120
+ExecStart=$APP_DIR/.venv/bin/gunicorn klishin.wsgi:application --bind unix:/run/klishin/gunicorn.sock --workers 3 --timeout 120
 RuntimeDirectory=klishin
 Restart=always
 
@@ -95,7 +95,7 @@ server {
         add_header Cache-Control "public";
     }
     location / {
-        proxy_pass http://unix:/run/klishin.sock;
+        proxy_pass http://unix:/run/klishin/gunicorn.sock;
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
@@ -109,6 +109,12 @@ rm -f /etc/nginx/sites-enabled/default
 nginx -t -q
 systemctl enable -q nginx
 systemctl reload nginx
+
+sleep 2
+if ! systemctl is-active -q klishin; then
+  echo "gunicorn failed to start; last log lines:"; journalctl -u klishin -n 30 --no-pager; exit 1
+fi
+curl -fsS -o /dev/null http://127.0.0.1/ru/ || { echo "nginx cannot reach the app; see: journalctl -u klishin -n 50"; exit 1; }
 
 echo
 echo "Done. The site answers on http://$(grep -o 'DJANGO_ALLOWED_HOSTS=[^,]*' "$ENV_FILE" | cut -d= -f2)/"
