@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ ui.brand }}{% endblock %} — {{ ui.brand }}</title>
 <meta name="description" content="{% block description %}{{ ui.footer_blurb }}{% endblock %}">
+<link rel="alternate" hreflang="ru" href="{{ lang_urls.ru }}">
+<link rel="alternate" hreflang="en" href="{{ lang_urls.en }}">
+<meta property="og:site_name" content="{{ ui.brand }}">
+<meta property="og:title" content="{% block og_title %}{{ ui.brand }}{% endblock %}">
+<meta property="og:description" content="{{ ui.footer_blurb }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="{% if lang == 'en' %}en_GB{% else %}ru_RU{% endif %}">
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/themis-poster.jpg' %}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Podkova:wght@400..800&family=Onest:wght@400;500;600;700&display=swap">

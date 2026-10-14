@@ -253,3 +253,14 @@ class TelegramBotTest(ContentMixin, TestCase):
             resp = self.client.get('/ru/contacts/')
         self.assertContains(resp, 'https://t.me/klishin_bot')
         self.assertNotContains(self.client.get('/ru/contacts/'), 't.me/')
+
+
+class SeoTest(ContentMixin, TestCase):
+    def test_sitemap_and_robots(self):
+        resp = self.client.get('/sitemap.xml')
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, '/en/team/ivanov/')
+        self.assertContains(resp, '/ru/practices/')
+        robots = self.client.get('/robots.txt')
+        self.assertContains(robots, 'Sitemap:')
+        self.assertContains(self.client.get('/ru/'), 'property="og:title"')
