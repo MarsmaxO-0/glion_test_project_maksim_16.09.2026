@@ -13,7 +13,7 @@ class ContentMixin:
             key='arb', group=group, order=1, title_ru='Арбитраж', title_en='Arbitration',
             summary_ru='Описание', summary_en='Summary')
         cls.lawyer = Lawyer.objects.create(
-            slug='ivanov', order=1, group=Lawyer.PRESIDIUM, on_home=True, photo_url='https://example.com/p.jpg',
+            slug='ivanov', order=1, group=Lawyer.PRESIDIUM, on_home=True, photo_url='https://example.com/p.jpg', silhouette=False,
             name_ru='Иванов Иван Иванович', name_en='Ivan I. Ivanov',
             position_ru='Председатель', position_en='Chairman', short_role_ru='Председатель', short_role_en='Chairman',
             kicker_ru='Президиум', kicker_en='Presidium', role_ru='Председатель коллегии', role_en='Chairman',
