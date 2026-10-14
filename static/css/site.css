@@ -270,7 +270,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .puzzle__refresh { position: absolute; right: 8px; top: 8px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(255,255,255,.85); color: var(--ink); font-size: 16px; cursor: pointer; line-height: 1; }
 .puzzle__refresh:hover { background: #fff; }
 .puzzle__track { position: relative; margin-top: 10px; height: 44px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); overflow: hidden; }
-.puzzle__hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--muted); pointer-events: none; padding: 0 48px; text-align: center; }
+.puzzle__hint { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--muted); pointer-events: none; padding: 0 48px; text-align: center; }
 .puzzle__fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--tint); }
 .puzzle__handle { position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 999px; border: 0; background: var(--accent); color: #fff; font-size: 18px; cursor: grab; box-shadow: 0 4px 12px rgba(191,74,60,.3); transition: background .2s; }
 .puzzle__handle:active { cursor: grabbing; }
