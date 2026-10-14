@@ -157,8 +157,8 @@ systemctl enable -q --now klishin-backup.timer klishin-watchdog.timer
 
 echo "==> nginx"
 # Compression for text assets and HTTP/2 (applied whether or not certbot manages the site config).
+# (Ubuntu's nginx.conf already has "gzip on"; repeating it is an error.)
 cat > /etc/nginx/conf.d/klishin-performance.conf <<CONF
-gzip on;
 gzip_vary on;
 gzip_min_length 1024;
 gzip_comp_level 5;
