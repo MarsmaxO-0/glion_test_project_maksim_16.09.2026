@@ -156,6 +156,15 @@ systemctl daemon-reload
 systemctl enable -q --now klishin-backup.timer klishin-watchdog.timer
 
 echo "==> nginx"
+# Compression for text assets and HTTP/2 (applied whether or not certbot manages the site config).
+cat > /etc/nginx/conf.d/klishin-performance.conf <<CONF
+gzip on;
+gzip_vary on;
+gzip_min_length 1024;
+gzip_comp_level 5;
+gzip_types text/plain text/css application/json application/javascript text/javascript image/svg+xml;
+CONF
+sed -i '/http2/!s/^\(\s*listen \S*443 ssl\)\(.*\);/\1 http2\2;/' /etc/nginx/sites-available/klishin 2>/dev/null || true
 if grep -qs "managed by Certbot" /etc/nginx/sites-available/klishin; then
   echo "    keeping the existing nginx config (HTTPS set up by certbot)"
 else

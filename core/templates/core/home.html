@@ -4,7 +4,12 @@
 {% block description %}{{ ui.home.lead }}{% endblock %}
 {% block content %}
 <section class="hero hero--home">
-  <div class="hero__art" aria-hidden="true"><img src="{% static 'img/themis.gif' %}" alt=""></div>
+  <div class="hero__art" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="{% static 'img/themis-poster.jpg' %}">
+      <source src="{% static 'img/themis.webm' %}" type="video/webm">
+      <source src="{% static 'img/themis.mp4' %}" type="video/mp4">
+    </video>
+  </div>
   <div class="wrap hero__inner">
     <div class="hero__grid">
       <div>
