@@ -13,7 +13,8 @@ notify() {
     --data-urlencode "chat_id=${TELEGRAM_ADMIN_CHAT_ID}" --data-urlencode "text=$1" || true
 }
 
-check() { curl -fsS -m 15 -o /dev/null -H "Host: $HOST" http://127.0.0.1/healthz/; }
+# Ask gunicorn directly through its socket: nginx may legitimately answer 404/301 for a bare IP after HTTPS setup.
+check() { curl -fsS -m 15 -o /dev/null --unix-socket /run/klishin/gunicorn.sock -H "Host: $HOST" http://localhost/healthz/; }
 
 if check; then
   if [ -f "$STATE" ]; then

@@ -171,7 +171,8 @@ if ! systemctl is-active -q klishin; then
   echo "gunicorn failed to start; last log lines:"; journalctl -u klishin -n 30 --no-pager; exit 1
 fi
 FIRST_HOST=$(grep -o 'DJANGO_ALLOWED_HOSTS=[^,]*' "$ENV_FILE" | cut -d= -f2)
-curl -fsS -o /dev/null -H "Host: $FIRST_HOST" http://127.0.0.1/ru/ || { echo "nginx cannot reach the app; see: journalctl -u klishin -n 50"; exit 1; }
+curl -fsS -o /dev/null --unix-socket /run/klishin/gunicorn.sock -H "Host: $FIRST_HOST" http://localhost/healthz/ \
+  || { echo "the app does not answer; see: journalctl -u klishin -n 50"; exit 1; }
 
 echo
 echo "Done. The site answers on http://$(grep -o 'DJANGO_ALLOWED_HOSTS=[^,]*' "$ENV_FILE" | cut -d= -f2)/"
